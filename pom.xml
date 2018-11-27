@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.javatutorial.tutorials</groupId>
-	<artifactId>SimpleServlet</artifactId>
+	<artifactId>DeliveryService</artifactId>
 	<version>1</version>
 	<packaging>war</packaging>
 
-	<name>SimpleServlet</name>
+	<name>DeliveryService</name>
 	<url>https://javatutorial.net</url>
 
 	<properties>
