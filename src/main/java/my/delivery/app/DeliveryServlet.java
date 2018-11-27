@@ -1,4 +1,4 @@
-package net.javatutorial.tutorials;
+package my.delivery.app;
 
 import java.io.IOException;
 

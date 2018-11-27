@@ -9,7 +9,7 @@
 
 	<servlet>
 		<servlet-name>deliveryServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.DeliveryServlet</servlet-class>
+		<servlet-class>my.delivery.app.DeliveryServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
@@ -17,5 +17,4 @@
 		<servlet-name>deliveryServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 </web-app>
