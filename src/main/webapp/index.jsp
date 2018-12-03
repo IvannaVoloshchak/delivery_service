@@ -6,6 +6,10 @@
 <title>Delivery</title>
 </head>
 <body>
-<jsp:forward page="/DeliveryController?action=listDelivery" />
+<h1>
+Hello World
+
+</h1>
+<p><a href="DeliveryController?action=listDelivery"> Deliveries </a></p>
 </body>
 </html>

@@ -15,7 +15,7 @@ import java.util.Date;
 
 public class DeliveryController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final String DELIVERY_VIEW = "index.jsp";
+    private static String INDEX = "/index.jsp";
     private static String INSERT_OR_EDIT = "/delivery.jsp";
     private static String LIST_DELIVERY = "/listDelivery.jsp";
     private DeliveryDao dao;
@@ -37,11 +37,13 @@ public class DeliveryController extends HttpServlet {
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
             int id = Integer.parseInt(request.getParameter("id"));
-            Delivery delivery =  dao.getDeliveryById(id);
+            Delivery delivery = dao.getDeliveryById(id);
             request.setAttribute("delivery", delivery);
         } else if (action.equalsIgnoreCase("listDelivery")) {
             forward = LIST_DELIVERY;
             request.setAttribute("deliveries", dao.getAllDeliveries());
+        } else if (action.equalsIgnoreCase("index")) {
+            forward = INDEX;
         } else {
             forward = INSERT_OR_EDIT;
         }
@@ -52,7 +54,6 @@ public class DeliveryController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Delivery delivery = new Delivery();
-
         delivery.setSenders_name(request.getParameter("senders_name"));
         delivery.setRecipient_name(request.getParameter("recipient_name"));
         delivery.setSenders_address(request.getParameter("senders_address"));

@@ -9,6 +9,7 @@
 <title>Show All Deliveries</title>
 </head>
 <body>
+<p><a href="DeliveryController?action=index"> Main </a></p>
     <table border=1>
         <thead>
             <tr>
@@ -42,6 +43,6 @@
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="DeliveryController?action=insert">  <input type="submit" value="Add new Delivery"/></a></p>
+    <p><a href="DeliveryController?action=insert"> <input type="submit" value="Add new Delivery"/> </a></p>
 </body>
 </html>
