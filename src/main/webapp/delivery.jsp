@@ -20,27 +20,36 @@ $('input[name=delivery_date]').datepicker();
     </script>
 
     <form method="POST" action='DeliveryController' name="frmAddDelivery">
+
     Id : <input type="text" readonly="readonly" name="id"
                 value="<c:out value="${delivery.id}" />" /> <br />
+
          Senders_name : <input type="text" name="senders_name"
             value="<c:out value="${delivery.senders_name}" />" /> <br />
+
           Recipient_name : <input type="text" name="recipient_name"
                         value="<c:out value="${delivery.recipient_name}" />" /> <br />
+
         Senders_address : <input  type="text" name="senders_address"
             value="<c:out value="${delivery.senders_address}" />" /> <br />
+
         Recipient_address : <input type="text" name="recipient_address"
             value="<c:out value="${delivery.recipient_address}" />" /> <br />
+
        Delivery_type : <input     type="text" name="delivery_type"
                          value="<c:out value="${delivery.delivery_type}" />" /> <br />
+
         Weight : <input type="text" name="weight"
                        value="<c:out value="${delivery.weight}" />" /> <br />
+
         Sent_date : <input   type="text" name="sent_date"
             value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.sent_date}" />" /> <br />
+
         Delivery_date : <input    type="text" name="delivery_date"
                         value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.delivery_date}" />" /> <br />
 
-      <input type="submit" value="Submit"/>
-    </form>
 
+     <input type="submit" value="Save"/>
+    </form>
 </body>
 </html>

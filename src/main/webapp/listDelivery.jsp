@@ -42,6 +42,6 @@
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="DeliveryController?action=insert">Add new Delivery</a></p>
+    <p><a href="DeliveryController?action=insert">  <input type="submit" value="Add new Delivery"/></a></p>
 </body>
 </html>

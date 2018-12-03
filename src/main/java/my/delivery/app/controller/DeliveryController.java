@@ -15,6 +15,7 @@ import java.util.Date;
 
 public class DeliveryController extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static final String DELIVERY_VIEW = "index.jsp";
     private static String INSERT_OR_EDIT = "/delivery.jsp";
     private static String LIST_DELIVERY = "/listDelivery.jsp";
     private DeliveryDao dao;
