@@ -3,37 +3,106 @@ package my.delivery.app.util;
 
 
 import my.delivery.app.dao.DeliveryDao;
+import my.delivery.app.dao.FareDao;
+import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.model.Delivery;
+import my.delivery.app.model.Fare;
+import my.delivery.app.model.GoodsType;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class ConnectionTry {
 
     public static void main(String[] args) {
-        DeliveryDao userDao= new DeliveryDao();
+
+
+        GoodsTypeDao goodsTypeDao= new GoodsTypeDao();
+        List <GoodsType> allGoodsType = getAllGoods();
+        System.out.println(allGoodsType);
+
+//        FareDao fareDao=new FareDao();
+//        List<Fare> allFare= getAllFare();
+//        System.out.println(allFare);
+//        Fare fare = new Fare();
+//        fare.setFrom_city("Kiev");
+//        fare.setTo_city("Lviv");
+//        fare.setDeliveryType("box");
+//        fare.setWeight(4.5);
+//        fare.setPrice(100.0);
+//        addFare(fare);
+
+//        DeliveryDao userDao= new DeliveryDao();
 //        List<Delivery> allDeliveries= getAllDeliveries();
 //        System.out.println(allDeliveries);
-        Delivery delivery1= new Delivery();
-        delivery1.setSenders_name("Bohdan");
-        delivery1.setRecipient_name("Sydorov");
-        delivery1.setSenders_address("Kiev Shevchenka 23");
-        delivery1.setRecipient_address("Lviv Konovaltsca 4");
-        delivery1.setDelivery_type("box");
-        delivery1.setWeight(4.7);
-        delivery1.setSent_date(new Date());
-        delivery1.setDelivery_date(new Date());
-        delivery1.setId(7);
+//        Delivery delivery1= new Delivery();
+//        delivery1.setSenders_name("Bohdan");
+//        delivery1.setRecipient_name("Sydorov");
+//        delivery1.setSenders_address("Kiev Shevchenka 23");
+//        delivery1.setRecipient_address("Lviv Konovaltsca 4");
+//        delivery1.setDeliveryType("box");
+//        delivery1.setWeight(4.7);
+//        delivery1.setSent_date(new Date());
+//        delivery1.setDelivery_date(new Date());
+//        delivery1.setId_fare(7);
 
          // addDelivery(delivery1);
        // deleteDelivery(5);
 
 
-        userDao.updateDelivery(delivery1);
+        //userDao.updateDelivery(delivery1);
 //        Delivery delivery=getDeliveryById(7);
 //        System.out.println(delivery);
 
     }
+    public static List<GoodsType> getAllGoods() {
+        Connection connection = DbUtil.getConnection();
+        List<GoodsType> goodsTypes = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from goods_type");
+            while (rs.next()) {
+                GoodsType goodsType= new GoodsType();
+                goodsType.setIdGoodsType(rs.getInt("id_goods_type"));
+                goodsType.setDeliveryType(rs.getString("delivery_type"));
+               goodsTypes.add(goodsType);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return goodsTypes;
+    }
+
+//    public static List<Fare> getAllFare() {
+//        Connection connection = DbUtil.getConnection();
+//        List<Fare> fares = new ArrayList<>();
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet rs = statement.executeQuery("select * from delivery_service.fare");
+//            while (rs.next()) {
+//                Fare fare = new Fare();
+//                fare.setId_fare(rs.getInt("id_fare"));
+//                fare.setFrom_city(rs.getString("from_city"));
+//                fare.setTo_city(rs.getString("to_city"));
+//                fare.setDeliveryType(rs.getString("delivery_type"));
+//
+//                fare.setPrice(rs.getDouble("price"));
+//               fares.add(fare);
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return fares;
+//    }
+
 //    public static List<Delivery> getAllDeliveries() {
 //     Connection connection = DbUtil.getConnection();
 //        List<Delivery> deliveries = new ArrayList<Delivery>();
@@ -42,12 +111,12 @@ public class ConnectionTry {
 //            ResultSet rs = statement.executeQuery("select * from delivery");
 //            while (rs.next()) {
 //                Delivery delivery = new Delivery();
-//                delivery.setId(rs.getInt("id"));
+//                delivery.setId_fare(rs.getInt("id"));
 //                delivery.setSenders_name(rs.getString("senders_name"));
 //                delivery.setRecipient_name(rs.getString("recipient_name"));
 //                delivery.setSenders_address( rs.getString("senders_address"));
 //                delivery.setRecipient_address(rs.getString("recipient_address"));
-//                delivery.setDelivery_type(rs.getString("delivery_type"));
+//                delivery.setDeliveryType(rs.getString("delivery_type"));
 //                delivery.setWeight(rs.getDouble("weight"));
 //                delivery.setSent_date(rs.getDate("sent_date"));
 //                delivery.setDelivery_date(rs.getDate("delivery_date"));
@@ -73,7 +142,7 @@ public class ConnectionTry {
 //           preparedStatement.setString(2, delivery.getRecipient_name());
 //           preparedStatement.setString(3, delivery.getSenders_address());
 //           preparedStatement.setString(4, delivery.getRecipient_address());
-//           preparedStatement.setString(5, delivery.getDelivery_type());
+//           preparedStatement.setString(5, delivery.getDeliveryType());
 //           preparedStatement.setDouble(6, delivery.getWeight());
 //           preparedStatement.setDate(7, new Date(delivery.getSent_date().getTime()));
 //           preparedStatement.setDate(8, new Date(delivery.getDelivery_date().getTime()));
@@ -111,12 +180,12 @@ public class ConnectionTry {
 //            preparedStatement.setString(2, delivery.getRecipient_name());
 //            preparedStatement.setString(3, delivery.getSenders_address());
 //            preparedStatement.setString(4, delivery.getRecipient_address());
-//            preparedStatement.setString(5, delivery.getDelivery_type());
+//            preparedStatement.setString(5, delivery.getDeliveryType());
 //            preparedStatement.setDouble(6, delivery.getWeight());
 //            preparedStatement.setDate(7, new Date(delivery.getSent_date().getTime()));
 //            preparedStatement.setDate(8, new Date(delivery.getDelivery_date().getTime()));
 //
-//            preparedStatement.setInt(9, delivery.getId());
+//            preparedStatement.setInt(9, delivery.getId_fare());
 //
 //            preparedStatement.executeUpdate();
 //        } catch (SQLException e) {
@@ -144,12 +213,12 @@ public class ConnectionTry {
 //            ResultSet rs = preparedStatement.executeQuery();
 //
 //            if (rs.next()) {
-//                delivery.setId(rs.getInt("id"));
+//                delivery.setId_fare(rs.getInt("id"));
 //                delivery.setSenders_name(rs.getString("senders_name"));
 //                delivery.setRecipient_name(rs.getString("recipient_name"));
 //                delivery.setSenders_address( rs.getString("senders_address"));
 //                delivery.setRecipient_address(rs.getString("recipient_address"));
-//                delivery.setDelivery_type(rs.getString("delivery_type"));
+//                delivery.setDeliveryType(rs.getString("delivery_type"));
 //                delivery.setWeight(rs.getDouble("weight"));
 //                delivery.setSent_date(rs.getDate("sent_date"));
 //                delivery.setDelivery_date(rs.getDate("delivery_date"));

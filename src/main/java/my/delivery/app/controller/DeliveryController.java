@@ -1,6 +1,7 @@
 package my.delivery.app.controller;
 
 import my.delivery.app.dao.DeliveryDao;
+import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.model.Delivery;
 
 import javax.servlet.RequestDispatcher;
@@ -18,11 +19,13 @@ public class DeliveryController extends HttpServlet {
     private static String INDEX = "/index.jsp";
     private static String INSERT_OR_EDIT = "/delivery.jsp";
     private static String LIST_DELIVERY = "/listDelivery.jsp";
+    private static String LIST_GOODS= "/index.jsp";
     private DeliveryDao dao;
-
+    private GoodsTypeDao gDao;
     public DeliveryController() {
         super();
         dao = new DeliveryDao();
+        gDao= new GoodsTypeDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,7 +47,10 @@ public class DeliveryController extends HttpServlet {
             request.setAttribute("deliveries", dao.getAllDeliveries());
         } else if (action.equalsIgnoreCase("index")) {
             forward = INDEX;
-        } else {
+        } else if (action. equalsIgnoreCase("delivery_type")){
+            forward=LIST_GOODS;
+            request.setAttribute("types", gDao.getAllGoods());
+        }else {
             forward = INSERT_OR_EDIT;
         }
 

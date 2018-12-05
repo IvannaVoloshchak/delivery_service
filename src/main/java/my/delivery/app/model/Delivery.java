@@ -1,18 +1,19 @@
 package my.delivery.app.model;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Delivery {
-    private int id;
+public class Delivery implements Serializable {
+    private Integer id;
     private String senders_name;
     private String recipient_name;
     private String senders_address;
     private String recipient_address;
     private String delivery_type;
-    private double weight;
+    private Double weight;
     private Date sent_date;
     private Date delivery_date;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -60,7 +61,7 @@ public class Delivery {
         this.delivery_type = delivery_type;
     }
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
