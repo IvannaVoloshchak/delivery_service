@@ -9,7 +9,7 @@
 <title>Show All Deliveries</title>
 </head>
 <body>
-<p><a href="DeliveryController?action=index"> Main </a></p>
+<p><a href="?action=index"> Main </a></p>
     <table border=1>
         <thead>
             <tr>
@@ -37,12 +37,12 @@
                     <td><c:out value="${delivery.weight}" /></td>
                      <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.sent_date}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.delivery_date}" /></td>
-                    <td><a href="DeliveryController?action=edit&id=<c:out value="${delivery.id}"/>">Update</a></td>
-                    <td><a href="DeliveryController?action=delete&id=<c:out value="${delivery.id}"/>">Delete</a></td>
+                    <td><a href="?action=edit&id=<c:out value="${delivery.id}"/>">Update</a></td>
+                    <td><a href="?action=delete&id=<c:out value="${delivery.id}"/>">Delete</a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="DeliveryController?action=insert"> <input type="submit" value="Add new Delivery"/> </a></p>
+    <p><a href="?action=insert"> <input type="submit" value="Add new Delivery"/> </a></p>
 </body>
 </html>

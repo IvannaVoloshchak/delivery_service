@@ -17,6 +17,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deliveryController</servlet-name>
-        <url-pattern>/DeliveryController</url-pattern>
+        <url-pattern></url-pattern>
 	</servlet-mapping>
 </web-app>

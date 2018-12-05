@@ -19,20 +19,22 @@ public class DeliveryController extends HttpServlet {
     private static String INDEX = "/index.jsp";
     private static String INSERT_OR_EDIT = "/delivery.jsp";
     private static String LIST_DELIVERY = "/listDelivery.jsp";
-    private static String LIST_GOODS= "/index.jsp";
     private DeliveryDao dao;
-    private GoodsTypeDao gDao;
+    private GoodsTypeDao goodsTypeDao;
+
     public DeliveryController() {
         super();
         dao = new DeliveryDao();
-        gDao= new GoodsTypeDao();
+        goodsTypeDao = new GoodsTypeDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String forward = "";
         String action = request.getParameter("action");
-
-        if (action.equalsIgnoreCase("delete")) {
+        if (action == null) {
+            forward = INDEX;
+            request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
+        } else if (action.equalsIgnoreCase("delete")) {
             int id = Integer.parseInt(request.getParameter("id"));
             dao.deleteDelivery(id);
             forward = LIST_DELIVERY;
@@ -47,10 +49,8 @@ public class DeliveryController extends HttpServlet {
             request.setAttribute("deliveries", dao.getAllDeliveries());
         } else if (action.equalsIgnoreCase("index")) {
             forward = INDEX;
-        } else if (action. equalsIgnoreCase("delivery_type")){
-            forward=LIST_GOODS;
-            request.setAttribute("types", gDao.getAllGoods());
-        }else {
+            request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
+        } else {
             forward = INSERT_OR_EDIT;
         }
 
@@ -84,6 +84,7 @@ public class DeliveryController extends HttpServlet {
         }
         RequestDispatcher view = request.getRequestDispatcher(LIST_DELIVERY);
         request.setAttribute("deliveries", dao.getAllDeliveries());
-        view.forward(request, response);
+       view.forward(request, response);
+
     }
 }

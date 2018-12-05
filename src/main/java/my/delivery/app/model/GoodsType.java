@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class GoodsType implements Serializable {
     private Integer idGoodsType;
-    private String deliveryType;
+    private String name;
 
     public Integer getIdGoodsType() {
         return idGoodsType;
@@ -14,19 +14,19 @@ public class GoodsType implements Serializable {
         this.idGoodsType = idGoodsType;
     }
 
-    public String getDeliveryType() {
-        return deliveryType;
+    public String getName() {
+        return name;
     }
 
-    public void setDeliveryType(String deliveryType) {
-        this.deliveryType = deliveryType;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "GoodsType{" +
                 "id_goods_type=" + idGoodsType +
-                ", delivery_type='" + deliveryType + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
