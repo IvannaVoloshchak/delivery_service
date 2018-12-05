@@ -2,7 +2,9 @@ package my.delivery.app.util;
 
 
 
+import my.delivery.app.dao.CityDao;
 import my.delivery.app.dao.GoodsTypeDao;
+import my.delivery.app.model.City;
 import my.delivery.app.model.GoodsType;
 
 import java.sql.Connection;
@@ -16,11 +18,13 @@ import java.util.List;
 public class ConnectionTry {
 
     public static void main(String[] args) {
-
-
-        GoodsTypeDao goodsTypeDao= new GoodsTypeDao();
-        List <GoodsType> allGoodsType = getAllGoodsTypes();
-        System.out.println(allGoodsType);
+        CityDao cityDao = new CityDao();
+        List<City> cities = cityDao.getAllCities();
+        System.out.println(cities);
+//
+//        GoodsTypeDao goodsTypeDao= new GoodsTypeDao();
+//        List <GoodsType> allGoodsType = getAllGoodsTypes();
+//        System.out.println(allGoodsType);
 
 //        FareDao fareDao=new FareDao();
 //        List<Fare> allFare= getAllFare();
@@ -56,24 +60,40 @@ public class ConnectionTry {
 //        System.out.println(delivery);
 
     }
-        public static List<GoodsType> getAllGoodsTypes() {
-            Connection connection = DbUtil.getConnection();
-            List<GoodsType> goodsTypes = new ArrayList<>();
-            try {
-                Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery("select * from goods_type");
-                while (rs.next()) {
-                    GoodsType goodsType= new GoodsType();
-                    goodsType.setIdGoodsType(rs.getInt("id_goods_type"));
-                    goodsType.setName(rs.getString("name"));
-                    goodsTypes.add(goodsType);
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
+    public static List<City> getAllCities() {
+        Connection connection= DbUtil.getConnection();
+        List<City> cities = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from city");
+            while (rs.next()) {
+                City city = new City();
+                city.setId(rs.getInt("id"));
+                city.setName(rs.getString("name"));
+                cities.add(city);
             }
-            return goodsTypes;
-        }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }return cities;
+    }
+//        public static List<GoodsType> getAllGoodsTypes() {
+//            Connection connection = DbUtil.getConnection();
+//            List<GoodsType> goodsTypes = new ArrayList<>();
+//            try {
+//                Statement statement = connection.createStatement();
+//                ResultSet rs = statement.executeQuery("select * from goods_type");
+//                while (rs.next()) {
+//                    GoodsType goodsType= new GoodsType();
+//                    goodsType.setIdGoodsType(rs.getInt("id_goods_type"));
+//                    goodsType.setName(rs.getString("name"));
+//                    goodsTypes.add(goodsType);
+//                }
+//
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//            return goodsTypes;
+//        }
 
 
 //    public static List<Fare> getAllFare() {

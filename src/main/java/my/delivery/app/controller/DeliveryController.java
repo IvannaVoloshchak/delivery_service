@@ -1,5 +1,6 @@
 package my.delivery.app.controller;
 
+import my.delivery.app.dao.CityDao;
 import my.delivery.app.dao.DeliveryDao;
 import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.model.Delivery;
@@ -21,11 +22,13 @@ public class DeliveryController extends HttpServlet {
     private static String LIST_DELIVERY = "/listDelivery.jsp";
     private DeliveryDao dao;
     private GoodsTypeDao goodsTypeDao;
+    private CityDao cityDao;
 
     public DeliveryController() {
         super();
         dao = new DeliveryDao();
         goodsTypeDao = new GoodsTypeDao();
+        cityDao= new CityDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +37,7 @@ public class DeliveryController extends HttpServlet {
         if (action == null) {
             forward = INDEX;
             request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
+            request.setAttribute("cities", cityDao.getAllCities());
         } else if (action.equalsIgnoreCase("delete")) {
             int id = Integer.parseInt(request.getParameter("id"));
             dao.deleteDelivery(id);
@@ -47,10 +51,7 @@ public class DeliveryController extends HttpServlet {
         } else if (action.equalsIgnoreCase("listDelivery")) {
             forward = LIST_DELIVERY;
             request.setAttribute("deliveries", dao.getAllDeliveries());
-        } else if (action.equalsIgnoreCase("index")) {
-            forward = INDEX;
-            request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
-        } else {
+        }  else {
             forward = INSERT_OR_EDIT;
         }
 

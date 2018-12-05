@@ -15,43 +15,29 @@ Delivery World
 <p><a href="?action=listDelivery"> Deliveries </a></p>
 
 <h2><strong> Delivery  calculator</strong></h2>
-<p> <strong>Weight</strong></p>
+<p> <strong>Weight: </strong></p>
  <input type="text" name="weight"
             value=" ${delivery.weight} " /> kg<br />
-
-<p><strong> Delivery type</strong></p>
-<select name="delivery type">
+<p><strong>Goods type: </strong></p>
+<select name="goods_type">
  <c:forEach items="${types}" var="type">
-
          <option value="${type.idGoodsType}">${type.name}</option>
-
      </c:forEach>
   </select>
-
-
-  <p><strong>Direction</strong></p>
-  <p> From</p>
+  <p><strong>Direction: </strong></p>
+  <p>From: </p>
   <select name="from">
-  <option value=""> </option>
-  <option value="Kiev">Kiev</option>
-    <option value="Lviv">Lviv </option>
-    <option value=" Odessa">Odessa </option>
-    <option value="Ternopil ">Ternopil </option>
-    <option value="Ivano-Frankivsk ">Ivano-Frankivsk </option>
-    <option value="Dnipro ">Dnipro </option>
-    <option value="Donetsk ">Donetsk </option>
+  <c:forEach items="${cities}" var="city">
+           <option value="${city.id}">${city.name}</option>
+       </c:forEach>
     </select>
-    <p> To</p>
+    <p>To: </p>
      <select name="to">
-     <option value=""> </option>
-    <option value="Kiev">Kiev</option>
-    <option value="Lviv">Lviv </option>
-    <option value=" Odessa">Odessa </option>
-    <option value="Ternopil ">Ternopil </option>
-    <option value="Ivano-Frankivsk ">Ivano-Frankivsk </option>
-    <option value="Dnipro ">Dnipro </option>
-    <option value="Donetsk ">Donetsk </option>
-     </select>
-  <input type="submit" value="Calculate"/>
+     <c:forEach items="${cities}" var="city">
+                <option value="${city.id}">${city.name}</option>
+            </c:forEach>
+     </select><br/>
+  <p><input type="submit" value="Calculate"/></p>
+  <p><strong>Total price:</strong> <input type="text" name="price" /> </p>
 </body>
 </html>
