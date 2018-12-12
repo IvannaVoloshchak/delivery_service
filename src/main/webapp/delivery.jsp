@@ -14,8 +14,8 @@
 <body>
     <script>
         $(function() {
-            $('input[name=sent_date]').datepicker();
-$('input[name=delivery_date]').datepicker();
+            $('input[name=sentDate]').datepicker();
+$('input[name=deliveryDate]').datepicker();
         });
     </script>
 
@@ -24,30 +24,39 @@ $('input[name=delivery_date]').datepicker();
     Id : <input type="text" readonly="readonly" name="id"
                 value="<c:out value="${delivery.id}" />" /> <br />
 
-         Senders_name : <input type="text" name="senders_name"
-            value="<c:out value="${delivery.senders_name}" />" /> <br />
+         Senders_first_name : <input type="text" name="senders_first_name"
+                    value="<c:out value="${delivery.sendersFirstName}" />" /> <br />
 
-          Recipient_name : <input type="text" name="recipient_name"
-                        value="<c:out value="${delivery.recipient_name}" />" /> <br />
+         Senders_last_name : <input type="text" name="senders_last_name"
+                     value="<c:out value="${delivery.sendersLastName}" />" /> <br />
 
-        Senders_address : <input  type="text" name="senders_address"
-            value="<c:out value="${delivery.senders_address}" />" /> <br />
+          Recipient_first_name : <input type="text" name="recipient_first_name"
+                     value="<c:out value="${delivery.recipientFirstName}" />" /> <br />
 
-        Recipient_address : <input type="text" name="recipient_address"
-            value="<c:out value="${delivery.recipient_address}" />" /> <br />
+          Recipient_last_name : <input type="text" name="recipient_last_name"
+                    value="<c:out value="${delivery.recipientLastName}" />" /> <br />
 
-       Delivery_type : <input     type="text" name="delivery_type"
-                         value="<c:out value="${delivery.delivery_type}" />" /> <br />
+       From_city : <input  type="text" name="from_city"
+             value="<c:out value="${delivery.fromCity}" />" /> <br />
+
+       To_city: <input type="text" name="to_city"
+            value="<c:out value="${delivery.toCity}" />" /> <br />
+
+       Goods_type : <input     type="text" name="goods_type"
+                         value="<c:out value="${delivery.goodsType}" />" /> <br />
 
         Weight : <input type="text" name="weight"
                        value="<c:out value="${delivery.weight}" />" /> <br />
+      Senders_phone : <input type="text" name="senders_phone"
+                                              value="<c:out value="${delivery.sendersPhone}" />" /> <br />
+        Recipient_phone : <input type="text" name="recipient_phone"
+                                              value="<c:out value="${delivery.recipientPhone}" />" /> <br />
 
         Sent_date : <input   type="text" name="sent_date"
-            value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.sent_date}" />" /> <br />
+            value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.sentDate}" />" /> <br />
 
         Delivery_date : <input    type="text" name="delivery_date"
-                        value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.delivery_date}" />" /> <br />
-
+                        value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.deliveryDate}" />" /> <br />
 
      <input type="submit" value="Save"/>
     </form>

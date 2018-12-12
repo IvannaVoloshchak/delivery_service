@@ -24,11 +24,11 @@ public class FareDao {
             ResultSet rs = statement.executeQuery("select * from fare");
             while (rs.next()) {
                 Fare fare = new Fare();
-                fare.setId_fare(rs.getInt("id_fare"));
-                fare.setFrom_city(rs.getString("from_city"));
-                fare.setTo_city(rs.getString("to_city"));
-                fare.setDelivery_type(rs.getString("delivery_type"));
-                fare.setPrice(rs.getDouble("price"));
+                fare.setId(rs.getInt("ide"));
+                fare.setIdGoodsType(rs.getInt("id_goods_type"));
+                fare.setMinimumPrice(rs.getDouble("minimum_price"));
+                fare.setPricePerKilogram(rs.getDouble("price_per_kilogram"));
+
                 fares.add(fare);
             }
 

@@ -16,7 +16,8 @@ public class DeliveryDao {
 
         connection = DbUtil.getConnection();
     }
-    public  List<Delivery> getAllDeliveries() {
+
+    public List<Delivery> getAllDeliveries() {
 
         List<Delivery> deliveries = new ArrayList<Delivery>();
         try {
@@ -25,14 +26,18 @@ public class DeliveryDao {
             while (rs.next()) {
                 Delivery delivery = new Delivery();
                 delivery.setId(rs.getInt("id"));
-                delivery.setSenders_name(rs.getString("senders_name"));
-                delivery.setRecipient_name(rs.getString("recipient_name"));
-                delivery.setSenders_address( rs.getString("senders_address"));
-                delivery.setRecipient_address(rs.getString("recipient_address"));
-                delivery.setDelivery_type(rs.getString("delivery_type"));
+                delivery.setSendersFirstName(rs.getString("senders_first_name"));
+                delivery.setSendersLastName(rs.getString("senders_last_name"));
+                delivery.setRecipientFirstName(rs.getString("recipient_first_name"));
+                delivery.setRecipientLastName(rs.getString("recipient_last_name"));
+                delivery.setFromCity(rs.getString("from_city"));
+                delivery.setToCity(rs.getString("to_city"));
+                delivery.setGoodsType(rs.getString("goods_type"));
                 delivery.setWeight(rs.getDouble("weight"));
-                delivery.setSent_date(rs.getDate("sent_date"));
-                delivery.setDelivery_date(rs.getDate("delivery_date"));
+                delivery.setSendersPhone(rs.getString("senders_phone"));
+                delivery.setRecipientPhone(rs.getString("recipient_phone"));
+                delivery.setSentDate(rs.getDate("sent_date"));
+                delivery.setDeliveryDate(rs.getDate("delivery_date"));
                 deliveries.add(delivery);
             }
         } catch (SQLException e) {
@@ -40,21 +45,28 @@ public class DeliveryDao {
         }
         return deliveries;
     }
-    public  void addDelivery(Delivery delivery) {
+
+    public void addDelivery(Delivery delivery) {
 
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("insert into delivery(senders_name,recipient_name," +
-                            "senders_address,recipient_address,delivery_type,weight,sent_date,delivery_date)values ( ?, ?, ?, ?, ?, ?, ?, ?)");
+                    prepareStatement("insert into delivery(senders_first_name, senders_last_name," +
+                            " recipient_first_name, recipient_last_name, from_city,to_city, goods_type," +
+                            " weight,senders_phone, recipient_phone, sent_date, delivery_date)" +
+                            "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            preparedStatement.setString(1, delivery.getSenders_name());
-            preparedStatement.setString(2, delivery.getRecipient_name());
-            preparedStatement.setString(3, delivery.getSenders_address());
-            preparedStatement.setString(4, delivery.getRecipient_address());
-            preparedStatement.setString(5, delivery.getDelivery_type());
-            preparedStatement.setDouble(6, delivery.getWeight());
-            preparedStatement.setDate(7, new Date(delivery.getSent_date().getTime()));
-            preparedStatement.setDate(8, new Date(delivery.getDelivery_date().getTime()));
+            preparedStatement.setString(1, delivery.getSendersFirstName());
+            preparedStatement.setString(2, delivery.getSendersLastName());
+            preparedStatement.setString(3, delivery.getRecipientFirstName());
+            preparedStatement.setString(4, delivery.getRecipientLastName());
+            preparedStatement.setString(5, delivery.getFromCity());
+            preparedStatement.setString(6, delivery.getToCity());
+            preparedStatement.setString(7, delivery.getGoodsType());
+            preparedStatement.setDouble(8, delivery.getWeight());
+            preparedStatement.setString(9, delivery.getSendersPhone());
+            preparedStatement.setString(10, delivery.getRecipientPhone());
+            preparedStatement.setDate(11, new Date(delivery.getSentDate().getTime()));
+            preparedStatement.setDate(12, new Date(delivery.getDeliveryDate().getTime()));
 
             preparedStatement.executeUpdate();
 
@@ -64,7 +76,7 @@ public class DeliveryDao {
     }
 
 
-    public  void deleteDelivery(int id) {
+    public void deleteDelivery(int id) {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from " +
@@ -82,29 +94,34 @@ public class DeliveryDao {
 
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("Update delivery set senders_name =?, recipient_name =?," +
-                            " senders_address =?, recipient_address =?," +
-                            " delivery_type =?, weight =?, sent_date =?, delivery_date =?   where id =?");
+                    .prepareStatement("Update delivery set senders_first_name=?, senders_last_name=?," +
+                            " recipient_first_name=?, recipient_last_name=?, from_city=?, to_city=?, goods_type=?," +
+                            " weight=?, senders_phone=?, recipient_phone=?, sent_date=?,delivery_date=?  " +
+                            "where id =?");
 
             // Parameters start with 1
 
-            preparedStatement.setString(1, delivery.getSenders_name());
-            preparedStatement.setString(2, delivery.getRecipient_name());
-            preparedStatement.setString(3, delivery.getSenders_address());
-            preparedStatement.setString(4, delivery.getRecipient_address());
-            preparedStatement.setString(5, delivery.getDelivery_type());
-            preparedStatement.setDouble(6, delivery.getWeight());
-            preparedStatement.setDate(7, new Date(delivery.getSent_date().getTime()));
-            preparedStatement.setDate(8, new Date(delivery.getDelivery_date().getTime()));
-
-            preparedStatement.setInt(9, delivery.getId());
+            preparedStatement.setString(1, delivery.getSendersFirstName());
+            preparedStatement.setString(2, delivery.getSendersLastName());
+            preparedStatement.setString(3, delivery.getRecipientFirstName());
+            preparedStatement.setString(4, delivery.getRecipientLastName());
+            preparedStatement.setString(5, delivery.getFromCity());
+            preparedStatement.setString(6, delivery.getToCity());
+            preparedStatement.setString(7, delivery.getGoodsType());
+            preparedStatement.setDouble(8, delivery.getWeight());
+            preparedStatement.setString(9, delivery.getSendersPhone());
+            preparedStatement.setString(10, delivery.getRecipientPhone());
+            preparedStatement.setDate(11, new Date(delivery.getSentDate().getTime()));
+            preparedStatement.setDate(12, new Date(delivery.getDeliveryDate().getTime()));
+            preparedStatement.setInt(13, delivery.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public  java.util.Date stringToDate(String s) {//method which make type Date - String
+
+    public java.util.Date stringToDate(String s) {//method which make type Date - String
         java.util.Date date = null;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -114,7 +131,8 @@ public class DeliveryDao {
         }
         return date;
     }
-    public  Delivery getDeliveryById(int id) {
+
+    public Delivery getDeliveryById(int id) {
 
         Delivery delivery = new Delivery();
         try {
@@ -125,14 +143,18 @@ public class DeliveryDao {
 
             if (rs.next()) {
                 delivery.setId(rs.getInt("id"));
-                delivery.setSenders_name(rs.getString("senders_name"));
-                delivery.setRecipient_name(rs.getString("recipient_name"));
-                delivery.setSenders_address( rs.getString("senders_address"));
-                delivery.setRecipient_address(rs.getString("recipient_address"));
-                delivery.setDelivery_type(rs.getString("delivery_type"));
+                delivery.setSendersFirstName(rs.getString("senders_first_name"));
+                delivery.setSendersLastName(rs.getString("senders_last_name"));
+                delivery.setRecipientFirstName(rs.getString("recipient_first_name"));
+                delivery.setRecipientLastName(rs.getString("recipient_last_name"));
+                delivery.setFromCity(rs.getString("from_city"));
+                delivery.setToCity(rs.getString("to_city"));
+                delivery.setGoodsType(rs.getString("goods_type"));
                 delivery.setWeight(rs.getDouble("weight"));
-                delivery.setSent_date(rs.getDate("sent_date"));
-                delivery.setDelivery_date(rs.getDate("delivery_date"));
+                delivery.setSendersPhone(rs.getString("senders_phone"));
+                delivery.setRecipientPhone(rs.getString("recipient_phone"));
+                delivery.setSentDate(rs.getDate("sent_date"));
+                delivery.setDeliveryDate(rs.getDate("delivery_date"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

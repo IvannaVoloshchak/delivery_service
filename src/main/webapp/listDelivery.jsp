@@ -9,17 +9,21 @@
 <title>Show All Deliveries</title>
 </head>
 <body>
-<p><a href="?action=index"> Main </a></p>
+<p><a href="/"> Main </a></p>
     <table border=1>
         <thead>
             <tr>
                 <th> id </th>
-                <th> senders_name </th>
-                <th> recipient_name </th>
-                <th> senders_address </th>
-                <th> recipient_address </th>
-                <th> delivery_type </th>
+                <th> senders_first_name </th>
+                <th> senders_last_name </th>
+                <th> recipient_first_name </th>
+                <th> recipient_last_name </th>
+                <th> from_city </th>
+                <th> to_city </th>
+                <th> goods_type </th>
                 <th> weight </th>
+                <th>senders_phone </th>
+                <th> recipient_phone</th>
                 <th> sent_date </th>
                 <th> delivery_date </th>
                 <th colspan=2>Action</th>
@@ -28,15 +32,19 @@
         <tbody>
             <c:forEach items="${deliveries}" var="delivery">
                 <tr>
-                    <td><c:out value="${delivery.id}" /></td>
-                    <td><c:out value="${delivery.senders_name}" /></td>
-                    <td><c:out value="${delivery.recipient_name}" /></td>
-                    <td><c:out value="${delivery.senders_address}" /></td>
-                    <td><c:out value="${delivery.recipient_address}" /></td>
-                    <td><c:out value="${delivery.delivery_type}" /></td>
+                  <td><c:out value="${delivery.id}" /></td>
+                    <td><c:out value="${delivery.sendersFirstName}" /></td>
+                    <td><c:out value="${delivery.sendersLastName}" /></td>
+                    <td><c:out value="${delivery.recipientFirstName}" /></td>
+                    <td><c:out value="${delivery.recipientLastName}" /></td>
+                    <td><c:out value="${delivery.fromCity}" /></td>
+                    <td><c:out value="${delivery.toCity}" /></td>
+                    <td><c:out value="${delivery.goodsType}" /></td>
                     <td><c:out value="${delivery.weight}" /></td>
-                     <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.sent_date}" /></td>
-                    <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.delivery_date}" /></td>
+                    <td><c:out value="${delivery.sendersPhone}" /></td>
+                    <td><c:out value="${delivery.recipientPhone}" /></td>
+                     <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.sentDate}" /></td>
+                    <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.deliveryDate}" /></td>
                     <td><a href="?action=edit&id=<c:out value="${delivery.id}"/>">Update</a></td>
                     <td><a href="?action=delete&id=<c:out value="${delivery.id}"/>">Delete</a></td>
                 </tr>

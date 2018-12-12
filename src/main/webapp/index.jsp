@@ -11,19 +11,23 @@
 <h1>
 Delivery World
 </h1>
-<input type="submit" value="SIGN IN"/> <a href="?action=registration"> Registration </a>
+<a href="?action=signIn"><input type="submit" value="SIGN IN"/> <a href="?action=registration"> Registration </a>
 <p><a href="?action=listDelivery"> Deliveries </a></p>
 
 <h2><strong> Delivery  calculator</strong></h2>
+
+<form method="POST" action='calculate' name="price">
+
 <p> <strong>Weight: </strong></p>
- <input type="text" name="weight"
-            value=" ${delivery.weight} " /> kg<br />
+         <input type="text" name="weight"  value=" ${delivery.weight} " /> kg<br />
+
 <p><strong>Goods type: </strong></p>
 <select name="goods_type">
  <c:forEach items="${types}" var="type">
          <option value="${type.idGoodsType}">${type.name}</option>
      </c:forEach>
   </select>
+
   <p><strong>Direction: </strong></p>
   <p>From: </p>
   <select name="from">
@@ -31,13 +35,27 @@ Delivery World
            <option value="${city.id}">${city.name}</option>
        </c:forEach>
     </select>
+
     <p>To: </p>
      <select name="to">
      <c:forEach items="${cities}" var="city">
                 <option value="${city.id}">${city.name}</option>
             </c:forEach>
      </select><br/>
-  <p><input type="submit" value="Calculate"/></p>
-  <p><strong>Total price:</strong> <input type="text" name="price" /> </p>
+
+
+<p><a href="/"> <input type="submit" value="Calculate"/> </a></p>
+ <p><strong>Total price:</strong> <input type="text" name="price" /> </p>
+  </form>
+
+  <h2><strong> Delivery  tariffs </strong></h2>
+   <p>
+  	  <li><strong>Delivery tariffs </strong><br></li>
+  	   <li> Letter - 30 uan + 0.01 for each kilometers of road; </li>
+  	   <li> Box - 40 uan + 0.01 for each kilometers of road + 1 uan for each kilograms of weight; </li>
+  	   <li> Parcel - 50 uan + 0.01 for each kilometers of road + 1 uan for each kilograms of weight; </li>
+  	   <li> Container - 100 uan + 0.01 for each kilometers of road + 1 uan for each kilograms of weight. </li>
+  	   </ul>
+
 </body>
 </html>

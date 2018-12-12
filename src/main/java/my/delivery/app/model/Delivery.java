@@ -4,100 +4,139 @@ import java.util.Date;
 
 public class Delivery implements Serializable {
     private Integer id;
-    private String senders_name;
-    private String recipient_name;
-    private String senders_address;
-    private String recipient_address;
-    private String delivery_type;
+    private String sendersFirstName;
+    private String sendersLastName;
+    private String recipientFirstName;
+    private String recipientLastName;
+    private String fromCity;
+    private String toCity;
+    private String goodsType;
     private Double weight;
-    private Date sent_date;
-    private Date delivery_date;
+    private String sendersPhone;
+    private String recipientPhone;
+    private Date sentDate;
+    private Date deliveryDate;
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getSenders_name() {
-        return senders_name;
+    public String getSendersFirstName() {
+        return sendersFirstName;
     }
 
-    public void setSenders_name(String senders_name) {
-        this.senders_name = senders_name;
+    public void setSendersFirstName(String sendersFirstName) {
+        this.sendersFirstName = sendersFirstName;
     }
 
-    public String getRecipient_name() {
-        return recipient_name;
+    public String getSendersLastName() {
+        return sendersLastName;
     }
 
-    public void setRecipient_name(String recipient_name) {
-        this.recipient_name = recipient_name;
+    public void setSendersLastName(String sendersLastName) {
+        this.sendersLastName = sendersLastName;
     }
 
-    public String getSenders_address() {
-        return senders_address;
+    public String getRecipientFirstName() {
+        return recipientFirstName;
     }
 
-    public void setSenders_address(String senders_address) {
-        this.senders_address = senders_address;
+    public void setRecipientFirstName(String recipientFirstName) {
+        this.recipientFirstName = recipientFirstName;
     }
 
-    public String getRecipient_address() {
-        return recipient_address;
+    public String getRecipientLastName() {
+        return recipientLastName;
     }
 
-    public void setRecipient_address(String recipient_address) {
-        this.recipient_address = recipient_address;
+    public void setRecipientLastName(String recipientLastName) {
+        this.recipientLastName = recipientLastName;
     }
 
-    public String getDelivery_type() {
-        return delivery_type;
+    public String getFromCity() {
+        return fromCity;
     }
 
-    public void setDelivery_type(String delivery_type) {
-        this.delivery_type = delivery_type;
+    public void setFromCity(String fromCity) {
+        this.fromCity = fromCity;
+    }
+
+    public String getToCity() {
+        return toCity;
+    }
+
+    public void setToCity(String toCity) {
+        this.toCity = toCity;
+    }
+
+    public String getGoodsType() {
+        return goodsType;
+    }
+
+    public void setGoodsType(String goodsType) {
+        this.goodsType = goodsType;
     }
 
     public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
-    public Date getSent_date() {
-        return sent_date;
+    public String getSendersPhone() {
+        return sendersPhone;
     }
 
-    public void setSent_date(Date sent_date) {
-        this.sent_date = sent_date;
+    public void setSendersPhone(String sendersPhone) {
+        this.sendersPhone = sendersPhone;
     }
 
-    public Date getDelivery_date() {
-        return delivery_date;
+    public String getRecipientPhone() {
+        return recipientPhone;
     }
 
-    public void setDelivery_date(Date delivery_date) {
-        this.delivery_date = delivery_date;
+    public void setRecipientPhone(String recipientPhone) {
+        this.recipientPhone = recipientPhone;
     }
 
+    public Date getSentDate() {
+        return sentDate;
+    }
+
+    public void setSentDate(Date sentDate) {
+        this.sentDate = sentDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
 
     @Override
     public String toString() {
         return "Delivery{" +
                 "id=" + id +
-                ", senders_name='" + senders_name + '\'' +
-                ", recipient_name='" + recipient_name + '\'' +
-                ", senders_address='" + senders_address + '\'' +
-                ", recipient_address='" + recipient_address + '\'' +
-                ", delivery_type='" + delivery_type + '\'' +
+                ", senders_first_name='" + sendersFirstName + '\'' +
+                ", senders_last_name='" + sendersLastName + '\'' +
+                ", recipient_first_name='" + recipientFirstName + '\'' +
+                ", recipient_last_name='" + recipientLastName + '\'' +
+                ", from_city='" + fromCity + '\'' +
+                ", to_city='" + toCity + '\'' +
+                ", goods_type='" + goodsType + '\'' +
                 ", weight=" + weight +
-                ", sent_date=" + sent_date +
-                ", delivery_date=" + delivery_date +
+                ", senders_phone=" + sendersPhone +
+                ", recipient_phone=" + recipientPhone +
+                ", sent_date=" + sentDate +
+                ", delivery_date=" + deliveryDate +
                 '}';
     }
 }
