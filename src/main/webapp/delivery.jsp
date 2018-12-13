@@ -36,14 +36,21 @@
           Recipient_last_name : <input type="text" name="recipient_last_name"
                     value="<c:out value="${delivery.recipientLastName}" />" /> <br />
 
-       From_city : <input  type="text" name="from_city"
-             value="<c:out value="${delivery.fromCity}" />" /> <br />
-
-       To_city: <input type="text" name="to_city"
-            value="<c:out value="${delivery.toCity}" />" /> <br />
-
-       Goods_type : <input     type="text" name="goods_type"
-                         value="<c:out value="${delivery.goodsType}" />" /> <br />
+       From_city :  <select name="city_from_id">
+                 <c:forEach items="${cities}" var="city">
+                <option value="${city.id}" ${city.id==delivery.fromCity ? 'selected' : ''}>${city.name}</option>
+                </c:forEach>
+                 </select><br/>
+       To_city:  <select name="city_to_id">
+                 <c:forEach items="${cities}" var="city">
+                <option value="${city.id}" ${city.id==delivery.toCity ? 'selected' : ''}>${city.name}</option>
+                </c:forEach>
+                 </select><br/>
+       Goods_type :  <select name="goods_type_id">
+                     <c:forEach items="${types}" var="type">
+                      <option value="${type.idGoodsType}" ${type.idGoodsType==delivery.goodsType ? 'selected' : ''} >${type.name}</option>
+                      </c:forEach>
+                      </select><br />
 
         Weight : <input type="text" name="weight"
                        value="<c:out value="${delivery.weight}" />" /> <br />
@@ -57,8 +64,8 @@
 
         Delivery_date : <input    type="text" name="delivery_date"
                         value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.deliveryDate}" />" /> <br />
-        Price: <input type="text" name="price"
-                      value="<c:out value="${delivery.price}" />" /> <br />
+           Payment Status : <input type="text" name="paymentStatus"
+                   value="<c:out value="${delivery.paymentStatus}" />" /> <br />
      <input type="submit" value="Save"/>
     </form>
 </body>

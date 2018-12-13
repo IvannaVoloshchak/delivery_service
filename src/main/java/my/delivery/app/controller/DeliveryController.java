@@ -83,9 +83,9 @@ public class DeliveryController extends HttpServlet {
         delivery.setSendersLastName(request.getParameter("senders_last_name"));
         delivery.setRecipientFirstName(request.getParameter("recipient_first_name"));
         delivery.setRecipientLastName(request.getParameter("recipient_last_name"));
-        delivery.setFromCity(request.getParameter("from_city"));
-        delivery.setToCity(request.getParameter("to_city"));
-        delivery.setGoodsType(request.getParameter("goods_type"));
+        delivery.setFromCity(Integer.parseInt(request.getParameter("from_city")));
+        delivery.setToCity(Integer.parseInt(request.getParameter("to_city")));
+        delivery.setGoodsType(Integer.parseInt(request.getParameter("goods_type")));
         delivery.setWeight(Double.parseDouble(request.getParameter("weight")));
         delivery.setSendersPhone(request.getParameter("senders_phone"));
         delivery.setRecipientPhone(request.getParameter("recipient_phone"));

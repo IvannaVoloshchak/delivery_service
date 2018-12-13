@@ -8,15 +8,16 @@ public class Delivery implements Serializable {
     private String sendersLastName;
     private String recipientFirstName;
     private String recipientLastName;
-    private String fromCity;
-    private String toCity;
-    private String goodsType;
+    private Integer fromCity;
+    private Integer toCity;
+    private Integer goodsType;
     private Double weight;
     private String sendersPhone;
     private String recipientPhone;
     private Date sentDate;
     private Date deliveryDate;
     private Double price;
+    private String paymentStatus;
 
     public Integer getId() {
         return id;
@@ -58,27 +59,27 @@ public class Delivery implements Serializable {
         this.recipientLastName = recipientLastName;
     }
 
-    public String getFromCity() {
+    public Integer getFromCity() {
         return fromCity;
     }
 
-    public void setFromCity(String fromCity) {
+    public void setFromCity(Integer fromCity) {
         this.fromCity = fromCity;
     }
 
-    public String getToCity() {
+    public Integer getToCity() {
         return toCity;
     }
 
-    public void setToCity(String toCity) {
+    public void setToCity(Integer toCity) {
         this.toCity = toCity;
     }
 
-    public String getGoodsType() {
+    public Integer getGoodsType() {
         return goodsType;
     }
 
-    public void setGoodsType(String goodsType) {
+    public void setGoodsType(Integer goodsType) {
         this.goodsType = goodsType;
     }
 
@@ -130,6 +131,14 @@ public class Delivery implements Serializable {
         this.price = price;
     }
 
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
     @Override
     public String toString() {
         return "Delivery{" +
@@ -147,6 +156,7 @@ public class Delivery implements Serializable {
                 ", sent_date=" + sentDate +
                 ", delivery_date=" + deliveryDate +
                 ", price= " + price+
+                ",paymentStatus= " + paymentStatus+
                 '}';
     }
 }

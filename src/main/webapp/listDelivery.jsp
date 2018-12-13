@@ -18,16 +18,17 @@
                 <th> senders_last_name </th>
                 <th> recipient_first_name </th>
                 <th> recipient_last_name </th>
-                <th> from_city </th>
-                <th> to_city </th>
-                <th> goods_type </th>
+                <th> from_city_id</th>
+                <th> to_city_id </th>
+                <th> goods_type_id </th>
                 <th> weight </th>
                 <th>senders_phone </th>
                 <th> recipient_phone</th>
                 <th> sent_date </th>
                 <th> delivery_date </th>
                 <th> price </th>
-                <th colspan=2>Action</th>
+                <th> paymentStatus </th>
+                <th colspan=3>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@
                      <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.sentDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.deliveryDate}" /></td>
                     <td><c:out value="${delivery.price}" /></td>
+                    <td><c:out value="${delivery.paymentStatus}" /></td>
                     <td><a href="?action=payment&id=<c:out value="${}"/>">Pay</a></td>
                     <td><a href="?action=edit&id=<c:out value="${delivery.id}"/>">Update</a></td>
                     <td><a href="?action=delete&id=<c:out value="${delivery.id}"/>">Delete</a></td>

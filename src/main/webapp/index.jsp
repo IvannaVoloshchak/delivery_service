@@ -50,11 +50,11 @@ Delivery World
 
   <h2><strong> Delivery  tariffs </strong></h2>
    <p>
-  	  <li><strong>Delivery tariffs </strong><br></li>
+  	  <strong>Delivery tariffs </strong><br>
   	   <li> Letter - 30 uan + 0.01 for each kilometers of road; </li>
-  	   <li> Box - 40 uan + 0.01 for each kilometers of road + 1 uan for each kilograms of weight; </li>
-  	   <li> Parcel - 50 uan + 0.01 for each kilometers of road + 1 uan for each kilograms of weight; </li>
-  	   <li> Container - 100 uan + 0.01 for each kilometers of road + 1 uan for each kilograms of weight. </li>
+  	   <li> Box - 40 uan + 0.1 for each kilometers of road + 1 uan for each kilograms of weight; </li>
+  	   <li> Parcel - 50 uan + 0.1 for each kilometers of road + 1 uan for each kilograms of weight; </li>
+  	   <li> Container - 100 uan + 0.1 for each kilometers of road + 1 uan for each kilograms of weight. </li>
   	   </ul>
 
 </body>

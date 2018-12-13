@@ -198,36 +198,36 @@ public class ConnectionTry {
 //        }
 //    }
 //
-    public static void updateDelivery(Delivery delivery) {
-        Connection connection= DbUtil.getConnection();
-        try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("Update delivery set senders_first_name=?, senders_last_name=?," +
-                            " recipient_first_name=?, recipient_last_name=?, from_city=?, to_city=?, goods_type=?," +
-                            " weight=?, senders_phone=?, recipient_phone=?, sent_date=?,delivery_date=?  " +
-                            "where id =?");
-
-            // Parameters start with 1
-
-            preparedStatement.setString(1, delivery.getSendersFirstName());
-            preparedStatement.setString(2, delivery.getSendersLastName());
-            preparedStatement.setString(3, delivery.getRecipientFirstName());
-            preparedStatement.setString(4, delivery.getRecipientLastName());
-            preparedStatement.setString(5, delivery.getFromCity());
-            preparedStatement.setString(6, delivery.getToCity());
-            preparedStatement.setString(7, delivery.getGoodsType());
-            preparedStatement.setDouble(8, delivery.getWeight());
-            preparedStatement.setString(9, delivery.getSendersPhone());
-            preparedStatement.setString(10, delivery.getRecipientPhone());
-            preparedStatement.setDate(11, new Date(delivery.getSentDate().getTime()));
-            preparedStatement.setDate(12, new Date(delivery.getDeliveryDate().getTime()));
-            preparedStatement.setInt(13, delivery.getId());
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void updateDelivery(Delivery delivery) {
+//        Connection connection= DbUtil.getConnection();
+//        try {
+//            PreparedStatement preparedStatement = connection
+//                    .prepareStatement("Update delivery set senders_first_name=?, senders_last_name=?," +
+//                            " recipient_first_name=?, recipient_last_name=?, from_city=?, to_city=?, goods_type=?," +
+//                            " weight=?, senders_phone=?, recipient_phone=?, sent_date=?,delivery_date=?  " +
+//                            "where id =?");
+//
+//            // Parameters start with 1
+//
+//            preparedStatement.setString(1, delivery.getSendersFirstName());
+//            preparedStatement.setString(2, delivery.getSendersLastName());
+//            preparedStatement.setString(3, delivery.getRecipientFirstName());
+//            preparedStatement.setString(4, delivery.getRecipientLastName());
+//            preparedStatement.setString(5, delivery.getFromCity());
+//            preparedStatement.setString(6, delivery.getToCity());
+//            preparedStatement.setString(7, delivery.getGoodsType());
+//            preparedStatement.setDouble(8, delivery.getWeight());
+//            preparedStatement.setString(9, delivery.getSendersPhone());
+//            preparedStatement.setString(10, delivery.getRecipientPhone());
+//            preparedStatement.setDate(11, new Date(delivery.getSentDate().getTime()));
+//            preparedStatement.setDate(12, new Date(delivery.getDeliveryDate().getTime()));
+//            preparedStatement.setInt(13, delivery.getId());
+//
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 //
 //    public java.util.Date stringToDate(String s) {//method which make type Date - String
 //        java.util.Date date = null;
