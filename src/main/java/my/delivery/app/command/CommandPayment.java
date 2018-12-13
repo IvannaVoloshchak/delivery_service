@@ -8,21 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CommandCreateDelivery implements ICommand {
-
-    private static String INSERT_OR_EDIT = "/delivery.jsp";
+public class CommandPayment implements ICommand {
+    private static String PAY = "/payment.jsp";
+    private static String LIST_DELIVERY = "/listDelivery.jsp";
     private DeliveryDao dao;
 
-    public CommandCreateDelivery() {
+    public CommandPayment() {
+
         dao = new DeliveryDao();
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        Delivery delivery = dao.getDeliveryById(id);
-//        request.setAttribute("delivery", delivery);
 
-        return INSERT_OR_EDIT;
+        return PAY;
     }
 }
+

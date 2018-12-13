@@ -15,7 +15,7 @@
     <script>
         $(function() {
             $('input[name=sentDate]').datepicker();
-$('input[name=deliveryDate]').datepicker();
+                $('input[name=deliveryDate]').datepicker();
         });
     </script>
 
@@ -48,16 +48,17 @@ $('input[name=deliveryDate]').datepicker();
         Weight : <input type="text" name="weight"
                        value="<c:out value="${delivery.weight}" />" /> <br />
       Senders_phone : <input type="text" name="senders_phone"
-                                              value="<c:out value="${delivery.sendersPhone}" />" /> <br />
+                    value="<c:out value="${delivery.sendersPhone}" />" /> <br />
         Recipient_phone : <input type="text" name="recipient_phone"
-                                              value="<c:out value="${delivery.recipientPhone}" />" /> <br />
+                   value="<c:out value="${delivery.recipientPhone}" />" /> <br />
 
         Sent_date : <input   type="text" name="sent_date"
             value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.sentDate}" />" /> <br />
 
         Delivery_date : <input    type="text" name="delivery_date"
                         value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.deliveryDate}" />" /> <br />
-
+        Price: <input type="text" name="price"
+                      value="<c:out value="${delivery.price}" />" /> <br />
      <input type="submit" value="Save"/>
     </form>
 </body>

@@ -7,6 +7,7 @@ public class Fare implements Serializable {
     private Integer idGoodsType;
     private Double minimumPrice;
     private Double pricePerKilogram;
+    private Double pricePerKilometer;
 
     public Integer getId() {
         return id;
@@ -40,6 +41,14 @@ public class Fare implements Serializable {
         this.pricePerKilogram = pricePerKilogram;
     }
 
+    public Double getPricePerKilometer() {
+        return pricePerKilometer;
+    }
+
+    public void setPricePerKilometer(Double pricePerKilometer) {
+        this.pricePerKilometer = pricePerKilometer;
+    }
+
     @Override
     public String toString() {
         return "Fare{" +
@@ -47,6 +56,7 @@ public class Fare implements Serializable {
                 ", id_Goods_Type=" + idGoodsType +
                 ", minimum_price=" + minimumPrice +
                 ", price_per_kilogram=" + pricePerKilogram +
+                ", price_per_kilometer= "+pricePerKilometer+
                 '}';
     }
 }

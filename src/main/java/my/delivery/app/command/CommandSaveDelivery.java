@@ -44,6 +44,7 @@ public class CommandSaveDelivery implements ICommand {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        delivery.setPrice(Double.parseDouble(request.getParameter("price")));
 
         String id = request.getParameter("id");
         if (id == null || id.isEmpty()) {

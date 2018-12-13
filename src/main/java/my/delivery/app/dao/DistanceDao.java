@@ -34,13 +34,14 @@ public class DistanceDao {
         }
         return distances;
     }
-    public Distance getDistanceById(int id) {
+    public  Distance getDistanceByIdCity(int idFrom, int idTo ) {
 
         Distance distance = new Distance();
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from distance where id=? ");
-            preparedStatement.setInt(1, id);
+                    prepareStatement("select * from delivery_service.distance where id_from=? and id_to=?");
+            preparedStatement.setInt(1, idFrom);
+            preparedStatement.setInt(2, idTo);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
@@ -54,4 +55,5 @@ public class DistanceDao {
         }
         return distance;
     }
+
 }

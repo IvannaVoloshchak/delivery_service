@@ -16,6 +16,7 @@ public class Delivery implements Serializable {
     private String recipientPhone;
     private Date sentDate;
     private Date deliveryDate;
+    private Double price;
 
     public Integer getId() {
         return id;
@@ -121,6 +122,14 @@ public class Delivery implements Serializable {
         this.deliveryDate = deliveryDate;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Delivery{" +
@@ -137,6 +146,7 @@ public class Delivery implements Serializable {
                 ", recipient_phone=" + recipientPhone +
                 ", sent_date=" + sentDate +
                 ", delivery_date=" + deliveryDate +
+                ", price= " + price+
                 '}';
     }
 }

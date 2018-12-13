@@ -38,6 +38,7 @@ public class DeliveryDao {
                 delivery.setRecipientPhone(rs.getString("recipient_phone"));
                 delivery.setSentDate(rs.getDate("sent_date"));
                 delivery.setDeliveryDate(rs.getDate("delivery_date"));
+                delivery.setPrice(rs.getDouble("price"));
                 deliveries.add(delivery);
             }
         } catch (SQLException e) {
@@ -52,8 +53,8 @@ public class DeliveryDao {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("insert into delivery(senders_first_name, senders_last_name," +
                             " recipient_first_name, recipient_last_name, from_city,to_city, goods_type," +
-                            " weight,senders_phone, recipient_phone, sent_date, delivery_date)" +
-                            "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                            " weight,senders_phone, recipient_phone, sent_date, delivery_date, price)" +
+                            "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 
             preparedStatement.setString(1, delivery.getSendersFirstName());
             preparedStatement.setString(2, delivery.getSendersLastName());
@@ -67,6 +68,7 @@ public class DeliveryDao {
             preparedStatement.setString(10, delivery.getRecipientPhone());
             preparedStatement.setDate(11, new Date(delivery.getSentDate().getTime()));
             preparedStatement.setDate(12, new Date(delivery.getDeliveryDate().getTime()));
+            preparedStatement.setDouble(13,delivery.getPrice());
 
             preparedStatement.executeUpdate();
 
@@ -96,7 +98,7 @@ public class DeliveryDao {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("Update delivery set senders_first_name=?, senders_last_name=?," +
                             " recipient_first_name=?, recipient_last_name=?, from_city=?, to_city=?, goods_type=?," +
-                            " weight=?, senders_phone=?, recipient_phone=?, sent_date=?,delivery_date=?  " +
+                            " weight=?, senders_phone=?, recipient_phone=?, sent_date=?,delivery_date=?, price=? " +
                             "where id =?");
 
             // Parameters start with 1
@@ -113,7 +115,8 @@ public class DeliveryDao {
             preparedStatement.setString(10, delivery.getRecipientPhone());
             preparedStatement.setDate(11, new Date(delivery.getSentDate().getTime()));
             preparedStatement.setDate(12, new Date(delivery.getDeliveryDate().getTime()));
-            preparedStatement.setInt(13, delivery.getId());
+            preparedStatement.setDouble(13, delivery.getPrice());
+            preparedStatement.setInt(14, delivery.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -155,6 +158,7 @@ public class DeliveryDao {
                 delivery.setRecipientPhone(rs.getString("recipient_phone"));
                 delivery.setSentDate(rs.getDate("sent_date"));
                 delivery.setDeliveryDate(rs.getDate("delivery_date"));
+                delivery.setPrice(rs.getDouble("price"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

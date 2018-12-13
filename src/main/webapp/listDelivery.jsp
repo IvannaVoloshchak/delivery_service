@@ -26,6 +26,7 @@
                 <th> recipient_phone</th>
                 <th> sent_date </th>
                 <th> delivery_date </th>
+                <th> price </th>
                 <th colspan=2>Action</th>
             </tr>
         </thead>
@@ -43,10 +44,14 @@
                     <td><c:out value="${delivery.weight}" /></td>
                     <td><c:out value="${delivery.sendersPhone}" /></td>
                     <td><c:out value="${delivery.recipientPhone}" /></td>
+
                      <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.sentDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.deliveryDate}" /></td>
+                    <td><c:out value="${delivery.price}" /></td>
+                    <td><a href="?action=payment&id=<c:out value="${}"/>">Pay</a></td>
                     <td><a href="?action=edit&id=<c:out value="${delivery.id}"/>">Update</a></td>
                     <td><a href="?action=delete&id=<c:out value="${delivery.id}"/>">Delete</a></td>
+
                 </tr>
             </c:forEach>
         </tbody>

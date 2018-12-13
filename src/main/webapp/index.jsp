@@ -19,12 +19,12 @@ Delivery World
 <form method="POST" action='?action=calculate' name="price">
 
 <p> <strong>Weight: </strong></p>
-         <input type="text" name="weight"  value=" ${delivery.weight} " /> kg<br />
+         <input type="text" name="weight"  value="${weight}" /> kg<br />
 
 <p><strong>Goods type: </strong></p>
 <select name="goods_type">
  <c:forEach items="${types}" var="type">
-         <option value="${type.idGoodsType}">${type.name}</option>
+         <option value="${type.idGoodsType}" ${type.idGoodsType==idGoodsType ? 'selected' : ''} >${type.name}</option>
      </c:forEach>
   </select>
 
@@ -32,20 +32,20 @@ Delivery World
   <p>From: </p>
   <select name="from">
   <c:forEach items="${cities}" var="city">
-           <option value="${city.id}">${city.name}</option>
+           <option value="${city.id}" ${city.id==from ? 'selected' : ''}>${city.name}</option>
        </c:forEach>
     </select>
 
     <p>To: </p>
      <select name="to">
      <c:forEach items="${cities}" var="city">
-                <option value="${city.id}">${city.name}</option>
+                <option value="${city.id}" ${city.id==to ? 'selected' : ''}>${city.name}</option>
             </c:forEach>
      </select><br/>
 
 
 <p><a href="/"> <input type="submit" value="Calculate"/> </a></p>
- <p><strong>Total price:</strong> <input type="text" name="price" /> </p>
+ <p><strong>Total price:</strong> <input value= "${price}" type="text" name="price" /> </p>
   </form>
 
   <h2><strong> Delivery  tariffs </strong></h2>

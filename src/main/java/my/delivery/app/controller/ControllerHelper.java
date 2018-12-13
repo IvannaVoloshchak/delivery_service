@@ -27,6 +27,7 @@ public class ControllerHelper {
         commands.put("save", new CommandSaveDelivery());
         commands.put("insert", new CommandCreateDelivery());
         commands.put("calculate", new CommandCalculate());
+        commands.put ("payment", new CommandPayment());
     }
 
     public ICommand getCommand(HttpServletRequest request) {
