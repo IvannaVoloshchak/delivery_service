@@ -16,7 +16,7 @@ Delivery World
 
 <h2><strong> Delivery  calculator</strong></h2>
 
-<form method="POST" action='calculate' name="price">
+<form method="POST" action='?action=calculate' name="price">
 
 <p> <strong>Weight: </strong></p>
          <input type="text" name="weight"  value=" ${delivery.weight} " /> kg<br />

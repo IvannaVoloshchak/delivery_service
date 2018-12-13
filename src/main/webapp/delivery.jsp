@@ -19,7 +19,7 @@ $('input[name=deliveryDate]').datepicker();
         });
     </script>
 
-    <form method="POST" action='' name="frmAddDelivery">
+    <form method="POST" action='?action=save' name="frmAddDelivery">
 
     Id : <input type="text" readonly="readonly" name="id"
                 value="<c:out value="${delivery.id}" />" /> <br />
