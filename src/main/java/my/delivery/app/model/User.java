@@ -9,7 +9,7 @@ public class User implements Serializable {
     private String password;
     private String firstName;
     private String lastName;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String email;
 
     public Integer getId() {
@@ -60,11 +60,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

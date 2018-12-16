@@ -10,19 +10,21 @@ import my.delivery.app.model.*;
 import my.delivery.app.service.DeliveryCalculator;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConnectionTry {
 
     public static void main(String[] args) {
-        FareDao fareDao= new FareDao();
-        Fare FareValue= fareDao.getFareByIdGoodsType(2);
-        double minPrice= FareValue.getMinimumPrice();
-        double pricePerKg= FareValue.getPricePerKilogram();
-        double priceByKm=FareValue.getPricePerKilometer();
-        DistanceDao distanceDao = new DistanceDao();
-        Distance getDistanceValue= distanceDao.getDistanceByIdCity(3, 4);
-        int distance =getDistanceValue.getDistance();
-        System.out.println( DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm,distance,1.5));
+//        FareDao fareDao= new FareDao();
+//        Fare FareValue= fareDao.getFareByIdGoodsType(2);
+//        double minPrice= FareValue.getMinimumPrice();
+//        double pricePerKg= FareValue.getPricePerKilogram();
+//        double priceByKm=FareValue.getPricePerKilometer();
+//        DistanceDao distanceDao = new DistanceDao();
+//        Distance getDistanceValue= distanceDao.getDistanceByIdCity(3, 4);
+//        int distance =getDistanceValue.getDistance();
+//        System.out.println( DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm,distance,1.5));
 
 
 
@@ -81,7 +83,134 @@ public class ConnectionTry {
 //
 //        Fare fare = getFareByIdGoodsType(2);
 //        System.out.println(fare);
+//        List<User> user =getAllUsers();
+//       // System.out.println(user);
+//        User user1= new User();
+//
+//        user1.setTypeId(1);
+//        user1.setLogin("Andriana23");
+//        user1.setPassword("1994andriana");
+//        user1.setFirstName("Andriana");
+//        user1.setLastName("Heksel");
+//        user1.setPhoneNumber(688921234);
+//        user1.setEmail("aHeksel994@hotmail.com");
+//        user1.setId(4);
+//         updateUser(user1);
+
+       // System.out.println(user);
+
     }
+//    public static List<User> getAllUsers() {
+//        Connection connection= DbUtil.getConnection();
+//        List<User> users = new ArrayList<>();
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet rs = statement.executeQuery("select * from user");
+//            while (rs.next()) {
+//                User user = new User();
+//                user.setId(rs.getInt("id"));
+//                user.setTypeId(rs.getInt("typeId"));
+//                user.setLogin(rs.getString("login"));
+//                user.setPassword(rs.getString("password"));
+//                user.setFirstName(rs.getString("first_name"));
+//                user.setLastName(rs.getString("last_name"));
+//                user.setPhoneNumber(rs.getInt("phone_number"));
+//                user.setEmail(rs.getString("email"));
+//                users.add(user);
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return users;
+//    }
+//
+//    public static void addUser(User user) {
+//        Connection connection= DbUtil.getConnection();
+//        try {
+//            PreparedStatement preparedStatement = connection.
+//                    prepareStatement("insert into user(typeId," +
+//                            "login, password, first_name, last_name, phone_number, email)values ( ?, ?, ?, ?, ?, ?, ?)");
+//
+//
+//            preparedStatement.setInt(1, user.getTypeId());
+//            preparedStatement.setString(2, user.getLogin());
+//            preparedStatement.setString(3, user.getPassword());
+//            preparedStatement.setString(4, user.getFirstName());
+//            preparedStatement.setString(5, user.getLastName());
+//            preparedStatement.setInt(6, user.getPhoneNumber());
+//            preparedStatement.setString(7, user.getEmail());
+//
+//            preparedStatement.executeUpdate();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void deleteUser(int id) {
+//        Connection connection= DbUtil.getConnection();
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement("delete from " +
+//                    "user  where id=?");
+//            // Parameters start with 1
+//            preparedStatement.setInt(1, id);
+//            preparedStatement.executeUpdate();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static User getUserById(int id) {
+//        Connection connection= DbUtil.getConnection();
+//        User user = new User();
+//        try {
+//            PreparedStatement preparedStatement = connection.
+//                    prepareStatement("select * from user where id=? ");
+//            preparedStatement.setInt(1, id);
+//            ResultSet rs = preparedStatement.executeQuery();
+//
+//            if (rs.next()) {
+//                user.setId(rs.getInt("id"));
+//                user.setTypeId(rs.getInt("typeId"));
+//                user.setLogin(rs.getString("login"));
+//                user.setPassword(rs.getString("password"));
+//                user.setFirstName(rs.getString("first_name"));
+//                user.setLastName(rs.getString("last_name"));
+//                user.setPhoneNumber(rs.getInt("phone_number"));
+//                user.setEmail(rs.getString("email"));
+//
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return user;
+//    }
+//
+//    public static void updateUser(User user) {
+//        Connection connection= DbUtil.getConnection();
+//        try {
+//            PreparedStatement preparedStatement = connection
+//                    .prepareStatement("Update user set  typeId=?, login =?," +
+//                            "password=?, first_name=?, last_name=?, phone_number=?, email=? where id =?");
+//
+//
+//            preparedStatement.setInt(1, user.getTypeId());
+//            preparedStatement.setString(2, user.getLogin());
+//            preparedStatement.setString(3, user.getPassword());
+//            preparedStatement.setString(4, user.getFirstName());
+//            preparedStatement.setString(5, user.getLastName());
+//            preparedStatement.setInt(6, user.getPhoneNumber());
+//            preparedStatement.setString(7, user.getEmail());
+//            preparedStatement.setInt(8, user.getId());
+//
+//
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 //    public static Fare getFareByIdGoodsType(int id) {
 //        Connection connection= DbUtil.getConnection();
 //        Fare fare = new Fare();

@@ -8,15 +8,29 @@
 <title>Registration</title>
 </head>
 <body>
-<form action = "registration" method = "POST">
-<p>  Login : <input type = "text" name = "login"> <br /></p>
-<p>  Password : <input type = "text" name = "password"> <br /></p>
-       <p>  First name : <input type = "text" name = "first_name"> <br /></p>
-        <p> Last name: <input type = "text" name = "last_name" /></p>
-        <p> Phone number : <input type = "text" name = "phone_number" /></p>
-        <p> Email : <input type = "text" name = "Email" /></p>
+<form method="POST" action='?action=addUser' name="frmUsers">
 
-       <p><a href="/">  <input type = "submit" value = "Enter" /></a></p>
+
+
+<p>  Login : <input type="text" name="login"
+                                 value="<c:out value="${user.login}" />" /> <br /></p>
+
+<p>  Password :<input type="text" name="password"
+                                   value="<c:out value="${user.password}" />" /> <br /></p>
+
+       <p>  First name : <input type="text" name="first_name"
+                                      value="<c:out value="${user.firstName}" />" /> <br /></p>
+
+        <p> Last name: <input type="text" name="last_name"
+                                      value="<c:out value="${user.lastName}" />" /> <br /></p>
+
+        <p> Phone number : <input type="text" name="phone_number"
+                                     value="<c:out value="${user.phoneNumber}" />" /> <br /></p>
+
+        <p> Email : <input type="text" name="email"
+                                      value="<c:out value="${user.email}" />" /> <br /></p>
+
+            <input type="submit" value="Save"/>
 
       </form>
 

@@ -8,18 +8,18 @@
 <title>Payment</title>
 </head>
 <body>
-<form action = "payment" method = "POST">
-<p> First name : <input type = "text" name = "first name"> <br /></p>
-<p> Last name : <input type = "text" name = "last name"> <br /></p>
-<p> Email : <input type = "text" name = "Email" /></p>
-       <p> Price : <input type = "text" name = "price"> <br /></p>
-        <p> Card type: <input type = "text" name = " card type" /></p>
+ <form method="POST" action="?action=paid&id=<c:out value="${delivery.id}"/>" name="frmPayment">
+
+        <p> Card holder full name : <input type = "text" name = "card holder full name"> <br /></p>
+
+       <p> Price : <input type="text" name="price"
+                                      value="<c:out value="${delivery.price}" />" /> <br />
         <p> Card number : <input type = "text" name = "card number" /></p>
         <p>  Validity: <input type = "text" name = "validity" /></p>
         <p>  CVV2: <input type = "text" name = "CVV2" /></p>
 
 
-       <p><a href="?action=listDelivery">  <input type = "submit" value = "Pay" /></a></p>
+       <p><input type = "submit" value = "Pay" /></p>
 
       </form>
 

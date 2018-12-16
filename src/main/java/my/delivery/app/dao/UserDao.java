@@ -14,7 +14,8 @@ public class UserDao {
         connection = DbUtil.getConnection();
     }
 
-    public List<User> getAllUsers() {
+    public  List<User> getAllUsers() {
+
         List<User> users = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -26,8 +27,8 @@ public class UserDao {
                 user.setLogin(rs.getString("login"));
                 user.setPassword(rs.getString("password"));
                 user.setFirstName(rs.getString("first_name"));
-                user.setLastName(rs.getString("" + "last_name"));
-                user.setPhoneNumber(rs.getInt("phone_number"));
+                user.setLastName(rs.getString("last_name"));
+                user.setPhoneNumber(rs.getString("phone_number"));
                 user.setEmail(rs.getString("email"));
                 users.add(user);
             }
@@ -38,21 +39,21 @@ public class UserDao {
         return users;
     }
 
-    public void addUser(User user) {
+    public  void addUser(User user) {
 
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("insert into user(id,typeId," +
-                            "login, password, first_name, last_name, phone_number, email)values ( ?, ?, ?, ?, ?, ?, ?,?)");
+                    prepareStatement("insert into user(typeId," +
+                            "login, password, first_name, last_name, phone_number, email)values ( ?, ?, ?, ?, ?, ?, ?)");
 
-            preparedStatement.setInt(1, user.getId());
-            preparedStatement.setInt(2, user.getTypeId());
-            preparedStatement.setString(3, user.getLogin());
-            preparedStatement.setString(4, user.getPassword());
-            preparedStatement.setString(5, user.getFirstName());
-            preparedStatement.setString(6, user.getLastName());
-            preparedStatement.setInt(7, user.getPhoneNumber());
-            preparedStatement.setString(8, user.getEmail());
+
+            preparedStatement.setInt(1, user.getTypeId());
+            preparedStatement.setString(2, user.getLogin());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getFirstName());
+            preparedStatement.setString(5, user.getLastName());
+            preparedStatement.setString(6, user.getPhoneNumber());
+            preparedStatement.setString(7, user.getEmail());
 
             preparedStatement.executeUpdate();
 
@@ -61,7 +62,7 @@ public class UserDao {
         }
     }
 
-    public void deleteUser(int id) {
+    public  void deleteUser(int id) {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from " +
@@ -91,7 +92,7 @@ public class UserDao {
                 user.setPassword(rs.getString("password"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
-                user.setPhoneNumber(rs.getInt("phone_number"));
+                user.setPhoneNumber(rs.getString("phone_number"));
                 user.setEmail(rs.getString("email"));
 
             }
@@ -101,21 +102,23 @@ public class UserDao {
         return user;
     }
 
-    public void updateUser(User user) {
+    public  void updateUser(User user) {
 
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("Update user set id=?, typeId=?, login =?," +
+                    .prepareStatement("Update user set  typeId=?, login =?," +
                             "password=?, first_name=?, last_name=?, phone_number=?, email=? where id =?");
 
-            preparedStatement.setInt(1, user.getId());
-            preparedStatement.setInt(2, user.getTypeId());
-            preparedStatement.setString(3, user.getLogin());
-            preparedStatement.setString(4, user.getPassword());
-            preparedStatement.setString(5, user.getFirstName());
-            preparedStatement.setString(6, user.getLastName());
-            preparedStatement.setInt(7, user.getPhoneNumber());
-            preparedStatement.setString(8, user.getEmail());
+
+            preparedStatement.setInt(1, user.getTypeId());
+            preparedStatement.setString(2, user.getLogin());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getFirstName());
+            preparedStatement.setString(5, user.getLastName());
+            preparedStatement.setString(6, user.getPhoneNumber());
+            preparedStatement.setString(7, user.getEmail());
+            preparedStatement.setInt(8, user.getId());
+
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

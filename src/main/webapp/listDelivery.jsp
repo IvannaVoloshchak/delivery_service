@@ -50,7 +50,7 @@
                     <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.deliveryDate}" /></td>
                     <td><c:out value="${delivery.price}" /></td>
                     <td><c:out value="${delivery.paymentStatus}" /></td>
-                    <td><a href="?action=payment&id=<c:out value="${}"/>">Pay</a></td>
+                    <td><a href="?action=payment&id=<c:out value="${delivery.id}"/>">Pay</a></td>
                     <td><a href="?action=edit&id=<c:out value="${delivery.id}"/>">Update</a></td>
                     <td><a href="?action=delete&id=<c:out value="${delivery.id}"/>">Delete</a></td>
 

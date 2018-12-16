@@ -28,6 +28,10 @@ public class ControllerHelper {
         commands.put("insert", new CommandCreateDelivery());
         commands.put("calculate", new CommandCalculate());
         commands.put ("payment", new CommandPayment());
+        commands.put("paid", new CommandPayForDelivery());
+        commands.put("registration", new CommandRegistrationUser());
+        commands.put("addUser", new CommandAddUser());
+
     }
 
     public ICommand getCommand(HttpServletRequest request) {

@@ -37,15 +37,15 @@
                     value="<c:out value="${delivery.recipientLastName}" />" /> <br />
 
        From_city :  <select name="city_from_id">
-                 <c:forEach items="${cities}" var="city">
-                <option value="${city.id}" ${city.id==delivery.fromCity ? 'selected' : ''}>${city.name}</option>
-                </c:forEach>
-                 </select><br/>
+                    <c:forEach items="${cities}" var="city">
+                    <option value="${city.id}" ${city.id==delivery.fromCity ? 'selected' : ''}>${city.name}</option>
+                     </c:forEach>
+                     </select><br/>
        To_city:  <select name="city_to_id">
-                 <c:forEach items="${cities}" var="city">
-                <option value="${city.id}" ${city.id==delivery.toCity ? 'selected' : ''}>${city.name}</option>
-                </c:forEach>
-                 </select><br/>
+                     <c:forEach items="${cities}" var="city">
+                     <option value="${city.id}" ${city.id==delivery.toCity ? 'selected' : ''}>${city.name}</option>
+                     </c:forEach>
+                      </select><br/>
        Goods_type :  <select name="goods_type_id">
                      <c:forEach items="${types}" var="type">
                       <option value="${type.idGoodsType}" ${type.idGoodsType==delivery.goodsType ? 'selected' : ''} >${type.name}</option>
@@ -60,10 +60,10 @@
                    value="<c:out value="${delivery.recipientPhone}" />" /> <br />
 
         Sent_date : <input   type="text" name="sent_date"
-            value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.sentDate}" />" /> <br />
+                 value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.sentDate}" />" /> <br />
 
         Delivery_date : <input    type="text" name="delivery_date"
-                        value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.deliveryDate}" />" /> <br />
+                  value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.deliveryDate}" />" /> <br />
            Payment Status : <input type="text" name="paymentStatus"
                    value="<c:out value="${delivery.paymentStatus}" />" /> <br />
      <input type="submit" value="Save"/>
