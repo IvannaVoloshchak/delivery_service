@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Delivery implements Serializable {
     private Integer id;
+    private Integer userId;
     private String sendersFirstName;
     private String sendersLastName;
     private String recipientFirstName;
@@ -25,6 +26,14 @@ public class Delivery implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getSendersFirstName() {
@@ -143,6 +152,7 @@ public class Delivery implements Serializable {
     public String toString() {
         return "Delivery{" +
                 "id=" + id +
+                "userId"+ userId +'\''+
                 ", senders_first_name='" + sendersFirstName + '\'' +
                 ", senders_last_name='" + sendersLastName + '\'' +
                 ", recipient_first_name='" + recipientFirstName + '\'' +

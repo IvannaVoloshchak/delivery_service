@@ -1,6 +1,7 @@
 package my.delivery.app.command;
 
 import my.delivery.app.dao.*;
+import my.delivery.app.dao.implementation.*;
 import my.delivery.app.model.Delivery;
 
 import javax.servlet.ServletException;
@@ -17,11 +18,12 @@ public class CommandEditDelivery  implements ICommand {
     private DistanceDao distanceDao;
     private FareDao fareDao;
     public CommandEditDelivery() {
-        goodsTypeDao = new GoodsTypeDao();
-        cityDao= new CityDao();
-        distanceDao = new DistanceDao();
-        fareDao= new FareDao();
-        dao = new DeliveryDao();
+        goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
+        cityDao= DaoFactory.getDaoFactory().getCityDao();
+        dao = DaoFactory.getDaoFactory().getDeliveryDao();
+        distanceDao = DaoFactory.getDaoFactory().getDistanceDao();
+        fareDao= DaoFactory.getDaoFactory().getFareDao();
+
     }
 
     @Override

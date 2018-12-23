@@ -11,7 +11,7 @@
 <h1>
 Delivery World
 </h1>
-<a href="?action=signIn"><input type="submit" value="SIGN IN"/> <a href="?action=registration"> Registration </a>
+<a href="?action=login"><input type="submit" value="SIGN IN"/> <a href="?action=registration"> Registration </a>
 <p><a href="?action=listDelivery"> Deliveries </a></p>
 
 <h2><strong> Delivery  calculator</strong></h2>

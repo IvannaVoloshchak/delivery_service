@@ -14,6 +14,7 @@
         <thead>
             <tr>
                 <th> id </th>
+                <th> user_id </th>
                 <th> senders_first_name </th>
                 <th> senders_last_name </th>
                 <th> recipient_first_name </th>
@@ -35,6 +36,7 @@
             <c:forEach items="${deliveries}" var="delivery">
                 <tr>
                   <td><c:out value="${delivery.id}" /></td>
+                  <td><c:out value="${delivery.userId}" /></td>
                     <td><c:out value="${delivery.sendersFirstName}" /></td>
                     <td><c:out value="${delivery.sendersLastName}" /></td>
                     <td><c:out value="${delivery.recipientFirstName}" /></td>

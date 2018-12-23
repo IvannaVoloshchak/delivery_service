@@ -22,7 +22,9 @@
     <form method="POST" action='?action=save' name="frmAddDelivery">
 
     Id : <input type="text" readonly="readonly" name="id"
-                value="<c:out value="${delivery.id}" />" /> <br />
+                        value="<c:out value="${delivery.id}" />" /> <br />
+             UserId : <input type="text"  name="user_id"
+                        value="<c:out value="${delivery.userId}" />" /> <br />
 
          Senders_first_name : <input type="text" name="senders_first_name"
                     value="<c:out value="${delivery.sendersFirstName}" />" /> <br />

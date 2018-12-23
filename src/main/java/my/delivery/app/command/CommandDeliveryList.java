@@ -1,7 +1,6 @@
 package my.delivery.app.command;
 
-import my.delivery.app.dao.DeliveryDao;
-import my.delivery.app.dao.DistanceDao;
+import my.delivery.app.dao.implementation.DeliveryDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +10,10 @@ import java.io.IOException;
 public class CommandDeliveryList implements ICommand {
 
     private static String LIST_DELIVERY = "/listDelivery.jsp";
-    private DeliveryDao dao;
+    private DeliveryDaoImpl dao;
 
     public CommandDeliveryList() {
-        dao = new DeliveryDao();
+        dao = new DeliveryDaoImpl();
     }
 
     @Override

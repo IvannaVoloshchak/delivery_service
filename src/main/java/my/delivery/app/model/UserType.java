@@ -25,7 +25,7 @@ public class UserType implements Serializable {
 
     @Override
     public String toString() {
-        return "UserType{" +
+        return "UserTypeDao{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

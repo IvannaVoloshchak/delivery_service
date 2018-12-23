@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 public class Message {
 
     private static Message instance;
-    private ResourceBundle resource;
+    private static  ResourceBundle resource;
     private static final String BUNDLE_NAME = "my.delivery.app.manager.messages";
     public static final String SERVLET_EXECPTION = "SERVLET_EXCEPTION";
     public static final String IO_EXCEPTION = "IO_EXCEPTION";
@@ -19,7 +19,7 @@ public class Message {
         return instance;
     }
 
-    public String getProperty(String key) {
+    public static String getProperty(String key) {
         return (String) resource.getObject(key);
     }
 }

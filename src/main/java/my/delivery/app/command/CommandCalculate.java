@@ -1,9 +1,10 @@
 package my.delivery.app.command;
 
-import my.delivery.app.dao.CityDao;
-import my.delivery.app.dao.DistanceDao;
-import my.delivery.app.dao.FareDao;
-import my.delivery.app.dao.GoodsTypeDao;
+import my.delivery.app.dao.*;
+import my.delivery.app.dao.implementation.CityDaoImpl;
+import my.delivery.app.dao.implementation.DistanceDaoImpl;
+import my.delivery.app.dao.implementation.FareDaoImpl;
+import my.delivery.app.dao.implementation.GoodsTypeDaoImpl;
 import my.delivery.app.model.Distance;
 import my.delivery.app.model.Fare;
 import my.delivery.app.service.DeliveryCalculator;
@@ -21,10 +22,10 @@ public class CommandCalculate implements ICommand {
     private FareDao fareDao;
 
     public CommandCalculate(){
-        goodsTypeDao = new GoodsTypeDao();
-        cityDao= new CityDao();
-        distanceDao = new DistanceDao();
-        fareDao= new FareDao();
+        goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
+        cityDao= DaoFactory.getDaoFactory().getCityDao();
+        distanceDao = DaoFactory.getDaoFactory().getDistanceDao();
+        fareDao= DaoFactory.getDaoFactory().getFareDao();
     }
 
     @Override

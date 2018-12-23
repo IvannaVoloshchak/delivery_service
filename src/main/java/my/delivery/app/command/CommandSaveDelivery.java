@@ -1,12 +1,12 @@
 package my.delivery.app.command;
 
 import my.delivery.app.dao.*;
+import my.delivery.app.dao.implementation.*;
 import my.delivery.app.model.Delivery;
 import my.delivery.app.model.Distance;
 import my.delivery.app.model.Fare;
 import my.delivery.app.service.DeliveryCalculator;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,16 +25,17 @@ public class CommandSaveDelivery implements ICommand {
     private FareDao fareDao;
 
     public CommandSaveDelivery() {
-        goodsTypeDao = new GoodsTypeDao();
-        cityDao= new CityDao();
-        distanceDao = new DistanceDao();
-        fareDao= new FareDao();
-        dao = new DeliveryDao();
+        goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
+        cityDao= DaoFactory.getDaoFactory().getCityDao();
+        dao = DaoFactory.getDaoFactory().getDeliveryDao();
+        distanceDao = DaoFactory.getDaoFactory().getDistanceDao();
+        fareDao= DaoFactory.getDaoFactory().getFareDao();
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Delivery delivery = new Delivery();
+        delivery.setUserId(Integer.parseInt(request.getParameter("user_id")));
         delivery.setSendersFirstName(request.getParameter("senders_first_name"));
         delivery.setSendersLastName(request.getParameter("senders_last_name"));
         delivery.setRecipientFirstName(request.getParameter("recipient_first_name"));

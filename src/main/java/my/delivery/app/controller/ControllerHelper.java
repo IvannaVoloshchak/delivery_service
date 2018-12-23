@@ -31,6 +31,8 @@ public class ControllerHelper {
         commands.put("paid", new CommandPayForDelivery());
         commands.put("registration", new CommandRegistrationUser());
         commands.put("addUser", new CommandAddUser());
+        commands.put("login", new CommandLogin());
+        commands.put("signIn", new CommandSignIn());
 
     }
 

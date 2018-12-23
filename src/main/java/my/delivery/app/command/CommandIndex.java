@@ -1,9 +1,10 @@
 package my.delivery.app.command;
 
 import my.delivery.app.dao.CityDao;
-import my.delivery.app.dao.DeliveryDao;
+import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DistanceDao;
 import my.delivery.app.dao.GoodsTypeDao;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +18,9 @@ public class CommandIndex implements ICommand {
     private DistanceDao distanceDao;
 
     public CommandIndex(){
-        goodsTypeDao = new GoodsTypeDao();
-        cityDao= new CityDao();
-        distanceDao = new DistanceDao();
+        goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
+        cityDao= DaoFactory.getDaoFactory().getCityDao();
+        distanceDao = DaoFactory.getDaoFactory().getDistanceDao();
     }
 
     @Override

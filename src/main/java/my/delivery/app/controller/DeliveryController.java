@@ -1,9 +1,9 @@
 package my.delivery.app.controller;
 
-import my.delivery.app.dao.CityDao;
-import my.delivery.app.dao.DeliveryDao;
-import my.delivery.app.dao.DistanceDao;
-import my.delivery.app.dao.GoodsTypeDao;
+import my.delivery.app.dao.implementation.CityDaoImpl;
+import my.delivery.app.dao.implementation.DeliveryDaoImpl;
+import my.delivery.app.dao.implementation.DistanceDaoImpl;
+import my.delivery.app.dao.implementation.GoodsTypeDaoImpl;
 import my.delivery.app.model.Delivery;
 
 import javax.servlet.RequestDispatcher;
@@ -23,17 +23,17 @@ public class DeliveryController extends HttpServlet {
     private static String LIST_DELIVERY = "/listDelivery.jsp";
     private static String USER= "/login.jsp";
     private static String REGISTRATION= "/registration.jsp";
-    private DeliveryDao dao;
-    private GoodsTypeDao goodsTypeDao;
-    private CityDao cityDao;
-    private DistanceDao distanceDao;
+    private DeliveryDaoImpl dao;
+    private GoodsTypeDaoImpl goodsTypeDao;
+    private CityDaoImpl cityDao;
+    private DistanceDaoImpl distanceDao;
 
     public DeliveryController() {
         super();
-        dao = new DeliveryDao();
-        goodsTypeDao = new GoodsTypeDao();
-        cityDao= new CityDao();
-        distanceDao = new DistanceDao();
+        dao = new DeliveryDaoImpl();
+        goodsTypeDao = new GoodsTypeDaoImpl();
+        cityDao= new CityDaoImpl();
+        distanceDao = new DistanceDaoImpl();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

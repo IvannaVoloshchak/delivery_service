@@ -1,4 +1,5 @@
 package my.delivery.app.util;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,22 +17,15 @@ public class DbUtil {
             return connection;
         else {
             try {
-                Properties prop = new Properties();
-                InputStream inputStream = new FileInputStream("C:/Projects/DeliveryService/src/main/java/my/delivery/app/db.properties");
-                prop.load(inputStream);
-                String driver = prop.getProperty("driver");
-                String url = prop.getProperty("url");
-                String user = prop.getProperty("user");
-                String password = prop.getProperty("password" );
-               Class.forName(driver);
+                String driver = PropertyUtil.getDbProperty("driver");
+                String url = PropertyUtil.getDbProperty("url");
+                String user = PropertyUtil.getDbProperty("user");
+                String password = PropertyUtil.getDbProperty("password");
+                Class.forName(driver);
                 connection = DriverManager.getConnection(url, user, password);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
                 e.printStackTrace();
             }
             return connection;

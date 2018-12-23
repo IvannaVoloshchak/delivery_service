@@ -1,6 +1,7 @@
 package my.delivery.app.command;
 
 import my.delivery.app.dao.CityDao;
+import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.dao.UserDao;
 import my.delivery.app.model.User;
@@ -17,9 +18,9 @@ public class CommandAddUser implements ICommand {
     private UserDao userDao;
 
     public CommandAddUser() {
-        goodsTypeDao = new GoodsTypeDao();
-        cityDao= new CityDao();
-        userDao = new UserDao();
+        goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
+        cityDao= DaoFactory.getDaoFactory().getCityDao();
+        userDao =DaoFactory.getDaoFactory().getUserDao();
     }
 
     @Override

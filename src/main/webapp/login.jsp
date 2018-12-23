@@ -8,11 +8,11 @@
 <title>Sign in</title>
 </head>
 <body>
-<form action = "signIn" method = "POST">
+<form action = "?action=signIn" method = "POST">
        <p>  Login: <input type = "text" name = "login"> <br /></p>
         <p> Password: <input type = "text" name = "password" /></p>
 
-       <p><a href="/">  <input type = "submit" value = "Enter" /></a></p>
+       <p>  <input type = "submit" value = "Enter" /></a></p>
       </form>
 
    </body>

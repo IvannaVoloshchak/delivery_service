@@ -1,7 +1,12 @@
 package my.delivery.app.command;
 
-import my.delivery.app.dao.*;
-import my.delivery.app.model.Delivery;
+import my.delivery.app.dao.CityDao;
+import my.delivery.app.dao.DaoFactory;
+import my.delivery.app.dao.DeliveryDao;
+import my.delivery.app.dao.GoodsTypeDao;
+import my.delivery.app.dao.implementation.CityDaoImpl;
+import my.delivery.app.dao.implementation.DeliveryDaoImpl;
+import my.delivery.app.dao.implementation.GoodsTypeDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,14 +21,13 @@ public class CommandCreateDelivery implements ICommand {
     private CityDao cityDao;
 
     public CommandCreateDelivery() {
-        goodsTypeDao = new GoodsTypeDao();
-        cityDao= new CityDao();
-
-        dao = new DeliveryDao();
+        goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
+        cityDao= DaoFactory.getDaoFactory().getCityDao();
+        dao = DaoFactory.getDaoFactory().getDeliveryDao();
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
 

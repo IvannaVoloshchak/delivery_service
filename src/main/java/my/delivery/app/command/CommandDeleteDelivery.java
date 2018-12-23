@@ -1,6 +1,8 @@
 package my.delivery.app.command;
 
+import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DeliveryDao;
+import my.delivery.app.dao.implementation.DeliveryDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +15,7 @@ public class CommandDeleteDelivery implements ICommand {
     private DeliveryDao dao;
 
     public CommandDeleteDelivery() {
-        dao = new DeliveryDao();
+        dao = DaoFactory.getDaoFactory().getDeliveryDao();
     }
 
     @Override
