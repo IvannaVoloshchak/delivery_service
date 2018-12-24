@@ -187,5 +187,39 @@ public class DeliveryDaoImpl implements DeliveryDao {
         }
         return delivery;
     }
-
+    public List<Delivery> getDeliveriesByUserId(int userId) {
+        Connection connection = pool.getConnection(false);
+        List<Delivery> deliveries = new ArrayList<Delivery>();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from delivery where user_id=?");
+            preparedStatement.setInt(1, userId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Delivery delivery = new Delivery();
+                delivery.setId(rs.getInt("id"));
+                delivery.setUserId(rs.getInt("user_id"));
+                delivery.setSendersFirstName(rs.getString("senders_first_name"));
+                delivery.setSendersLastName(rs.getString("senders_last_name"));
+                delivery.setRecipientFirstName(rs.getString("recipient_first_name"));
+                delivery.setRecipientLastName(rs.getString("recipient_last_name"));
+                delivery.setFromCity(rs.getInt("city_from_id"));
+                delivery.setToCity(rs.getInt("city_to_id"));
+                delivery.setGoodsType(rs.getInt("goods_type_id"));
+                delivery.setWeight(rs.getDouble("weight"));
+                delivery.setSendersPhone(rs.getString("senders_phone"));
+                delivery.setRecipientPhone(rs.getString("recipient_phone"));
+                delivery.setSentDate(rs.getDate("sent_date"));
+                delivery.setDeliveryDate(rs.getDate("delivery_date"));
+                delivery.setPrice(rs.getDouble("price"));
+                delivery.setPaymentStatus(rs.getString("paymentStatus"));
+                deliveries.add(delivery);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
+        }
+        return deliveries;
+    }
 }

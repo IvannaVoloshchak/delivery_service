@@ -44,7 +44,7 @@ public class CommandSignIn implements ICommand {
         String password = request.getParameter("password");
         User user = DaoFactory.getDaoFactory().getUserDao().checkUser(login, password);
         if (user != null) {
-            request.setAttribute("user", user);
+            session.setAttribute("user", user);
             return INDEX;
         } else {
             String errorMessage = "You entered wrong login or password. Please try again ";

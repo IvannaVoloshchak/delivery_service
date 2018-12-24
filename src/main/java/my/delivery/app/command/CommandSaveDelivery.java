@@ -4,11 +4,13 @@ import my.delivery.app.dao.*;
 import my.delivery.app.model.Delivery;
 import my.delivery.app.model.Distance;
 import my.delivery.app.model.Fare;
+import my.delivery.app.model.User;
 import my.delivery.app.service.DeliveryCalculator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,16 +27,22 @@ public class CommandSaveDelivery implements ICommand {
 
     public CommandSaveDelivery() {
         goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
-        cityDao= DaoFactory.getDaoFactory().getCityDao();
+        cityDao = DaoFactory.getDaoFactory().getCityDao();
         dao = DaoFactory.getDaoFactory().getDeliveryDao();
         distanceDao = DaoFactory.getDaoFactory().getDistanceDao();
-        fareDao= DaoFactory.getDaoFactory().getFareDao();
+        fareDao = DaoFactory.getDaoFactory().getFareDao();
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
         Delivery delivery = new Delivery();
-        delivery.setUserId(Integer.parseInt(request.getParameter("user_id")));
+        if (request.getParameter("user_id") == "") {
+            delivery.setUserId(user.getId());
+        } else {
+            delivery.setUserId(Integer.parseInt(request.getParameter("user_id")));
+        }
         delivery.setSendersFirstName(request.getParameter("senders_first_name"));
         delivery.setSendersLastName(request.getParameter("senders_last_name"));
         delivery.setRecipientFirstName(request.getParameter("recipient_first_name"));
@@ -65,24 +73,30 @@ public class CommandSaveDelivery implements ICommand {
             dao.updateDelivery(delivery);
         }
 
-        request.setAttribute("deliveries", dao.getAllDeliveries());
+        UserTypeDao userTypeDao = DaoFactory.getDaoFactory().getUserTypeDao();
+        if (user.getTypeId() == userTypeDao.getUserTypeByName("operator").getId()) {
+            request.setAttribute("deliveries", dao.getAllDeliveries());
+        } else {
+            request.setAttribute("deliveries", dao.getDeliveriesByUserId(user.getId()));
+        }
         return LIST_DELIVERY;
     }
-    public Double calculatePrice(HttpServletRequest request){
-        double weight= Double.parseDouble(request.getParameter("weight"));
+
+    public Double calculatePrice(HttpServletRequest request) {
+        double weight = Double.parseDouble(request.getParameter("weight"));
         int goodsType = Integer.parseInt(request.getParameter("goods_type_id"));
         int from = Integer.parseInt(request.getParameter("city_from_id"));
-        int to= Integer.parseInt(request.getParameter("city_to_id"));
+        int to = Integer.parseInt(request.getParameter("city_to_id"));
 
-        Fare fareValue= fareDao.getFareByIdGoodsType(goodsType);
-        double minPrice= fareValue.getMinimumPrice();
-        double pricePerKg= fareValue.getPricePerKilogram();
-        double priceByKm=fareValue.getPricePerKilometer();
+        Fare fareValue = fareDao.getFareByIdGoodsType(goodsType);
+        double minPrice = fareValue.getMinimumPrice();
+        double pricePerKg = fareValue.getPricePerKilogram();
+        double priceByKm = fareValue.getPricePerKilometer();
 
-        Distance distanceValue= distanceDao.getDistanceByIdCity(from, to);
-        int distance =distanceValue.getDistance();
+        Distance distanceValue = distanceDao.getDistanceByIdCity(from, to);
+        int distance = distanceValue.getDistance();
 
-        double price = DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm,distance,weight);
+        double price = DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm, distance, weight);
         return price;
     }
 }

@@ -35,4 +35,24 @@ public class UserTypeDaoImpl implements UserTypeDao {
         }
         return userType;
     }
+    public UserType getUserTypeByName(String name){
+        Connection connection = pool.getConnection(false);
+        UserType userType = new UserType();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select id from user_type where name=? ");
+            preparedStatement.setString(1, name);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                userType.setId(rs.getInt("id"));
+                userType.setName(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionPool.closeConnection(connection);
+        }
+        return userType;
+    }
+
 }

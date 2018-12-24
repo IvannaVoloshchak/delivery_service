@@ -10,5 +10,7 @@ public interface DeliveryDao {
     void deleteDelivery(int id);
     void updateDelivery(Delivery delivery);
     Delivery getDeliveryById(int id);
+    List<Delivery> getDeliveriesByUserId(int userId);
+
 
 }

@@ -20,10 +20,9 @@
     </script>
 
     <form method="POST" action='?action=save' name="frmAddDelivery">
-
-    Id : <input type="text" readonly="readonly" name="id"
+ <input type="hidden" readonly="readonly" name="id"
                         value="<c:out value="${delivery.id}" />" /> <br />
-             UserId : <input type="text"  name="user_id"
+           <input type="hidden"  name="user_id"
                         value="<c:out value="${delivery.userId}" />" /> <br />
 
          Senders_first_name : <input type="text" name="senders_first_name"
@@ -66,7 +65,7 @@
 
         Delivery_date : <input    type="text" name="delivery_date"
                   value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.deliveryDate}" />" /> <br />
-           Payment Status : <input type="text" name="paymentStatus"
+          <input type="hidden" name="paymentStatus"
                    value="<c:out value="${delivery.paymentStatus}" />" /> <br />
      <input type="submit" value="Save"/>
     </form>
