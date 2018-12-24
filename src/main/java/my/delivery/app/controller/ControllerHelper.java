@@ -33,6 +33,7 @@ public class ControllerHelper {
         commands.put("addUser", new CommandAddUser());
         commands.put("login", new CommandLogin());
         commands.put("signIn", new CommandSignIn());
+        commands.put("signOut", new CommandSignOut());
 
     }
 

@@ -14,6 +14,8 @@
 
        <p>  <input type = "submit" value = "Enter" /></a></p>
       </form>
-
+  <c:if test="${not empty errorMessage}">
+     <c:out value="${errorMessage}"/>
+  </c:if>
    </body>
 </html>

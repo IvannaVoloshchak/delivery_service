@@ -170,7 +170,7 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    public boolean checkLogin(String login) {
+    public boolean checkUserExist (String login) {
         try {
             List<User> userList = getAllUsers();
             for (User user : userList) {

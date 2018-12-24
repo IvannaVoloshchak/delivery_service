@@ -12,5 +12,5 @@ public interface UserDao {
     void updateUser(User user);
     boolean find(String login, String password);
     User checkUser(String login, String password);
-    boolean checkLogin(String login);
+    boolean checkUserExist(String login);
 }
