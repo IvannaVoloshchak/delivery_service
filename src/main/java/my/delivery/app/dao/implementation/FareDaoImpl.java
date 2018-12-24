@@ -2,20 +2,21 @@ package my.delivery.app.dao.implementation;
 
 import my.delivery.app.dao.FareDao;
 import my.delivery.app.model.Fare;
-import my.delivery.app.util.DbUtil;
+import my.delivery.app.util.ConnectionPool;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FareDaoImpl implements FareDao {
-    private Connection connection;
+    private ConnectionPool pool;
 
     public FareDaoImpl() {
-        connection = DbUtil.getConnection();
+        pool = new ConnectionPool();
     }
 
     public List<Fare> getAllFare() {
+        Connection connection = pool.getConnection(false);
         List<Fare> fares = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -30,14 +31,16 @@ public class FareDaoImpl implements FareDao {
 
                 fares.add(fare);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
         return fares;
     }
-    public  Fare getFareByIdGoodsType(int id) {
 
+    public Fare getFareByIdGoodsType(int id) {
+        Connection connection = pool.getConnection(false);
         Fare fare = new Fare();
         try {
             PreparedStatement preparedStatement = connection.
@@ -55,8 +58,9 @@ public class FareDaoImpl implements FareDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
-
         return fare;
     }
 }

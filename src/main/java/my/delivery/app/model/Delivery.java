@@ -151,8 +151,8 @@ public class Delivery implements Serializable {
     @Override
     public String toString() {
         return "Delivery{" +
-                "id=" + id +
-                "userId"+ userId +'\''+
+                "id= '" + id +
+                ", userId= "+ userId +'\''+
                 ", senders_first_name='" + sendersFirstName + '\'' +
                 ", senders_last_name='" + sendersLastName + '\'' +
                 ", recipient_first_name='" + recipientFirstName + '\'' +

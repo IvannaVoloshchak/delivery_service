@@ -1,25 +1,24 @@
 package my.delivery.app.dao.implementation;
 
+import my.delivery.app.dao.DeliveryDao;
+import my.delivery.app.model.Delivery;
+import my.delivery.app.util.ConnectionPool;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import my.delivery.app.dao.DeliveryDao;
-import my.delivery.app.util.DbUtil;
-
-import my.delivery.app.model.Delivery;
-
 public class DeliveryDaoImpl implements DeliveryDao {
-    private Connection connection;
+    private ConnectionPool pool;
 
     public DeliveryDaoImpl() {
 
-        connection = DbUtil.getConnection();
+        pool = new ConnectionPool();
     }
 
     public List<Delivery> getAllDeliveries() {
-
+        Connection connection = pool.getConnection(false);
         List<Delivery> deliveries = new ArrayList<Delivery>();
         try {
             Statement statement = connection.createStatement();
@@ -46,12 +45,14 @@ public class DeliveryDaoImpl implements DeliveryDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
         return deliveries;
     }
 
     public void addDelivery(Delivery delivery) {
-
+        Connection connection = pool.getConnection(false);
         try {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("insert into delivery(user_id, senders_first_name, senders_last_name," +
@@ -72,33 +73,39 @@ public class DeliveryDaoImpl implements DeliveryDao {
             preparedStatement.setString(11, delivery.getRecipientPhone());
             preparedStatement.setDate(12, new Date(delivery.getSentDate().getTime()));
             preparedStatement.setDate(13, new Date(delivery.getDeliveryDate().getTime()));
-            preparedStatement.setDouble(14,delivery.getPrice());
-            preparedStatement.setString(15,delivery.getPaymentStatus());
+            preparedStatement.setDouble(14, delivery.getPrice());
+            preparedStatement.setString(15, delivery.getPaymentStatus());
 
             preparedStatement.executeUpdate();
-
+            pool.commitTransaction(connection);
         } catch (SQLException e) {
+            pool.transactionRollback(connection);
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
     }
 
 
     public void deleteDelivery(int id) {
-
+        Connection connection = pool.getConnection(false);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from " +
                     "delivery  where id=?");
             // Parameters start with 1
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-
+            pool.commitTransaction(connection);
         } catch (SQLException e) {
+            pool.transactionRollback(connection);
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
     }
 
     public void updateDelivery(Delivery delivery) {
-
+        Connection connection = pool.getConnection(false);
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("Update delivery set user_id=?, senders_first_name=?, senders_last_name=?," +
@@ -126,8 +133,12 @@ public class DeliveryDaoImpl implements DeliveryDao {
             preparedStatement.setInt(16, delivery.getId());
 
             preparedStatement.executeUpdate();
+            pool.commitTransaction(connection);
         } catch (SQLException e) {
+            pool.transactionRollback(connection);
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
     }
 
@@ -143,7 +154,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
     }
 
     public Delivery getDeliveryById(int id) {
-
+        Connection connection = pool.getConnection(false);
         Delivery delivery = new Delivery();
         try {
             PreparedStatement preparedStatement = connection.
@@ -171,8 +182,9 @@ public class DeliveryDaoImpl implements DeliveryDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
-
         return delivery;
     }
 

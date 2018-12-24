@@ -1,49 +1,66 @@
 package my.delivery.app.util;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.Logger;
 
-import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-public class ConnectionPool {
-//    private final static Logger logger = Logger.getLogger(ConnectionPool.class);
-//    private static ConnectionPool instance = null;
-//    private static final String TOMCAT_JNDI_NAME="java:comp/env";
-//    private DataSource pool;
-//    private final String DATASOURCE;
-//
-//    public ConnectionPool() {
-//        DATASOURCE = Config.getInstance().getProperty(Config.DATASOURCE);
-//        initialPool();
-//    }
-//
-//    public static synchronized ConnectionPool getInstance() {
-//        if (instance == null) {
-//            instance = new ConnectionPool();
-//        }
-//        return instance;
-//    }
-//
-//    private void initialPool(){
-//        try{
-//            Context initContext = new InitialContext();
-//            Context envContext = (Context) initContext.lookup(TOMCAT_JNDI_NAME);
-//            pool = (DataSource)envContext.lookup(DATASOURCE);
-//        }catch(NamingException e){
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public synchronized Connection getConnection() throws SQLException{
-//        return pool.getConnection();
-//    }
-//
-//    public void closeConnection(Connection connection){
-//        try{
-//            if(connection != null){
-//                connection.close();
-//            }
-//        }catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//    }
+public final class ConnectionPool {
+    private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
+    private final static String DRIVER = PropertyUtil.getDbProperty("driver");
+    private final static String URL = PropertyUtil.getDbProperty("url");
+    private final static String USERNAME = PropertyUtil.getDbProperty("user");
+    private final static String PASSWORD = PropertyUtil.getDbProperty("password");
+
+    private static BasicDataSource dataSource;
+
+    static {
+        dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(DRIVER);
+        dataSource.setUrl(URL);
+        dataSource.setUsername(USERNAME);
+        dataSource.setPassword(PASSWORD);
+    }
+
+    public static Connection getConnection(boolean autocommit) {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            connection.setAutoCommit(autocommit);
+            return connection;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
+    public static void commitTransaction(Connection connection) {
+        try {
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.setAutoCommit(true);
+                connection.close();
+            } catch (SQLException e) {
+            }
+        }
+    }
+
+    public static void transactionRollback(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+            }
+        }
+    }
+
 }

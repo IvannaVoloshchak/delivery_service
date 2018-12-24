@@ -2,20 +2,21 @@ package my.delivery.app.dao.implementation;
 
 import my.delivery.app.dao.DistanceDao;
 import my.delivery.app.model.Distance;
-import my.delivery.app.util.DbUtil;
+import my.delivery.app.util.ConnectionPool;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DistanceDaoImpl implements DistanceDao {
-    private Connection connection;
+    private ConnectionPool pool;
 
     public DistanceDaoImpl() {
-        connection = DbUtil.getConnection();
+        pool = new ConnectionPool();
     }
 
     public List<Distance> getAllDistances() {
+        Connection connection = pool.getConnection(false);
         List<Distance> distances = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -29,14 +30,16 @@ public class DistanceDaoImpl implements DistanceDao {
 
                 distances.add(distance);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
         return distances;
     }
-    public  Distance getDistanceByIdCity(int idFrom, int idTo ) {
 
+    public Distance getDistanceByIdCity(int idFrom, int idTo) {
+        Connection connection = pool.getConnection(false);
         Distance distance = new Distance();
         try {
             PreparedStatement preparedStatement = connection.
@@ -53,6 +56,8 @@ public class DistanceDaoImpl implements DistanceDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionPool.closeConnection(connection);
         }
         return distance;
     }

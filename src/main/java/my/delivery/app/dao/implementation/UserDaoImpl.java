@@ -2,21 +2,21 @@ package my.delivery.app.dao.implementation;
 
 import my.delivery.app.dao.UserDao;
 import my.delivery.app.model.User;
-import my.delivery.app.util.DbUtil;
+import my.delivery.app.util.ConnectionPool;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private Connection connection;
+    private ConnectionPool pool;
 
     public UserDaoImpl() {
-        connection = DbUtil.getConnection();
+        pool = new ConnectionPool();
     }
 
-    public  List<User> getAllUsers() {
-
+    public List<User> getAllUsers() {
+        Connection connection = pool.getConnection(false);
         List<User> users = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -33,15 +33,16 @@ public class UserDaoImpl implements UserDao {
                 user.setEmail(rs.getString("email"));
                 users.add(user);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionPool.closeConnection(connection);
         }
         return users;
     }
 
-    public  void addUser(User user) {
-
+    public void addUser(User user) {
+        Connection connection = pool.getConnection(false);
         try {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("insert into user(typeId," +
@@ -57,28 +58,34 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(7, user.getEmail());
 
             preparedStatement.executeUpdate();
-
+            pool.commitTransaction(connection);
         } catch (SQLException e) {
+            pool.transactionRollback(connection);
             e.printStackTrace();
+        }finally {
+            ConnectionPool.closeConnection(connection);
         }
     }
 
-    public  void deleteUser(int id) {
-
+    public void deleteUser(int id) {
+        Connection connection = pool.getConnection(false);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from " +
                     "user  where id=?");
             // Parameters start with 1
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-
+            pool.commitTransaction(connection);
         } catch (SQLException e) {
+            pool.transactionRollback(connection);
             e.printStackTrace();
+        }finally {
+            ConnectionPool.closeConnection(connection);
         }
     }
 
     public User getUserById(int id) {
-
+        Connection connection = pool.getConnection(false);
         User user = new User();
         try {
             PreparedStatement preparedStatement = connection.
@@ -95,21 +102,21 @@ public class UserDaoImpl implements UserDao {
                 user.setLastName(rs.getString("last_name"));
                 user.setPhoneNumber(rs.getString("phone_number"));
                 user.setEmail(rs.getString("email"));
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionPool.closeConnection(connection);
         }
         return user;
     }
 
-    public  void updateUser(User user) {
-
+    public void updateUser(User user) {
+        Connection connection = pool.getConnection(false);
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("Update user set  typeId=?, login =?," +
                             "password=?, first_name=?, last_name=?, phone_number=?, email=? where id =?");
-
 
             preparedStatement.setInt(1, user.getTypeId());
             preparedStatement.setString(2, user.getLogin());
@@ -119,16 +126,19 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(6, user.getPhoneNumber());
             preparedStatement.setString(7, user.getEmail());
             preparedStatement.setInt(8, user.getId());
-
-
             preparedStatement.executeUpdate();
+            pool.commitTransaction(connection);
         } catch (SQLException e) {
+            pool.transactionRollback(connection);
             e.printStackTrace();
+        }finally {
+            ConnectionPool.closeConnection(connection);
         }
     }
-    public  boolean find(String login, String password) {
-        User user = new User();
 
+    public boolean find(String login, String password) {
+        Connection connection = pool.getConnection(false);
+        User user = new User();
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("SELECT * FROM USER WHERE LOGIN = ? AND PASSWORD = ?");
@@ -137,14 +147,14 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs = null;
         } catch (SQLException e) {
             e.printStackTrace();
-
+        }finally {
+            ConnectionPool.closeConnection(connection);
         }
         return true;
     }
 
 
     public User checkUser(String login, String password) {
-
         try {
             List<User> userList = getAllUsers();
             for (User user : userList) {
@@ -161,7 +171,6 @@ public class UserDaoImpl implements UserDao {
 
 
     public boolean checkLogin(String login) {
-
         try {
             List<User> userList = getAllUsers();
             for (User user : userList) {

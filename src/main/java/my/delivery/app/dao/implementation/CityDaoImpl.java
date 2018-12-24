@@ -2,6 +2,7 @@ package my.delivery.app.dao.implementation;
 
 import my.delivery.app.dao.CityDao;
 import my.delivery.app.model.City;
+import my.delivery.app.util.ConnectionPool;
 import my.delivery.app.util.DbUtil;
 
 import java.sql.Connection;
@@ -12,13 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CityDaoImpl implements CityDao {
-    private Connection connection;
+
+private ConnectionPool pool;
 
     public CityDaoImpl() {
-        connection = DbUtil.getConnection();
+        pool = new ConnectionPool();
     }
 
     public List<City> getAllCities() {
+       Connection connection=pool.getConnection(false);
         List<City> cities = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -30,7 +33,11 @@ public class CityDaoImpl implements CityDao {
                 cities.add(city);
             }
         } catch (SQLException e) {
+
             e.printStackTrace();
+        }
+        finally {
+            ConnectionPool.closeConnection(connection);
         }return cities;
     }
 }

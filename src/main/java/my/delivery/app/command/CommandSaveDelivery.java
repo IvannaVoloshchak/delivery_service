@@ -47,7 +47,6 @@ public class CommandSaveDelivery implements ICommand {
         delivery.setSendersPhone(request.getParameter("senders_phone"));
         delivery.setRecipientPhone(request.getParameter("recipient_phone"));
 
-
         try {
             Date sentDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("sent_date"));
             delivery.setSentDate(sentDate);
@@ -81,8 +80,8 @@ public class CommandSaveDelivery implements ICommand {
         double pricePerKg= fareValue.getPricePerKilogram();
         double priceByKm=fareValue.getPricePerKilometer();
 
-        Distance getDistanceValue= distanceDao.getDistanceByIdCity(from, to);
-        int distance =getDistanceValue.getDistance();
+        Distance distanceValue= distanceDao.getDistanceByIdCity(from, to);
+        int distance =distanceValue.getDistance();
 
         double price = DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm,distance,weight);
         return price;
