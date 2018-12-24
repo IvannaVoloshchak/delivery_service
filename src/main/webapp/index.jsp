@@ -16,9 +16,17 @@
 <h1>
 Delivery World
 </h1>
-<a href="?action=login"><input type="submit" value="SIGN IN"/> <a href="?action=signOut"><input type="submit" value="SIGN OUT"/><a href="?action=registration"> Registration </a>
-<c:out value="${user.login}" />
-<p><a href="?action=listDelivery"> Deliveries </a></p>
+<c:choose>
+    <c:when test="${user==null}">
+       <a href="?action=login"><input type="submit" value="SIGN IN"/>
+       <a href="?action=registration"> Registration </a>
+    </c:when>
+    <c:otherwise>
+      <c:out value="${user.login}" />
+      <a href="?action=signOut"><input type="submit" value="SIGN OUT"/>
+      <p><a href="?action=listDelivery"> Deliveries </a></p>
+    </c:otherwise>
+</c:choose>
 
 <h2><strong> Delivery  calculator</strong></h2>
 
