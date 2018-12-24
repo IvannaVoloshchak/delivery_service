@@ -1,6 +1,6 @@
 package my.delivery.app.command;
 
-import my.delivery.app.dao.implementation.DeliveryDaoImpl;
+import my.delivery.app.dao.impl.DeliveryDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package my.delivery.app.dao.implementation;
+package my.delivery.app.dao.impl;
 
 import my.delivery.app.dao.FareDao;
 import my.delivery.app.model.Fare;

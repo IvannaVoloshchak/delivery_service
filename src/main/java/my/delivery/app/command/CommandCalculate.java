@@ -1,10 +1,6 @@
 package my.delivery.app.command;
 
 import my.delivery.app.dao.*;
-import my.delivery.app.dao.implementation.CityDaoImpl;
-import my.delivery.app.dao.implementation.DistanceDaoImpl;
-import my.delivery.app.dao.implementation.FareDaoImpl;
-import my.delivery.app.dao.implementation.GoodsTypeDaoImpl;
 import my.delivery.app.model.Distance;
 import my.delivery.app.model.Fare;
 import my.delivery.app.service.DeliveryCalculator;

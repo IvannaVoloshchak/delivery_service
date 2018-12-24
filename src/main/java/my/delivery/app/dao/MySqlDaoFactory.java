@@ -1,6 +1,6 @@
 package my.delivery.app.dao;
 
-import my.delivery.app.dao.implementation.*;
+import my.delivery.app.dao.impl.*;
 
 public class MySqlDaoFactory extends DaoFactory {
     @Override

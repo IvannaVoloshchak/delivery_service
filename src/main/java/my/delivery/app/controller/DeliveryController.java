@@ -1,9 +1,9 @@
 package my.delivery.app.controller;
 
-import my.delivery.app.dao.implementation.CityDaoImpl;
-import my.delivery.app.dao.implementation.DeliveryDaoImpl;
-import my.delivery.app.dao.implementation.DistanceDaoImpl;
-import my.delivery.app.dao.implementation.GoodsTypeDaoImpl;
+import my.delivery.app.dao.impl.CityDaoImpl;
+import my.delivery.app.dao.impl.DeliveryDaoImpl;
+import my.delivery.app.dao.impl.DistanceDaoImpl;
+import my.delivery.app.dao.impl.GoodsTypeDaoImpl;
 import my.delivery.app.model.Delivery;
 
 import javax.servlet.RequestDispatcher;

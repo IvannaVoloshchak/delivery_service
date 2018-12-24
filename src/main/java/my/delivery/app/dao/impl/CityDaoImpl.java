@@ -1,9 +1,8 @@
-package my.delivery.app.dao.implementation;
+package my.delivery.app.dao.impl;
 
 import my.delivery.app.dao.CityDao;
 import my.delivery.app.model.City;
 import my.delivery.app.util.ConnectionPool;
-import my.delivery.app.util.DbUtil;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

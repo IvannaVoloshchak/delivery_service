@@ -2,7 +2,6 @@ package my.delivery.app.command;
 
 import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DeliveryDao;
-import my.delivery.app.dao.implementation.DeliveryDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
