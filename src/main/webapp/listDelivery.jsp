@@ -9,6 +9,7 @@
 <title>Show All Deliveries</title>
 </head>
 <body>
+    <jsp:include page="header.jsp"/>
 <p><a href="/"> Main </a></p>
     <table border=1>
         <thead>

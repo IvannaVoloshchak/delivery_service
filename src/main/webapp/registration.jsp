@@ -8,9 +8,8 @@
 <title>Registration</title>
 </head>
 <body>
+    <jsp:include page="header.jsp"/>
 <form method="POST" action='?action=addUser' name="frmUsers">
-
-
 
 <p>  Login : <input type="text" name="login"
                                  value="<c:out value="${user.login}" />" /> <br /></p>

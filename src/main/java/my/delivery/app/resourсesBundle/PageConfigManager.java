@@ -1,0 +1,14 @@
+package my.delivery.app.resourсesBundle;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+public class PageConfigManager {
+    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("config");
+
+    private PageConfigManager() {}
+
+    public static String getProperty(String key) {
+        return resourceBundle.getString(key);
+    }
+}
