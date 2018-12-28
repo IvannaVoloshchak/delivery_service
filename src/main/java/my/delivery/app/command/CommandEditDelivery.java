@@ -2,6 +2,7 @@ package my.delivery.app.command;
 
 import my.delivery.app.dao.*;
 import my.delivery.app.model.Delivery;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,6 @@ import java.io.IOException;
 
 public class CommandEditDelivery  implements ICommand {
 
-    private static String INSERT_OR_EDIT = "/delivery.jsp";
     private DeliveryDao dao;
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
@@ -33,6 +33,6 @@ public class CommandEditDelivery  implements ICommand {
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
         request.setAttribute("distances", distanceDao.getAllDistances());
-        return INSERT_OR_EDIT;
+        return  PageConfigManager.getProperty("path.page.insertOrEdit");
     }
 }

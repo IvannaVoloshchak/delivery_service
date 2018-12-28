@@ -2,6 +2,7 @@ package my.delivery.app.command;
 
 import my.delivery.app.dao.*;
 import my.delivery.app.model.User;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 import my.delivery.app.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
@@ -45,11 +46,11 @@ public class CommandSignIn implements ICommand {
         User user = DaoFactory.getDaoFactory().getUserDao().checkUser(login, password);
         if (user != null) {
             session.setAttribute("user", user);
-            return INDEX;
+            return PageConfigManager.getProperty("path.page.index");
         } else {
             String errorMessage = "You entered wrong login or password. Please try again ";
             request.setAttribute("errorMessage", errorMessage);
-            return LOGIN;
+            return PageConfigManager.getProperty("path.page.login");
         }
     }
 }

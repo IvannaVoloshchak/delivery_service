@@ -5,6 +5,7 @@ import my.delivery.app.model.Delivery;
 import my.delivery.app.model.Distance;
 import my.delivery.app.model.Fare;
 import my.delivery.app.model.User;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 import my.delivery.app.service.DeliveryCalculator;
 
 import javax.servlet.ServletException;
@@ -17,8 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CommandSaveDelivery implements ICommand {
-
-    private static String LIST_DELIVERY = "/listDelivery.jsp";
     private DeliveryDao dao;
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
@@ -79,7 +78,7 @@ public class CommandSaveDelivery implements ICommand {
         } else {
             request.setAttribute("deliveries", dao.getDeliveriesByUserId(user.getId()));
         }
-        return LIST_DELIVERY;
+        return  PageConfigManager.getProperty("path.page.listDelivery");
     }
 
     public Double calculatePrice(HttpServletRequest request) {

@@ -2,6 +2,7 @@ package my.delivery.app.command;
 
 import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.UserDao;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CommandRegistrationUser implements ICommand {
-    private static String REGISTRATION = "/registration.jsp";
     private UserDao userDao;
 
     public CommandRegistrationUser() {
@@ -18,6 +18,6 @@ public class CommandRegistrationUser implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return REGISTRATION;
+        return PageConfigManager.getProperty("path.page.registration");
     }
 }

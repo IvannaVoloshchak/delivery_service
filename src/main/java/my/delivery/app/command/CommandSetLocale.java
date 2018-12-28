@@ -1,5 +1,9 @@
 package my.delivery.app.command;
 
+import my.delivery.app.dao.CityDao;
+import my.delivery.app.dao.DaoFactory;
+import my.delivery.app.dao.DistanceDao;
+import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.resourсesBundle.PageConfigManager;
 import my.delivery.app.util.ConnectionPool;
 import org.apache.log4j.Logger;
@@ -12,16 +16,20 @@ import java.io.IOException;
 
 public class CommandSetLocale implements ICommand {
     private static final Logger LOGGER =Logger.getLogger(ConnectionPool.class);
-    private static String LOGIN = "/login.jsp";
-
+    private GoodsTypeDao goodsTypeDao;
+    private CityDao cityDao;
+    private DistanceDao distanceDao;
+    public CommandSetLocale(){
+        goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
+        cityDao = DaoFactory.getDaoFactory().getCityDao();
+        distanceDao = DaoFactory.getDaoFactory().getDistanceDao();
+    }
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
+        request.setAttribute("cities", cityDao.getAllCities());
+        request.setAttribute("distances", distanceDao.getAllDistances());
         HttpSession session = request.getSession(true);
-        //if (session.getAttribute("sessionId") !=null && !session.getId().equals(session.getAttribute("sessionId"))) {
-        //    LOGGER.info("Session " + session.getId() + " has finished");
-        //   // return LOGIN;
-        //    return PageConfigManager.getProperty("path.page.login");
-        //}
 
         String key = request.getParameter("currentPage");
         String locale = request.getParameter("locale");

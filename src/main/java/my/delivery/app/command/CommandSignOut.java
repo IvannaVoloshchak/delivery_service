@@ -2,6 +2,7 @@ package my.delivery.app.command;
 
 import my.delivery.app.dao.*;
 import my.delivery.app.model.User;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 import my.delivery.app.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
@@ -34,6 +35,6 @@ public class CommandSignOut implements ICommand  {
             LOGGER.info("User " + user.getFirstName() + " " + user.getLastName() + " " + " log out");
         }
         session.invalidate();
-        return INDEX;
+        return PageConfigManager.getProperty("path.page.index");
     }
 }

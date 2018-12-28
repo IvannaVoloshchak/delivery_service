@@ -6,6 +6,7 @@ import my.delivery.app.dao.UserDao;
 import my.delivery.app.dao.UserTypeDao;
 import my.delivery.app.model.Delivery;
 import my.delivery.app.model.User;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CommandPayForDelivery implements ICommand {
-    private static String LIST_DELIVERY = "/listDelivery.jsp";
     private DeliveryDao dao;
     private UserDao userDao;
 
@@ -37,6 +37,6 @@ public class CommandPayForDelivery implements ICommand {
         } else {
             request.setAttribute("deliveries", dao.getDeliveriesByUserId(user.getId()));
         }
-        return LIST_DELIVERY;
+        return PageConfigManager.getProperty("path.page.listDelivery");
     }
 }

@@ -1,9 +1,8 @@
 package my.delivery.app.command;
 
 import my.delivery.app.dao.DaoFactory;
-import my.delivery.app.dao.MySqlDaoFactory;
 import my.delivery.app.dao.UserDao;
-
+import my.delivery.app.resourсesBundle.PageConfigManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +11,13 @@ import java.io.IOException;
 
 public class CommandLogin implements ICommand {
 
-    private static String LOGIN = "/login.jsp";
     private UserDao userDao;
-    public CommandLogin(){
-        userDao= DaoFactory.getDaoFactory().getUserDao();
-    }
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        return LOGIN;
+    public CommandLogin() {
+        userDao = DaoFactory.getDaoFactory().getUserDao();
     }
+
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        return PageConfigManager.getProperty("path.page.login");
     }
+}

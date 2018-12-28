@@ -4,13 +4,13 @@ import my.delivery.app.dao.CityDao;
 import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DeliveryDao;
 import my.delivery.app.dao.GoodsTypeDao;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CommandCreateDelivery implements ICommand {
 
-    private static String INSERT_OR_EDIT = "/delivery.jsp";
     private DeliveryDao dao;
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
@@ -26,6 +26,6 @@ public class CommandCreateDelivery implements ICommand {
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
 
-        return INSERT_OR_EDIT;
+        return PageConfigManager.getProperty("path.page.insertOrEdit");
     }
 }

@@ -1,6 +1,5 @@
 package my.delivery.app.resourсesBundle;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class PageConfigManager {

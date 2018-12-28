@@ -4,6 +4,7 @@ import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DeliveryDao;
 import my.delivery.app.dao.UserTypeDao;
 import my.delivery.app.model.User;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,6 @@ import java.io.IOException;
 
 public class CommandDeleteDelivery implements ICommand {
 
-    private static String LIST_DELIVERY = "/listDelivery.jsp";
     private DeliveryDao dao;
 
     public CommandDeleteDelivery() {
@@ -32,6 +32,6 @@ public class CommandDeleteDelivery implements ICommand {
         } else {
             request.setAttribute("deliveries", dao.getDeliveriesByUserId(user.getId()));
         }
-        return LIST_DELIVERY;
+        return PageConfigManager.getProperty("path.page.listDelivery");
     }
 }

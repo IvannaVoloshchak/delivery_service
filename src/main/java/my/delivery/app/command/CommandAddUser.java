@@ -5,6 +5,7 @@ import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.dao.UserDao;
 import my.delivery.app.model.User;
+import my.delivery.app.resourсesBundle.PageConfigManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CommandAddUser implements ICommand {
-    private static String INDEX = "/index.jsp";
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
     private UserDao userDao;
@@ -45,6 +45,6 @@ public class CommandAddUser implements ICommand {
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
 
-        return INDEX;
+        return PageConfigManager.getProperty("path.page.index");
     }
 }

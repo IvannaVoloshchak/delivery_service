@@ -20,48 +20,45 @@
         <p><a href="?action=listDelivery"> Deliveries </a></p>
     </c:if>
 
-    <h2><fmt:message key="index.labelDeliveryCalc" bundle="${rb}"/></h2><br>
+    <h2><fmt:message key="index.labelDeliveryCalc" bundle="${rb}"/></h2>
 
     <form method="POST" action='?action=calculate' name="price">
 
-    <p> <strong>Weight: </strong></p>
+        <p> <strong><fmt:message key="index.weight" bundle="${rb}"/>: </strong></p>
          <input type="text" name="weight"  value="${weight}" /> kg<br />
 
-    <p><strong>Goods type: </strong></p>
-    <select name="goods_type">
-        <c:forEach items="${types}" var="type">
+        <p><strong><fmt:message key="index.goodsType" bundle="${rb}"/> </strong></p>
+        <select name="goods_type">
+            <c:forEach items="${types}" var="type">
             <option value="${type.idGoodsType}" ${type.idGoodsType==idGoodsType ? 'selected' : ''} >${type.name}</option>
-        </c:forEach>
-    </select>
+            </c:forEach>
+       </select>
 
-     <p><strong>Direction: </strong></p>
-    <p>From: </p>
-    <select name="from">
-         <c:forEach items="${cities}" var="city">
-           <option value="${city.id}" ${city.id==from ? 'selected' : ''}>${city.name}</option>
-         </c:forEach>
-    </select>
+        <p><strong><fmt:message key="index.direction" bundle="${rb}"/></strong></p>
+        <p><fmt:message key="index.from" bundle="${rb}"/>: </p>
+        <select name="from">
+             <c:forEach items="${cities}" var="city">
+                <option value="${city.id}" ${city.id==from ? 'selected' : ''}>${city.name}</option>
+            </c:forEach>
+          </select>
 
-    <p>To: </p>
+    <p><fmt:message key="index.to" bundle="${rb}"/>: </p>
         <select name="to">
             <c:forEach items="${cities}" var="city">
                 <option value="${city.id}" ${city.id==to ? 'selected' : ''}>${city.name}</option>
             </c:forEach>
-     </select><br/>
+         </select><br/>
 
+         <fmt:message key="login.button.calculate" bundle="${rb}"  var="buttonValue" />
 
-    <p><a href="/"> <input type="submit" value="Calculate"/> </a></p>
-     <p><strong>Total price:</strong> <input value= "${price}" type="text" name="price" /> </p>
+    <p><a href="/"> <input type="submit" value="${buttonValue}"/></a></p>
+     <p><strong><fmt:message key="index.totalPrice" bundle="${rb}"/></strong> <input value= "${price}" type="text" name="price" /> </p>
     </form>
-
-    <h2><strong> Delivery  tariffs </strong></h2>
-        <p>
-  	         <strong>Delivery tariffs </strong><br>
-  	     <li> Letter - 30 uan + 0.01 for each kilometers of road; </li>
-  	    <li> Box - 40 uan + 0.1 for each kilometers of road + 1 uan for each kilograms of weight; </li>
-  	    <li> Parcel - 50 uan + 0.1 for each kilometers of road + 1 uan for each kilograms of weight; </li>
-  	    <li> Container - 100 uan + 0.1 for each kilometers of road + 1 uan for each kilograms of weight. </li>
+    <h2><strong> <fmt:message key="index.deliveryTariffs" bundle="${rb}"/>: </strong></h2>
+  	     <li><fmt:message key="index.letterTariffs" bundle="${rb}"/></li>
+  	    <li> <fmt:message key="index.boxTariffs" bundle="${rb}"/> </li>
+  	    <li> <fmt:message key="index.parcelTariffs" bundle="${rb}"/></li>
+  	    <li> <fmt:message key="index.containerTariffs" bundle="${rb}"/> </li>
   	    </ul>
-
 </body>
 </html>

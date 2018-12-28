@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" session="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page isELIgnored="false" %>
+
+<c:if test="${locale == 1}"><fmt:setLocale value="en_US" scope="session"/></c:if>
+<c:if test="${locale == 2}"><fmt:setLocale value="uk_UA" scope="session"/></c:if>
+<fmt:setBundle basename="pageContent" var="rb"/>
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+ <c:set var="currentPage" value="path.page.listDelivery" scope="request"/>
 <title>Show All Deliveries</title>
 </head>
 <body>
@@ -16,8 +20,8 @@
             <tr>
                 <th style="display:none"> id </th>
                 <th style="display:none"> user_id </th>
-                <th> senders_first_name </th>
-                <th> senders_last_name </th>
+                <th><label for="SendersFN"><fmt:message key="listDelivery.label.SendersFirstName"  bundle="${rb}"/>:</label>  </th>
+                <th> <label for="SendersLN"><fmt:message key="listDelivery.label.SendersLastName"  bundle="${rb}"/>:</label>  </th>
                 <th> recipient_first_name </th>
                 <th> recipient_last_name </th>
                 <th> from_city_id</th>
