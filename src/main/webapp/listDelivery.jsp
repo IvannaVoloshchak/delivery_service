@@ -20,21 +20,21 @@
             <tr>
                 <th style="display:none"> id </th>
                 <th style="display:none"> user_id </th>
-                <th><label for="SendersFN"><fmt:message key="listDelivery.label.SendersFirstName"  bundle="${rb}"/>:</label>  </th>
-                <th> <label for="SendersLN"><fmt:message key="listDelivery.label.SendersLastName"  bundle="${rb}"/>:</label>  </th>
-                <th> recipient_first_name </th>
-                <th> recipient_last_name </th>
-                <th> from_city_id</th>
-                <th> to_city_id </th>
-                <th> goods_type_id </th>
-                <th> weight </th>
-                <th>senders_phone </th>
-                <th> recipient_phone</th>
-                <th> sent_date </th>
-                <th> delivery_date </th>
-                <th> price </th>
-                <th> paymentStatus </th>
-                <th colspan=3>Action</th>
+                <th><fmt:message key="listDelivery.label.sendersFirstName" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.sendersLastName" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.recipientFirstName" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.recipientLastName" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.fromCity" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.toCity" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.goodsTypeId" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.weight" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.sendersPhone" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.recipientPhone" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.sentDate" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.deliveryDate" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.price" bundle="${rb}"/></th>
+                <th><fmt:message key="listDelivery.label.paymentStatus" bundle="${rb}"/></th>
+                <th colspan=3><fmt:message key="listDelivery.label.action" bundle="${rb}"/></th>
             </tr>
         </thead>
         <tbody>
@@ -52,19 +52,19 @@
                     <td><c:out value="${delivery.weight}" /></td>
                     <td><c:out value="${delivery.sendersPhone}" /></td>
                     <td><c:out value="${delivery.recipientPhone}" /></td>
-
                      <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.sentDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.deliveryDate}" /></td>
                     <td><c:out value="${delivery.price}" /></td>
                     <td><c:out value="${delivery.paymentStatus}" /></td>
-                    <td><a href="?action=payment&id=<c:out value="${delivery.id}"/>">Pay</a></td>
-                    <td><a href="?action=edit&id=<c:out value="${delivery.id}"/>">Update</a></td>
-                    <td><a href="?action=delete&id=<c:out value="${delivery.id}"/>">Delete</a></td>
-
+                    <td><a href="?action=payment&id=<c:out value="${delivery.id}"/>"><fmt:message key="listDelivery.label.pay" bundle="${rb}"/></a></td>
+                    <td><a href="?action=edit&id=<c:out value="${delivery.id}"/>"><fmt:message key="listDelivery.label.update" bundle="${rb}"/></a></td>
+                    <td><a href="?action=delete&id=<c:out value="${delivery.id}"/>"><fmt:message key="listDelivery.label.delete" bundle="${rb}"/></a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="?action=insert"> <input type="submit" value="Add new Delivery"/> </a></p>
+    <p><a href="?action=insert">
+     <fmt:message key="listDelivery.button.addNewDelivery" bundle="${rb}"  var="buttonValue" />
+     <input type="submit" value="${buttonValue}"/> </a></p>
 </body>
 </html>

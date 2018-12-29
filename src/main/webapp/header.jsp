@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <%@ page isELIgnored="false" %>
 <fmt:setBundle basename="pageContent" var="rb"/>
 <html>
@@ -31,7 +32,7 @@ Delivery World
           </c:when>
     <c:otherwise>
          <c:out value="${user.login}" />
-         <a href="?action=signOut"><input type="submit" value="SIGN OUT"/>
+         <a href="?action=signOut"><input type="submit" value="SIGN OUT"/></a>
     </c:otherwise>
     </c:choose>
     </div>

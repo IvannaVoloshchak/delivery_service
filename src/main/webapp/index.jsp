@@ -49,7 +49,7 @@
             </c:forEach>
          </select><br/>
 
-         <fmt:message key="login.button.calculate" bundle="${rb}"  var="buttonValue" />
+         <fmt:message key="index.button.calculate" bundle="${rb}"  var="buttonValue" />
 
     <p><a href="/"> <input type="submit" value="${buttonValue}"/></a></p>
      <p><strong><fmt:message key="index.totalPrice" bundle="${rb}"/></strong> <input value= "${price}" type="text" name="price" /> </p>
