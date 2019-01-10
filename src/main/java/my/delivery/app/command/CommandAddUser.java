@@ -21,13 +21,18 @@ public class CommandAddUser implements ICommand {
 
     public CommandAddUser() {
         goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
-        cityDao= DaoFactory.getDaoFactory().getCityDao();
-        userDao =DaoFactory.getDaoFactory().getUserDao();
+        cityDao = DaoFactory.getDaoFactory().getCityDao();
+        userDao = DaoFactory.getDaoFactory().getUserDao();
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String login = request.getParameter("login");
+        if (userDao.checkUserExist(login)) {
+            String errorMessage = "You entered login which one is already exist. Please try another login ";
+            request.setAttribute("errorMessage", errorMessage);
+            return PageConfigManager.getProperty("path.page.registration");
+        }
         User user = new User();
         user.setTypeId(1);
         user.setLogin(request.getParameter("login"));
@@ -40,14 +45,16 @@ public class CommandAddUser implements ICommand {
         String id = request.getParameter("id");
         if (id == null || id.isEmpty()) {
             userDao.addUser(user);
-            consLogger.info("Add new user " + user.getLogin()+" in DB");
+
+            consLogger.info("Add new user " + user.getLogin() + " in DB");
         } else {
             user.setId(Integer.parseInt(id));
             userDao.updateUser(user);
-            consLogger.info("Update user "+ user.getLogin()+ " in DB");
+            consLogger.info("Update user " + user.getLogin() + " in DB");
         }
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
+
 
         return PageConfigManager.getProperty("path.page.index");
     }

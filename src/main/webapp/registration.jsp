@@ -34,6 +34,8 @@
             <input type="submit" value="${buttonValue}"/>
 
       </form>
-
+<c:if test="${not empty errorMessage}">
+     <c:out value="${errorMessage}"/>
+     </c:if>
    </body>
 </html>

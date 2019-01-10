@@ -10,7 +10,7 @@ public class PropertyUtil {
     public static String getDbProperty(String key) {
         Properties prop = new Properties();
         try {
-            InputStream inputStream = new FileInputStream("C:/Projects/DeliveryService/src/main/java/my/delivery/app/db.properties");
+            InputStream inputStream = new FileInputStream("C:/Projects/DeliveryService/src/main/resources/db.properties");
             prop.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
