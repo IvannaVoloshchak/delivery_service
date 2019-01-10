@@ -3,6 +3,7 @@ package my.delivery.app.command;
 import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DeliveryDao;
 import my.delivery.app.dao.UserTypeDao;
+import my.delivery.app.model.Delivery;
 import my.delivery.app.model.User;
 import my.delivery.app.resourсesBundle.PageConfigManager;
 import org.apache.log4j.Logger;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class CommandDeliveryList implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
@@ -27,12 +29,16 @@ public class CommandDeliveryList implements ICommand {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         userTypeDao=DaoFactory.getDaoFactory().getUserTypeDao();
+        List<Delivery> listDelivery;
+
         if (user.getTypeId() == userTypeDao.getUserTypeByName("operator").getId()) {
-            request.setAttribute("deliveries", dao.getAllDeliveries());
+           listDelivery= dao.getAllDeliveries();
         } else {
-            request.setAttribute("deliveries", dao.getDeliveriesByUserId(user.getId()));
+            listDelivery= dao.getDeliveriesByUserId(user.getId());
         }
-        consLogger.info("User "+user.getLogin()+" see all it deliveries from DB");
+        session.setAttribute("deliveries",listDelivery);
+        request.setAttribute("deliveries", listDelivery);
+        consLogger.info("User "+user.getLogin()+" can see all it deliveries from DB");
         return PageConfigManager.getProperty("path.page.listDelivery");
     }
 }
