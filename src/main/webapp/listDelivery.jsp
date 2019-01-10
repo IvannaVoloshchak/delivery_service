@@ -15,8 +15,6 @@
 <body>
     <jsp:include page="header.jsp"/>
 
-
-<p><a href="/"> <fmt:message key="listDelivery.label.main" bundle="${rb}"/> </a></p>
     <table border=1>
         <thead>
             <tr>

@@ -7,12 +7,12 @@
 <fmt:setBundle basename="pageContent" var="rb"/>
 <html>
 <head>
-<title>Header</title>
+    <title>Header</title>
 </head>
 <body>
-<fmt:requestEncoding value="UTF-8" />
+<fmt:requestEncoding value="UTF-8"/>
 <h1>
-Delivery World
+    <a href="/">Delivery World</a>
 </h1>
 <div class="main_header">
     <form method="POST" action='?action=setLocale' name="locale">
@@ -25,20 +25,20 @@ Delivery World
         <button class="change_locale" type="submit" name="locale" value="2">Українська</button>
     </form>
 
-        <c:choose>
-         <c:when test="${user==null}">
-          <fmt:message key="header.signIn" bundle="${rb}"  var="buttonValue" />
+    <c:choose>
+    <c:when test="${user==null}">
+    <fmt:message key="header.signIn" bundle="${rb}" var="buttonValue"/>
 
-             <a href="?action=login"> <input type="submit" value="${buttonValue}"/>
-             <a href="?action=registration"> <fmt:message key="header.registration" bundle="${rb}"/> </a>
-          </c:when>
-    <c:otherwise>
-         <c:out value="${user.login}" />
-         <fmt:message key="header.signOut" bundle="${rb}"  var="buttonValue" />
+    <a href="?action=login"> <input type="submit" value="${buttonValue}"/>
+        <a href="?action=registration"> <fmt:message key="header.registration" bundle="${rb}"/> </a>
+        </c:when>
+        <c:otherwise>
+            <c:out value="${user.login}"/>
+            <fmt:message key="header.signOut" bundle="${rb}" var="buttonValue"/>
 
-         <a href="?action=signOut"><input type="submit" value="${buttonValue}"/></a>
-    </c:otherwise>
-    </c:choose>
-    </div>
-   </body>
+        <a href="?action=signOut"><input type="submit" value="${buttonValue}"/></a>
+        </c:otherwise>
+        </c:choose>
+</div>
+</body>
 </html>
