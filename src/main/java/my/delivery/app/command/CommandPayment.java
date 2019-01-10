@@ -4,13 +4,14 @@ import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DeliveryDao;
 import my.delivery.app.model.Delivery;
 import my.delivery.app.resourсesBundle.PageConfigManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-public class CommandPayment implements ICommand {
 
+public class CommandPayment implements ICommand {
     private DeliveryDao dao;
 
 
@@ -25,7 +26,7 @@ public class CommandPayment implements ICommand {
         Delivery delivery = dao.getDeliveryById(id);
         request.setAttribute("delivery", delivery);
 
-        return  PageConfigManager.getProperty("path.page.pay");
+        return PageConfigManager.getProperty("path.page.pay");
     }
 }
 

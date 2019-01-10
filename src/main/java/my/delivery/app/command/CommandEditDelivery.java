@@ -3,6 +3,7 @@ package my.delivery.app.command;
 import my.delivery.app.dao.*;
 import my.delivery.app.model.Delivery;
 import my.delivery.app.resourсesBundle.PageConfigManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,7 @@ public class CommandEditDelivery  implements ICommand {
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
         request.setAttribute("distances", distanceDao.getAllDistances());
+
         return  PageConfigManager.getProperty("path.page.insertOrEdit");
     }
 }

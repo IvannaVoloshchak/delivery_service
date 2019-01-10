@@ -3,12 +3,14 @@ package my.delivery.app.dao.impl;
 import my.delivery.app.dao.FareDao;
 import my.delivery.app.model.Fare;
 import my.delivery.app.util.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FareDaoImpl implements FareDao {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private ConnectionPool pool;
 
     public FareDaoImpl() {
@@ -33,6 +35,7 @@ public class FareDaoImpl implements FareDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find fare from this parameters in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -58,6 +61,7 @@ public class FareDaoImpl implements FareDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find fare for this goods type in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }

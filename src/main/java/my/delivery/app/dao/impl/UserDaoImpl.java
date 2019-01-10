@@ -3,12 +3,14 @@ package my.delivery.app.dao.impl;
 import my.delivery.app.dao.UserDao;
 import my.delivery.app.model.User;
 import my.delivery.app.util.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private ConnectionPool pool;
 
     public UserDaoImpl() {
@@ -35,6 +37,7 @@ public class UserDaoImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find user in DB");
         }finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -61,7 +64,9 @@ public class UserDaoImpl implements UserDao {
             pool.commitTransaction(connection);
         } catch (SQLException e) {
             pool.transactionRollback(connection);
+            consLogger.error("Can't add new user in DB");
             e.printStackTrace();
+
         }finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -78,7 +83,9 @@ public class UserDaoImpl implements UserDao {
             pool.commitTransaction(connection);
         } catch (SQLException e) {
             pool.transactionRollback(connection);
+            consLogger.error("Can't delete user from DB");
             e.printStackTrace();
+
         }finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -104,7 +111,9 @@ public class UserDaoImpl implements UserDao {
                 user.setEmail(rs.getString("email"));
             }
         } catch (SQLException e) {
+            consLogger.error("Can't find  user with this id in DB");
             e.printStackTrace();
+
         }finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -130,7 +139,9 @@ public class UserDaoImpl implements UserDao {
             pool.commitTransaction(connection);
         } catch (SQLException e) {
             pool.transactionRollback(connection);
+            consLogger.error("Can't update user in DB");
             e.printStackTrace();
+
         }finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -146,7 +157,9 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(2, user.getPassword());
             ResultSet rs = null;
         } catch (SQLException e) {
+            consLogger.error("Can't find user in DB");
             e.printStackTrace();
+
         }finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -163,7 +176,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Can't check account");
+            consLogger.error("Can't check account");
             throw e;
         }
         return null;
@@ -179,7 +192,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Can't check login");
+           consLogger.error("Can't check login");
             throw e;
         }
         return false;

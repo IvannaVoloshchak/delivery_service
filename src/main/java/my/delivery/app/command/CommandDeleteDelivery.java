@@ -5,6 +5,7 @@ import my.delivery.app.dao.DeliveryDao;
 import my.delivery.app.dao.UserTypeDao;
 import my.delivery.app.model.User;
 import my.delivery.app.resourсesBundle.PageConfigManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CommandDeleteDelivery implements ICommand {
-
+    public static Logger consLogger = Logger.getLogger("CONS");
     private DeliveryDao dao;
 
     public CommandDeleteDelivery() {
@@ -32,6 +33,7 @@ public class CommandDeleteDelivery implements ICommand {
         } else {
             request.setAttribute("deliveries", dao.getDeliveriesByUserId(user.getId()));
         }
+        consLogger.info("Delivery for " + user.getLogin()+ " was delete from DB");
         return PageConfigManager.getProperty("path.page.listDelivery");
     }
 }

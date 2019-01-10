@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CommandSetLocale implements ICommand {
-    private static final Logger LOGGER =Logger.getLogger(ConnectionPool.class);
+    public static Logger consLogger = Logger.getLogger("CONS");
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
     private DistanceDao distanceDao;
@@ -36,11 +36,11 @@ public class CommandSetLocale implements ICommand {
         session.setAttribute("locale", locale);
 
         if (locale.equals("1")) {
-            LOGGER.info("Locale EN was setted");
+           consLogger.info("Locale EN was setted");
         } else {
-            LOGGER.info("Locale UA was setted");
+            consLogger.info("Locale UA was setted");
         }
-
+         consLogger.info("User changed language");
         return PageConfigManager.getProperty(key);
     }
 }

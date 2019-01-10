@@ -27,12 +27,16 @@ Delivery World
 
         <c:choose>
          <c:when test="${user==null}">
-             <a href="?action=login"><input type="submit" value="SIGN IN"/>
-             <a href="?action=registration"> Registration </a>
+          <fmt:message key="header.signIn" bundle="${rb}"  var="buttonValue" />
+
+             <a href="?action=login"> <input type="submit" value="${buttonValue}"/>
+             <a href="?action=registration"> <fmt:message key="header.registration" bundle="${rb}"/> </a>
           </c:when>
     <c:otherwise>
          <c:out value="${user.login}" />
-         <a href="?action=signOut"><input type="submit" value="SIGN OUT"/></a>
+         <fmt:message key="header.signOut" bundle="${rb}"  var="buttonValue" />
+
+         <a href="?action=signOut"><input type="submit" value="${buttonValue}"/></a>
     </c:otherwise>
     </c:choose>
     </div>

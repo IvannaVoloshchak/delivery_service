@@ -6,6 +6,7 @@ import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.dao.UserDao;
 import my.delivery.app.model.User;
 import my.delivery.app.resourсesBundle.PageConfigManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CommandAddUser implements ICommand {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
     private UserDao userDao;
@@ -38,9 +40,11 @@ public class CommandAddUser implements ICommand {
         String id = request.getParameter("id");
         if (id == null || id.isEmpty()) {
             userDao.addUser(user);
+            consLogger.info("Add new user " + user.getLogin()+" in DB");
         } else {
             user.setId(Integer.parseInt(id));
             userDao.updateUser(user);
+            consLogger.info("Update user "+ user.getLogin()+ " in DB");
         }
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());

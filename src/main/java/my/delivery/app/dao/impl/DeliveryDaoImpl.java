@@ -3,6 +3,7 @@ package my.delivery.app.dao.impl;
 import my.delivery.app.dao.DeliveryDao;
 import my.delivery.app.model.Delivery;
 import my.delivery.app.util.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -10,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeliveryDaoImpl implements DeliveryDao {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private ConnectionPool pool;
 
     public DeliveryDaoImpl() {
-
         pool = new ConnectionPool();
     }
 
@@ -45,6 +46,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find delivery in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -81,6 +83,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
         } catch (SQLException e) {
             pool.transactionRollback(connection);
             e.printStackTrace();
+            consLogger.error("Can't create delivery in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -99,6 +102,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
         } catch (SQLException e) {
             pool.transactionRollback(connection);
             e.printStackTrace();
+            consLogger.error("Can't delete delivery in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -137,6 +141,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
         } catch (SQLException e) {
             pool.transactionRollback(connection);
             e.printStackTrace();
+            consLogger.error("Can't update delivery in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -182,6 +187,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find delivery with this id in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -217,6 +223,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find delivery in DB for user with this Id");
         } finally {
             ConnectionPool.closeConnection(connection);
         }

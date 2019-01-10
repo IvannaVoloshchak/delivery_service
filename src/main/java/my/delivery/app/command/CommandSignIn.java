@@ -3,7 +3,6 @@ package my.delivery.app.command;
 import my.delivery.app.dao.*;
 import my.delivery.app.model.User;
 import my.delivery.app.resourсesBundle.PageConfigManager;
-import my.delivery.app.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CommandSignIn implements ICommand {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private static String INDEX = "/index.jsp";
     private static String LOGIN = "/login.jsp";
     private UserDao userDao;
@@ -27,8 +27,6 @@ public class CommandSignIn implements ICommand {
         userDao = DaoFactory.getDaoFactory().getUserDao();
     }
 
-    private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
-
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
@@ -38,14 +36,14 @@ public class CommandSignIn implements ICommand {
 
         if (session.getAttribute("sessionId") == null) {
             session.setAttribute("sessionId", sessionId);
-            LOGGER.info("Session " + session.getId() + " has started");
+           consLogger.info("Session " + session.getId() + " has started");
         }
-
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         User user = DaoFactory.getDaoFactory().getUserDao().checkUser(login, password);
         if (user != null) {
             session.setAttribute("user", user);
+            consLogger.info("User "+ user.getLogin()+" successfully sign in");
             return PageConfigManager.getProperty("path.page.index");
         } else {
             String errorMessage = "You entered wrong login or password. Please try again ";

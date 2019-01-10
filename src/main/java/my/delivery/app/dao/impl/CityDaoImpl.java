@@ -3,6 +3,7 @@ package my.delivery.app.dao.impl;
 import my.delivery.app.dao.CityDao;
 import my.delivery.app.model.City;
 import my.delivery.app.util.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CityDaoImpl implements CityDao {
-
+    public static Logger consLogger = Logger.getLogger("CONS");
 private ConnectionPool pool;
 
     public CityDaoImpl() {
@@ -30,10 +31,12 @@ private ConnectionPool pool;
                 city.setId(rs.getInt("id"));
                 city.setName(rs.getString("name"));
                 cities.add(city);
+
             }
         } catch (SQLException e) {
-
+            consLogger.error("Can't find city in DB");
             e.printStackTrace();
+
         }
         finally {
             ConnectionPool.closeConnection(connection);

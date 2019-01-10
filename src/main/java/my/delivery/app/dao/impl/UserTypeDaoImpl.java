@@ -3,6 +3,7 @@ package my.delivery.app.dao.impl;
 import my.delivery.app.dao.UserTypeDao;
 import my.delivery.app.model.UserType;
 import my.delivery.app.util.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserTypeDaoImpl implements UserTypeDao {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private ConnectionPool pool;
 
     public UserTypeDaoImpl() {
@@ -29,7 +31,9 @@ public class UserTypeDaoImpl implements UserTypeDao {
                 userType.setName(rs.getString("name"));
             }
         } catch (SQLException e) {
+            consLogger.error("Can't find user with this id in DB");
             e.printStackTrace();
+
         }finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -49,6 +53,7 @@ public class UserTypeDaoImpl implements UserTypeDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
         }finally {
             ConnectionPool.closeConnection(connection);
         }

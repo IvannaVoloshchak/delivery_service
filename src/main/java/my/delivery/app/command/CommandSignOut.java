@@ -13,11 +13,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CommandSignOut implements ICommand  {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private static String INDEX = "/index.jsp";
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
     private DistanceDao distanceDao;
-    private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
+
     public CommandSignOut(){
         goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
         cityDao = DaoFactory.getDaoFactory().getCityDao();
@@ -32,7 +33,7 @@ public class CommandSignOut implements ICommand  {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("currentUser");
         if (user != null) {
-            LOGGER.info("User " + user.getFirstName() + " " + user.getLastName() + " " + " log out");
+            consLogger.info("User " + user.getLogin() + " log out");
         }
         session.invalidate();
         return PageConfigManager.getProperty("path.page.index");

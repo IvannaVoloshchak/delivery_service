@@ -5,6 +5,7 @@ import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DeliveryDao;
 import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.resourсesBundle.PageConfigManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

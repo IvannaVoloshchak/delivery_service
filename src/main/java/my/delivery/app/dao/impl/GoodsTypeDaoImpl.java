@@ -3,12 +3,14 @@ package my.delivery.app.dao.impl;
 import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.model.GoodsType;
 import my.delivery.app.util.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GoodsTypeDaoImpl implements GoodsTypeDao {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private ConnectionPool pool;
 
     public GoodsTypeDaoImpl() {
@@ -30,6 +32,7 @@ public class GoodsTypeDaoImpl implements GoodsTypeDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find this goods type in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -52,6 +55,7 @@ public class GoodsTypeDaoImpl implements GoodsTypeDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find this goods type in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }

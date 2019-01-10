@@ -5,6 +5,7 @@ import my.delivery.app.dao.DaoFactory;
 import my.delivery.app.dao.DistanceDao;
 import my.delivery.app.dao.GoodsTypeDao;
 import my.delivery.app.resourсesBundle.PageConfigManager;
+import org.apache.log4j.Logger;
 
 
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CommandIndex implements ICommand {
-
+    public static Logger consLogger = Logger.getLogger("CONS");
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
     private DistanceDao distanceDao;
@@ -29,6 +30,7 @@ public class CommandIndex implements ICommand {
         request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
         request.setAttribute("distances", distanceDao.getAllDistances());
+        consLogger.info("Customer is on the main page");
 
         return PageConfigManager.getProperty("path.page.index");
     }

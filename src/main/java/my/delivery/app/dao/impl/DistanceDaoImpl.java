@@ -3,12 +3,14 @@ package my.delivery.app.dao.impl;
 import my.delivery.app.dao.DistanceDao;
 import my.delivery.app.model.Distance;
 import my.delivery.app.util.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DistanceDaoImpl implements DistanceDao {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private ConnectionPool pool;
 
     public DistanceDaoImpl() {
@@ -32,6 +34,7 @@ public class DistanceDaoImpl implements DistanceDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find distance in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
@@ -56,6 +59,7 @@ public class DistanceDaoImpl implements DistanceDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't find distance for this cities in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }

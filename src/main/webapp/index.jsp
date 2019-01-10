@@ -17,7 +17,7 @@
     <jsp:include page="header.jsp"/>
 
     <c:if test="${user!=null}">
-        <p><a href="?action=listDelivery"> Deliveries </a></p>
+        <p><a href="?action=listDelivery"> <fmt:message key="index.deliveries" bundle="${rb}"/> </a></p>
     </c:if>
 
     <h2><fmt:message key="index.labelDeliveryCalc" bundle="${rb}"/></h2>

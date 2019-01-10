@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public final class ConnectionPool {
-    private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
+    public static Logger consLogger = Logger.getLogger("CONS");
     private final static String DRIVER = PropertyUtil.getDbProperty("driver");
     private final static String URL = PropertyUtil.getDbProperty("url");
     private final static String USERNAME = PropertyUtil.getDbProperty("user");
@@ -30,7 +30,9 @@ public final class ConnectionPool {
             connection.setAutoCommit(autocommit);
             return connection;
         } catch (SQLException e) {
+
             e.printStackTrace();
+            consLogger.error("Can't connection to DB");
         }
         return connection;
     }
@@ -41,6 +43,7 @@ public final class ConnectionPool {
             connection.setAutoCommit(true);
         } catch (SQLException e) {
             e.printStackTrace();
+            consLogger.error("Can't finish transaction");
         }
     }
 
@@ -50,6 +53,7 @@ public final class ConnectionPool {
                 connection.setAutoCommit(true);
                 connection.close();
             } catch (SQLException e) {
+                consLogger.error("Can't close connection to DB");
             }
         }
     }
@@ -59,6 +63,7 @@ public final class ConnectionPool {
             try {
                 connection.rollback();
             } catch (SQLException e) {
+                consLogger.error("Roll back from DB");
             }
         }
     }

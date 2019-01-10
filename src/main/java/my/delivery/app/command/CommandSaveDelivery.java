@@ -7,6 +7,7 @@ import my.delivery.app.model.Fare;
 import my.delivery.app.model.User;
 import my.delivery.app.resourсesBundle.PageConfigManager;
 import my.delivery.app.service.DeliveryCalculator;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CommandSaveDelivery implements ICommand {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private DeliveryDao dao;
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
@@ -60,24 +62,30 @@ public class CommandSaveDelivery implements ICommand {
             delivery.setDeliveryDate(deliveryDate);
         } catch (ParseException e) {
             e.printStackTrace();
+            consLogger.error("Wrong type of date, it should be yyyy-MM-dd ");
         }
 
         delivery.setPrice(calculatePrice(request));
         delivery.setPaymentStatus(request.getParameter("paymentStatus"));
         String id = request.getParameter("id");
         if (id == null || id.isEmpty()) {
+            consLogger.info("New delivery for " + user.getLogin()+ " added to DB");
             dao.addDelivery(delivery);
         } else {
             delivery.setId(Integer.parseInt(id));
+            consLogger.info("Delivery for user " + user.getLogin()+ "was update");
             dao.updateDelivery(delivery);
         }
 
         UserTypeDao userTypeDao = DaoFactory.getDaoFactory().getUserTypeDao();
         if (user.getTypeId() == userTypeDao.getUserTypeByName("operator").getId()) {
+            consLogger.info("Operator saw all deliveries");
             request.setAttribute("deliveries", dao.getAllDeliveries());
         } else {
+            consLogger.info("User " + user.getLogin()+" saw list of it delivery");
             request.setAttribute("deliveries", dao.getDeliveriesByUserId(user.getId()));
         }
+
         return  PageConfigManager.getProperty("path.page.listDelivery");
     }
 

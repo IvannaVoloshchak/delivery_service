@@ -5,6 +5,7 @@ import my.delivery.app.model.Distance;
 import my.delivery.app.model.Fare;
 import my.delivery.app.resourсesBundle.PageConfigManager;
 import my.delivery.app.service.DeliveryCalculator;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CommandCalculate implements ICommand {
+    public static Logger consLogger = Logger.getLogger("CONS");
     private GoodsTypeDao goodsTypeDao;
     private CityDao cityDao;
     private DistanceDao distanceDao;
@@ -48,6 +50,7 @@ public class CommandCalculate implements ICommand {
         request.setAttribute("idGoodsType",goodsType);
         request.setAttribute("from", from);
         request.setAttribute("to", to);
+        consLogger.info("Price for selected delivery values equals = " + price);
 
         return PageConfigManager.getProperty("path.page.index");
     }
