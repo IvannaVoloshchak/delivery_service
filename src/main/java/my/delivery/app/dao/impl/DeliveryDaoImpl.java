@@ -83,7 +83,7 @@ public class DeliveryDaoImpl implements DeliveryDao {
         } catch (SQLException e) {
             pool.transactionRollback(connection);
             e.printStackTrace();
-            consLogger.error("Can't create delivery in DB");
+            consLogger.error("Can't create delivery in DB"+delivery);
         } finally {
             ConnectionPool.closeConnection(connection);
         }

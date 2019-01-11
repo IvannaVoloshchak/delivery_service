@@ -61,7 +61,7 @@ public class FareDaoImpl implements FareDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            consLogger.error("Can't find fare for this goods type in DB");
+            consLogger.error("Can't find fare for this goods type id "+ id+ " in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }

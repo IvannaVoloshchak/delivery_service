@@ -12,7 +12,7 @@
     <title>Registration</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<%@ include file="header.jspf" %>
 <form method="POST" action='?action=addUser' name="frmUsers">
     <p>
         <label for="login"><fmt:message key="registration.label.login" bundle="${rb}"/>:</label>

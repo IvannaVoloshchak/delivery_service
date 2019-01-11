@@ -12,7 +12,7 @@
     <title>Sign in</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<%@ include file="header.jspf" %>
 <form action="?action=signIn" method="POST">
     <p>
         <label for="login"><fmt:message key="login.label.login" bundle="${rb}"/>:</label>

@@ -59,7 +59,7 @@ public class DistanceDaoImpl implements DistanceDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            consLogger.error("Can't find distance for this cities in DB");
+            consLogger.error("Can't find distance for specified cities "+idFrom+" "+idTo+" in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }

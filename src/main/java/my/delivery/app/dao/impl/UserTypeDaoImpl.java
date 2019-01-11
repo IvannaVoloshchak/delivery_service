@@ -31,7 +31,7 @@ public class UserTypeDaoImpl implements UserTypeDao {
                 userType.setName(rs.getString("name"));
             }
         } catch (SQLException e) {
-            consLogger.error("Can't find user with this id in DB");
+            consLogger.error("Can't find user with this id "+id+" in DB");
             e.printStackTrace();
 
         }finally {
@@ -44,7 +44,7 @@ public class UserTypeDaoImpl implements UserTypeDao {
         UserType userType = new UserType();
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select id from user_type where name=? ");
+                    prepareStatement("select * from user_type where name=? ");
             preparedStatement.setString(1, name);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
@@ -52,6 +52,7 @@ public class UserTypeDaoImpl implements UserTypeDao {
                 userType.setName(rs.getString("name"));
             }
         } catch (SQLException e) {
+            consLogger.error("Can't find user with name"+name + " in DB");
             e.printStackTrace();
 
         }finally {

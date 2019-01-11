@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserDao {
             pool.commitTransaction(connection);
         } catch (SQLException e) {
             pool.transactionRollback(connection);
-            consLogger.error("Can't add new user in DB");
+            consLogger.error("Can't add new user "+user+" in DB");
             e.printStackTrace();
 
         }finally {
@@ -83,7 +83,7 @@ public class UserDaoImpl implements UserDao {
             pool.commitTransaction(connection);
         } catch (SQLException e) {
             pool.transactionRollback(connection);
-            consLogger.error("Can't delete user from DB");
+            consLogger.error("Can't delete user with id "+id+" from DB");
             e.printStackTrace();
 
         }finally {
@@ -111,7 +111,7 @@ public class UserDaoImpl implements UserDao {
                 user.setEmail(rs.getString("email"));
             }
         } catch (SQLException e) {
-            consLogger.error("Can't find  user with this id in DB");
+            consLogger.error("Can't find  user with this id "+id+" in DB");
             e.printStackTrace();
 
         }finally {
@@ -139,7 +139,7 @@ public class UserDaoImpl implements UserDao {
             pool.commitTransaction(connection);
         } catch (SQLException e) {
             pool.transactionRollback(connection);
-            consLogger.error("Can't update user in DB");
+            consLogger.error("Can't update user "+user+" in DB");
             e.printStackTrace();
 
         }finally {
@@ -157,7 +157,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(2, user.getPassword());
             ResultSet rs = null;
         } catch (SQLException e) {
-            consLogger.error("Can't find user in DB");
+            consLogger.error("Can't find user with login "+login+" and password "+password+" in DB");
             e.printStackTrace();
 
         }finally {
@@ -176,7 +176,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (Exception e) {
-            consLogger.error("Can't check account");
+            consLogger.error("Can't check account for user with login "+login+" and password "+ password+" in DB");
             throw e;
         }
         return null;
@@ -192,7 +192,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (Exception e) {
-           consLogger.error("Can't check login");
+           consLogger.error("Can't check login"+ login +" in DB");
             throw e;
         }
         return false;

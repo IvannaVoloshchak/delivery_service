@@ -13,7 +13,7 @@
 <title>Show All Deliveries</title>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
+<%@ include file="header.jspf" %>
 
     <table border=1>
         <thead>
@@ -65,6 +65,7 @@
     </table>
     <p><a href="?action=insert">
      <fmt:message key="listDelivery.button.addNewDelivery" bundle="${rb}"  var="buttonValue" />
-     <input type="submit" value="${buttonValue}"/> </a></p>
+     <input type="submit" value="${buttonValue}"/> </a>
+    </p>
 </body>
 </html>

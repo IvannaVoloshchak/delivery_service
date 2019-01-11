@@ -38,7 +38,7 @@ public class CommandDeliveryList implements ICommand {
         }
         session.setAttribute("deliveries",listDelivery);
         request.setAttribute("deliveries", listDelivery);
-        consLogger.info("User "+user.getLogin()+" can see all it deliveries from DB");
+        consLogger.info("List of deliveries was uploaded: " + listDelivery);
         return PageConfigManager.getProperty("path.page.listDelivery");
     }
 }

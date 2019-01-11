@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class CommandSaveDelivery implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
@@ -69,23 +70,23 @@ public class CommandSaveDelivery implements ICommand {
         delivery.setPaymentStatus(request.getParameter("paymentStatus"));
         String id = request.getParameter("id");
         if (id == null || id.isEmpty()) {
-            consLogger.info("New delivery for " + user.getLogin()+ " added to DB");
+            consLogger.info("Delivery created: " + delivery);
             dao.addDelivery(delivery);
         } else {
             delivery.setId(Integer.parseInt(id));
-            consLogger.info("Delivery for user " + user.getLogin()+ "was update");
+            consLogger.info("Delivery updated: " + delivery);
             dao.updateDelivery(delivery);
         }
 
         UserTypeDao userTypeDao = DaoFactory.getDaoFactory().getUserTypeDao();
-        if (user.getTypeId() == userTypeDao.getUserTypeByName("operator").getId()) {
-            consLogger.info("Operator saw all deliveries");
-            request.setAttribute("deliveries", dao.getAllDeliveries());
+        List<Delivery> deliveryList;
+        if (user.getTypeId().equals(userTypeDao.getUserTypeByName("operator").getId())) {
+            deliveryList = dao.getAllDeliveries();
         } else {
-            consLogger.info("User " + user.getLogin()+" saw list of it delivery");
-            request.setAttribute("deliveries", dao.getDeliveriesByUserId(user.getId()));
+            deliveryList = dao.getDeliveriesByUserId(user.getId());
         }
-
+        consLogger.info("List of deliveries was uploaded: " + deliveryList);
+        request.setAttribute("deliveries", deliveryList);
         return  PageConfigManager.getProperty("path.page.listDelivery");
     }
 

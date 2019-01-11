@@ -55,7 +55,7 @@ public class GoodsTypeDaoImpl implements GoodsTypeDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            consLogger.error("Can't find this goods type in DB");
+            consLogger.error("Can't find  goods type with id "+id+" in DB");
         } finally {
             ConnectionPool.closeConnection(connection);
         }
