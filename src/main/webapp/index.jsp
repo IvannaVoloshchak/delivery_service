@@ -65,6 +65,9 @@
         <input value="${price}" type="text" name="price"/>
     </p>
 </form>
+<c:if test="${not empty errorMessage}">
+    <c:out value="${errorMessage}"/>
+</c:if>
 <h2>
     <strong> <fmt:message key="index.deliveryTariffs" bundle="${rb}"/>:</strong>
 </h2>

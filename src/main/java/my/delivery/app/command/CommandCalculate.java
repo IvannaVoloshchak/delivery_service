@@ -19,39 +19,59 @@ public class CommandCalculate implements ICommand {
     private DistanceDao distanceDao;
     private FareDao fareDao;
 
-    public CommandCalculate(){
+
+    public CommandCalculate() {
         goodsTypeDao = DaoFactory.getDaoFactory().getGoodsTypeDao();
-        cityDao= DaoFactory.getDaoFactory().getCityDao();
+        cityDao = DaoFactory.getDaoFactory().getCityDao();
         distanceDao = DaoFactory.getDaoFactory().getDistanceDao();
-        fareDao= DaoFactory.getDaoFactory().getFareDao();
+        fareDao = DaoFactory.getDaoFactory().getFareDao();
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       double weight= Double.parseDouble(request.getParameter("weight"));
-       int goodsType = Integer.parseInt(request.getParameter("goods_type"));
-       int from = Integer.parseInt(request.getParameter("from"));
-       int to= Integer.parseInt(request.getParameter("to"));
 
-        Fare fareValue= fareDao.getFareByIdGoodsType(goodsType);
-        double minPrice= fareValue.getMinimumPrice();
-        double pricePerKg= fareValue.getPricePerKilogram();
-        double priceByKm=fareValue.getPricePerKilometer();
+        int goodsType = Integer.parseInt(request.getParameter("goods_type"));
+        int from = Integer.parseInt(request.getParameter("from"));
+        int to = Integer.parseInt(request.getParameter("to"));
+        String weightStr = request.getParameter("weight");
 
-        Distance getDistanceValue= distanceDao.getDistanceByIdCity(from, to);
-        int distance =getDistanceValue.getDistance();
+        Fare fareValue = fareDao.getFareByIdGoodsType(goodsType);
+        double minPrice = fareValue.getMinimumPrice();
+        double pricePerKg = fareValue.getPricePerKilogram();
+        double priceByKm = fareValue.getPricePerKilometer();
+        Distance getDistanceValue = distanceDao.getDistanceByIdCity(from, to);
+        int distance = getDistanceValue.getDistance();
 
-        double price = DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm,distance,weight);
-        request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
+       request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
         request.setAttribute("distances", distanceDao.getAllDistances());
-        request.setAttribute("price", price);
-        request.setAttribute("weight", weight);
-        request.setAttribute("idGoodsType",goodsType);
+        request.setAttribute("idGoodsType", goodsType);
         request.setAttribute("from", from);
         request.setAttribute("to", to);
-        consLogger.info("Price for selected delivery values equals = " + price);
 
-        return PageConfigManager.getProperty("path.page.index");
+        if (checkParseToDouble(weightStr)) {
+            double weight = Double.parseDouble(weightStr);
+            double price = DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm, distance, weight);
+            request.setAttribute("price", price);
+            request.setAttribute("weight", weight);
+            consLogger.info("Price for selected delivery values equals = " + price);
+            return PageConfigManager.getProperty("path.page.index");
+        } else {
+            consLogger.error("Entered weight can't be parsed to Double "+ weightStr);
+            String errorMessage = "Please enter correct weight!";
+            request.setAttribute("errorMessage", errorMessage);
+            return PageConfigManager.getProperty("path.page.index");
+        }
+
+    }
+
+    public boolean checkParseToDouble(String number) {
+        try {
+            Double.parseDouble(number);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
     }
 }
