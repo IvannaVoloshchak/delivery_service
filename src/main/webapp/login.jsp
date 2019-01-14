@@ -10,25 +10,29 @@
 <head>
     <c:set var="currentPage" value="path.page.login" scope="request"/>
     <title>Sign in</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <%@ include file="header.jspf" %>
-<form action="?action=signIn" method="POST">
+<div class="wrapper container">
+<form style="width:600px" action="?action=signIn" method="POST">
     <p>
-        <label for="login"><fmt:message key="login.label.login" bundle="${rb}"/>:</label>
+        <label class="control-label col-sm-2" for="login"><fmt:message key="login.label.login" bundle="${rb}"/>:</label>
         <input type="text" name="login"><br/>
     </p>
     <p>
-        <label for="password"><fmt:message key="login.label.password" bundle="${rb}"/>:</label>
+        <label class="control-label col-sm-2" for="password"><fmt:message key="login.label.password" bundle="${rb}"/>:</label>
         <input type="password" name="password"/>
     </p>
     <p>
         <fmt:message key="login.button.enter" bundle="${rb}" var="buttonValue"/>
-        <input type="submit" value="${buttonValue}"/>
+        <input type="submit" class="control-label col-sm-2" value="${buttonValue}"/>
     </p>
 </form>
 <c:if test="${not empty errorMessage}">
     <c:out value="${errorMessage}"/>
 </c:if>
+</div>
 </body>
 </html>

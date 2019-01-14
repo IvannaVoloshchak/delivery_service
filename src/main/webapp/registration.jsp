@@ -13,13 +13,14 @@
 </head>
 <body>
 <%@ include file="header.jspf" %>
-<form method="POST" action='?action=addUser' name="frmUsers">
+<div class="wrapper container">
+<form style="width:1200px"  method="POST" action='?action=addUser' name="frmUsers">
     <p>
-        <label for="login"><fmt:message key="registration.label.login" bundle="${rb}"/>:</label>
+        <label class="control-label col-sm-2"  for="login"><fmt:message key="registration.label.login" bundle="${rb}"/>:</label>
         <input type="text" name="login" value="<c:out value="${user.login}" />"/><br/>
     </p>
     <p>
-        <label for="password"><fmt:message key="registration.label.password" bundle="${rb}"/>:</label>
+        <label class="control-label col-sm-2"  for="password"><fmt:message key="registration.label.password" bundle="${rb}"/>:</label>
         <input type="password" name="password" value="<c:out value="${user.password}" />"/><br/>
     </p>
     <p>
@@ -31,21 +32,22 @@
         <input type="text" name="last_name" value="<c:out value="${user.lastName}" />"/><br/>
     </p>
     <p>
-        <label for="phone_number"><fmt:message key="registration.label.phoneNum" bundle="${rb}"/>:</label>
+        <label class="control-label col-sm-2" for="phone_number"><fmt:message key="registration.label.phoneNum" bundle="${rb}"/>:</label>
         <input type="text" name="phone_number" value="<c:out value="${user.phoneNumber}" />"/><br/>
     </p>
 
     <p>
-        <label for="email"><fmt:message key="registration.label.email" bundle="${rb}"/>:</label>
+        <label class="control-label col-sm-2" for="email"><fmt:message key="registration.label.email" bundle="${rb}"/>:</label>
         <input type="text" name="email" value="<c:out value="${user.email}" />"/><br/>
     </p>
     <p>
         <fmt:message key="registration.button.save" bundle="${rb}" var="buttonValue"/>
-        <input type="submit" value="${buttonValue}"/>
+        <input type="submit" class="control-label col-sm-2" value="${buttonValue}"/>
     </p>
 </form>
 <c:if test="${not empty errorMessage}">
     <c:out value="${errorMessage}"/>
 </c:if>
+</div>
 </body>
 </html>

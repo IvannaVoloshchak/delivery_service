@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
 
 <c:if test="${locale == 1}"><fmt:setLocale value="en_US" scope="session"/></c:if>
@@ -11,11 +11,12 @@
 <head>
  <c:set var="currentPage" value="path.page.listDelivery" scope="request"/>
 <title>Show All Deliveries</title>
+
 </head>
 <body>
 <%@ include file="header.jspf" %>
 
-    <table border=1>
+    <table class="table table table-bordered" border=1>
         <thead>
             <tr>
                 <th style="display:none"> id </th>

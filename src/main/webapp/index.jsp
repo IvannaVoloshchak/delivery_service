@@ -11,70 +11,79 @@
 <head>
     <c:set var="currentPage" value="path.page.index" scope="request"/>
     <title>Delivery</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <%@ include file="header.jspf" %>
 <!--<jsp:include page="header.jspf"/>-->
+<div class="wrapper container">
+    <h4>
+    <c:if test="${user!=null}">
+        <p><a href="?action=listDelivery" > <fmt:message key="index.deliveries" bundle="${rb}"/> </a></p>
+    </c:if>
+    </h4>
+    <h2>
+        <fmt:message key="index.labelDeliveryCalc" bundle="${rb}"/>
+    </h2>
 
-<c:if test="${user!=null}">
-    <p><a href="?action=listDelivery"> <fmt:message key="index.deliveries" bundle="${rb}"/> </a></p>
-</c:if>
-
-<h2>
-    <fmt:message key="index.labelDeliveryCalc" bundle="${rb}"/>
-</h2>
-
-<form method="POST" action='?action=calculate' name="price">
-    <p>
-        <strong><fmt:message key="index.weight" bundle="${rb}"/>: </strong>
-    </p>
-    <input type="text" name="weight" value="${weight}"/> kg<br/>
-    <p>
-        <strong><fmt:message key="index.goodsType" bundle="${rb}"/> </strong>
-    </p>
-    <select name="goods_type">
-        <c:forEach items="${types}" var="type">
-            <option value="${type.idGoodsType}" ${type.idGoodsType==idGoodsType ? 'selected' : ''} >${type.name}</option>
-        </c:forEach>
-    </select>
-    <p>
-        <strong><fmt:message key="index.direction" bundle="${rb}"/></strong>
-    </p>
-    <p>
-        <fmt:message key="index.from" bundle="${rb}"/>:
-    </p>
-    <select name="from">
-        <c:forEach items="${cities}" var="city">
-            <option value="${city.id}" ${city.id==from ? 'selected' : ''}>${city.name}</option>
-        </c:forEach>
-    </select>
-    <p>
-        <fmt:message key="index.to" bundle="${rb}"/>:
-    </p>
-    <select name="to">
-        <c:forEach items="${cities}" var="city">
-            <option value="${city.id}" ${city.id==to ? 'selected' : ''}>${city.name}</option>
-        </c:forEach>
-    </select><br/>
-    <fmt:message key="index.button.calculate" bundle="${rb}" var="buttonValue"/>
-    <p>
-        <a href="/"> <input type="submit" value="${buttonValue}"/></a>
-    </p>
-    <p>
-        <strong><fmt:message key="index.totalPrice" bundle="${rb}"/></strong>
-        <input value="${price}" type="text" name="price"/>
-    </p>
-</form>
-<c:if test="${not empty errorMessage}">
-    <c:out value="${errorMessage}"/>
-</c:if>
-<h2>
-    <strong> <fmt:message key="index.deliveryTariffs" bundle="${rb}"/>:</strong>
-</h2>
-<li><fmt:message key="index.letterTariffs" bundle="${rb}"/></li>
-<li><fmt:message key="index.boxTariffs" bundle="${rb}"/></li>
-<li><fmt:message key="index.parcelTariffs" bundle="${rb}"/></li>
-<li><fmt:message key="index.containerTariffs" bundle="${rb}"/></li>
-</ul>
+    <form method="POST" action='?action=calculate' name="price">
+        <p>
+            <strong><fmt:message key="index.weight" bundle="${rb}"/>: </strong>
+        </p>
+        <input type="text" name="weight" value="${weight}"/> kg<br/>
+        <p>
+            <strong><fmt:message key="index.goodsType" bundle="${rb}"/> </strong>
+        </p>
+        <select  name="goods_type">
+            <c:forEach items="${types}" var="type">
+                <option value="${type.idGoodsType}" ${type.idGoodsType==idGoodsType ? 'selected' : ''} >${type.name}</option>
+                </br>
+            </c:forEach>
+        </select>
+        <p>
+            <strong><fmt:message key="index.direction" bundle="${rb}"/></strong>
+        </p>
+        <p>
+            <fmt:message key="index.from" bundle="${rb}"/>:
+        </p>
+        <select  name="from">
+            <c:forEach items="${cities}" var="city">
+                <option value="${city.id}" ${city.id==from ? 'selected' : ''}>${city.name}</option>
+            </c:forEach>
+        </select></br>
+        <p>
+            <fmt:message key="index.to" bundle="${rb}"/>:
+        </p>
+        <p>
+        <select name="to">
+            <c:forEach items="${cities}" var="city">
+                <option value="${city.id}" ${city.id==to ? 'selected' : ''}>${city.name}</option>
+                </br>
+            </c:forEach>
+        </select>
+        </p>
+        <p>
+            <fmt:message key="index.button.calculate" bundle="${rb}" var="buttonValue"/>
+            <a href="/"> <input type="submit" value="${buttonValue}"/></a>
+        </p>
+        <p>
+            <strong><fmt:message key="index.totalPrice" bundle="${rb}"/></strong></br>
+            <input value="${price}" type="text" name="price"/>
+        </p>
+    </form>
+    <c:if test="${not empty errorMessage}">
+        <c:out value="${errorMessage}"/>
+    </c:if>
+    <h2>
+        <strong> <fmt:message key="index.deliveryTariffs" bundle="${rb}"/>:</strong>
+    </h2>
+    <ul class="unstyled">
+        <li><fmt:message key="index.letterTariffs" bundle="${rb}"/></li>
+        <li><fmt:message key="index.boxTariffs" bundle="${rb}"/></li>
+        <li><fmt:message key="index.parcelTariffs" bundle="${rb}"/></li>
+        <li><fmt:message key="index.containerTariffs" bundle="${rb}"/></li>
+    </ul>
+</div>
 </body>
 </html>
