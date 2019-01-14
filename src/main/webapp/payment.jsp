@@ -15,7 +15,7 @@
 <body>
 <%@ include file="header.jspf" %>
 <div class="wrapper container">
-<form style="width:1200px" method="POST" action="?action=paid&id=<c:out value="${delivery.id}"/>" name="frmPayment"></a>
+<form style="width:1000px" method="POST" action="?action=paid&id=<c:out value="${delivery.id}"/>" name="frmPayment"></a>
     <p>
         <label class="control-label col-sm-2" for="cardHolder"><fmt:message key="pay.label.cardHolder" bundle="${rb}"/>:</label>
         <input type="text" name="cardHolder"/>
@@ -38,7 +38,7 @@
     </p>
     <p>
         <fmt:message key="pay.button.pay" bundle="${rb}" var="buttonValue"/>
-        <input type="submit"  class="control-label col-sm-2" value="${buttonValue}"/>
+        <input type="submit"  class="btn btn-primary" value="${buttonValue}"/>
     </p>
 </form>
 </div>

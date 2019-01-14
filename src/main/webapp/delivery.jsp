@@ -11,10 +11,23 @@
 <head>
     <c:set var="currentPage" value="path.page.insertOrEdit" scope="request"/>
     <title>Add new delivery</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <%@ include file="header.jspf" %>
+
 <div class="wrapper container">
+    <h2>
+        <c:choose>
+            <c:when test="${delivery.id==null}">
+                <fmt:message key="delivery.label.createNewDelivery" bundle="${rb}"/>
+            </c:when>
+            <c:otherwise>
+                <fmt:message key="delivery.label.updateDelivery" bundle="${rb}"/>
+            </c:otherwise>
+        </c:choose>
+    </h2>
 <script>
     $(function () {
         $('input[name=sentDate]').datepicker();
@@ -24,24 +37,24 @@
 
 <form style="width:1200px" method="POST" action='?action=save' name="frmAddDelivery">
     <input type="hidden" readonly="readonly" name="id"
-           value="<c:out value="${delivery.id}" />"/> <br/>
+           value="<c:out value="${delivery.id}" />"/>
     <input type="hidden" name="user_id"
-           value="<c:out value="${delivery.userId}" />"/> <br/>
+           value="<c:out value="${delivery.userId}" />"/>
     <P>
         <label class="control-label col-sm-2" for="sendersFirstName"> <fmt:message key="delivery.label.sendersFirstName" bundle="${rb}"/>:</label>
-        <input type="text" name="senders_first_name" value="<c:out value="${delivery.sendersFirstName}" />"/> <br/>
+        <input type="text" name="senders_first_name" value="<c:out value="${delivery.sendersFirstName}" />"/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="sendersLastName"> <fmt:message key="delivery.label.sendersLastName" bundle="${rb}"/>:</label>
-        <input type="text" name="senders_last_name" value="<c:out value="${delivery.sendersLastName}" />"/> <br/>
+        <input type="text" name="senders_last_name" value="<c:out value="${delivery.sendersLastName}" />"/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="recipientFirstName"> <fmt:message key="delivery.label.recipientFirstName" bundle="${rb}"/>:</label>
-        <input type="text" name="recipient_first_name" value="<c:out value="${delivery.recipientFirstName}" />"/> <br/>
+        <input type="text" name="recipient_first_name" value="<c:out value="${delivery.recipientFirstName}" />"/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="recipientLastName"> <fmt:message key="delivery.label.recipientLastName" bundle="${rb}"/>:</label>
-        <input type="text" name="recipient_last_name" value="<c:out value="${delivery.recipientLastName}" />"/> <br/>
+        <input type="text" name="recipient_last_name" value="<c:out value="${delivery.recipientLastName}" />"/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="fromCity"> <fmt:message key="delivery.label.fromCity" bundle="${rb}"/>:</label>
@@ -69,28 +82,28 @@
     </P>
     <P>
         <label class="control-label col-sm-2" for="weight"> <fmt:message key="delivery.label.weight" bundle="${rb}"/>:</label>
-        <input type="text" name="weight" value="<c:out value="${delivery.weight}" />"/><br/>
+        <input type="text" name="weight" value="<c:out value="${delivery.weight}" />"/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="sendersPhone"> <fmt:message key="delivery.label.sendersPhone" bundle="${rb}"/>:</label>
-        <input type="tel" id="sendersPhone" name="senders_phone" pattern="(\+?\d[- .]*){7,13}" required value="<c:out value="${delivery.sendersPhone}" />"/> <br/>
+        <input type="tel" id="sendersPhone" name="senders_phone" pattern="(\+?\d[- .]*){7,13}" required value="<c:out value="${delivery.sendersPhone}" />"/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="recipientPhone"> <fmt:message key="delivery.label.recipientPhone" bundle="${rb}"/>:</label>
-        <input type="text" id="recipientPhone" name="recipient_phone" pattern="(\+?\d[- .]*){7,13}" required value="<c:out  value="${delivery.recipientPhone}" />"/><br/>
+        <input type="text" id="recipientPhone" name="recipient_phone" pattern="(\+?\d[- .]*){7,13}" required value="<c:out  value="${delivery.recipientPhone}" />"/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="sentDate"> <fmt:message key="delivery.label.sentDate" bundle="${rb}"/>:</label>
         <input type="date" id="sentDate" name="sent_date"
-               value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.sentDate}"/>  />"/><br/>
+               value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.sentDate}"/>  />"/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="deliveryDate"> <fmt:message key="delivery.label.deliveryDate" bundle="${rb}"/>:</label>
         <input type="date" id="deliveryDate" name="delivery_date"
-               value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.deliveryDate}" />/>"/> <br/>
+               value="<fmt:formatDate pattern="yyyy-MM-dd" value="${delivery.deliveryDate}" />/>"/>
     </P>
 
-    <input type="hidden" name="paymentStatus" value="<c:out value="${delivery.paymentStatus}" />"/><br/>
+    <input type="hidden" name="paymentStatus" value="<c:out value="${delivery.paymentStatus}" />"/>
     <p>
         <fmt:message key="delivery.button.save" bundle="${rb}" var="buttonValue"/>
         <input type="submit" class="control-label col-sm-2" value="${buttonValue}"/>

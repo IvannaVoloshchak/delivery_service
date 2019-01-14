@@ -16,6 +16,7 @@ h4 {
     color: navajowhite;
 }
 
-.wrapper {
-    padding: 0 0 50px 0;
+.wrapper.header {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

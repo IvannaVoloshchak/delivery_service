@@ -12,37 +12,42 @@
 </head>
 <body>
 <fmt:requestEncoding value="UTF-8"/>
-<div class="wrapper container">
-    <h1>
-        <header>
-            <a href="/" class="text-white">Delivery World</a>
-        </header>
-    </h1>
-    <div class="main_header">
-        <c:choose>
-            <c:when test="${user==null}">
-                <fmt:message key="header.signIn" bundle="${rb}" var="buttonValue"/>
-                <a href="?action=login"><input type="submit" value="${buttonValue}"/></a>
-                <a href="?action=registration"> <fmt:message key="header.registration" bundle="${rb}"/></a>
-            </c:when>
-            <c:otherwise>
-                <fmt:message key="header.signOut" bundle="${rb}" var="buttonValue"/>
-                <myTag:hello firstName="${user.login}"/>
-                <a href="?action=signOut"><input type="submit" value="${buttonValue}"/></a>
-            </c:otherwise>
-        </c:choose>
 
-        <form method="POST" action='?action=setLocale' name="locale">
-            <input type="hidden" name="command" value="setLocale">
+<div class="wrapper container header">
+        <div class="main_header d-flex bd-highlight mb-3">
+            <div class="mr-auto p-2 bd-highlight">
+                <h1>
+                    <a href="/">Delivery World</a>
+                </h1>
+            </div>
+            <div class="p-2 bd-highlight">
+                <c:choose>
+                    <c:when test="${user==null}">
+                        <fmt:message key="header.signIn" bundle="${rb}" var="buttonValue"/>
+                        <a href="?action=login"><input type="submit" class="btn btn-primary"
+                                                       value="${buttonValue}"/></a>
+                        <a href="?action=registration"> <fmt:message key="header.registration" bundle="${rb}"/></a>
+                    </c:when>
+                    <c:otherwise>
+                        <fmt:message key="header.signOut" bundle="${rb}" var="buttonValue"/>
+                        <myTag:hello firstName="${user.login}"/>
+                        <a href="?action=signOut"><input type="submit" class="btn btn-primary" value="${buttonValue}"/></a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="p-2 bd-highlight">
+                <form method="POST" action='?action=setLocale' name="locale">
+                    <input type="hidden" name="command" value="setLocale">
 
-            <c:set var="currentPage" value="${currentPage}" scope="request"/>
-            <input type="hidden" name="currentPage" value="${currentPage}">
+                    <c:set var="currentPage" value="${currentPage}" scope="request"/>
+                    <input type="hidden" name="currentPage" value="${currentPage}">
 
-            <button class="change_locale" type="submit" name="locale" value="1">English</button>
-            <button class="change_locale" type="submit" name="locale" value="2">Українська</button>
-        </form>
+                    <button class="change_locale btn btn-secondary btn-sm" type="submit" name="locale" value="1">English</button>
+                    <button class="change_locale btn btn-secondary btn-sm" type="submit" name="locale" value="2">Українська</button>
+                </form>
 
-    </div>
+            </div>
+        </div>
 </div>
 </body>
 </html>

@@ -66,7 +66,7 @@
     </table>
     <p><a href="?action=insert">
      <fmt:message key="listDelivery.button.addNewDelivery" bundle="${rb}"  var="buttonValue" />
-     <input type="submit" value="${buttonValue}"/> </a>
+     <input type="submit"  class="btn btn-primary"  value="${buttonValue}"/> </a>
     </p>
 </body>
 </html>

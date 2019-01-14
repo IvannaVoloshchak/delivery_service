@@ -27,7 +27,7 @@
     </p>
     <p>
         <fmt:message key="login.button.enter" bundle="${rb}" var="buttonValue"/>
-        <input type="submit" class="control-label col-sm-2" value="${buttonValue}"/>
+        <input type="submit"  class="btn btn-primary"  value="${buttonValue}"/>
     </p>
 </form>
 <c:if test="${not empty errorMessage}">
