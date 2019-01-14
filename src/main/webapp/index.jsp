@@ -66,19 +66,18 @@
             <fmt:message key="index.button.calculate" bundle="${rb}" var="buttonValue"/>
             <a href="/"> <input type="submit" class="btn btn-primary" value="${buttonValue}"/></a>
         </p>
+        <c:if test="${not empty errorMessage}">
+            <div class="alert alert-danger" role="alert">
+                <c:out value="${errorMessage}"/>
+            </div>
+        </c:if>
         <p>
             <strong><fmt:message key="index.totalPrice" bundle="${rb}"/>:</strong>
             <input value="${price}" type="text" name="price" disabled/>
 
         </p>
     </form>
-
-        <c:if test="${not empty errorMessage}">
-            <div class="alert alert-danger" role="alert">
-                 <c:out value="${errorMessage}"/>
-            </div>
-        </c:if>
-
+    
     </br>
     <h2>
         <strong> <fmt:message key="index.deliveryTariffs" bundle="${rb}"/>:</strong>

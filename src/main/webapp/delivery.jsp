@@ -108,7 +108,11 @@
         <fmt:message key="delivery.button.save" bundle="${rb}" var="buttonValue"/>
         <input type="submit" class="control-label col-sm-2" value="${buttonValue}"/>
     </p>
-
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger" role="alert">
+            <c:out value="${errorMessage}"/>
+        </div>
+    </c:if>
 </form>
 </div>
 </body>

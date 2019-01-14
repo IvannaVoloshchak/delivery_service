@@ -44,10 +44,13 @@
         <fmt:message key="registration.button.save" bundle="${rb}" var="buttonValue"/>
         <input type="submit"  class="btn btn-primary" value="${buttonValue}"/>
     </p>
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger" role="alert">
+            <c:out value="${errorMessage}"/>
+        </div>
+    </c:if>
 </form>
-<c:if test="${not empty errorMessage}">
-    <c:out value="${errorMessage}"/>
-</c:if>
+
 </div>
 </body>
 </html>

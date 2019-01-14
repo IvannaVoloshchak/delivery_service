@@ -40,6 +40,11 @@
         <fmt:message key="pay.button.pay" bundle="${rb}" var="buttonValue"/>
         <input type="submit"  class="btn btn-primary" value="${buttonValue}"/>
     </p>
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger" role="alert">
+            <c:out value="${errorMessage}"/>
+        </div>
+    </c:if>
 </form>
 </div>
 </body>

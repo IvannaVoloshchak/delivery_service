@@ -49,7 +49,7 @@ public class CommandCalculate implements ICommand {
         request.setAttribute("from", from);
         request.setAttribute("to", to);
 
-        if (checkParseToDouble(weightStr)) {
+        if (checkParseToDouble(weightStr)&&Double.parseDouble(weightStr)>=0) {
             double weight = Double.parseDouble(weightStr);
             double price = DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm, distance, weight);
             request.setAttribute("price", price);
