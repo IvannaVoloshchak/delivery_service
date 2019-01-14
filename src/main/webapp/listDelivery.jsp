@@ -15,8 +15,12 @@
 </head>
 <body>
 <%@ include file="header.jspf" %>
-
-    <table class="table table table-bordered" border=1>
+<div class="list-delivery-wrapper">
+<h3>
+    <fmt:message key="listDelivery.label.listDelivery" bundle="${rb}"/>
+</h3>
+</br>
+    <table id="delivery-list" class="table table table-bordered" border=1>
         <thead>
             <tr>
                 <th style="display:none"> id </th>
@@ -66,7 +70,8 @@
     </table>
     <p><a href="?action=insert">
      <fmt:message key="listDelivery.button.addNewDelivery" bundle="${rb}"  var="buttonValue" />
-     <input type="submit"  class="btn btn-primary"  value="${buttonValue}"/> </a>
+     <input id="add-delivery-btn" type="submit"  class="btn btn-primary"  value="${buttonValue}"/> </a>
     </p>
+</div>
 </body>
 </html>

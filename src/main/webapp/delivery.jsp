@@ -18,7 +18,7 @@
 <%@ include file="header.jspf" %>
 
 <div class="wrapper container">
-    <h2>
+    <h3>
         <c:choose>
             <c:when test="${delivery.id==null}">
                 <fmt:message key="delivery.label.createNewDelivery" bundle="${rb}"/>
@@ -27,7 +27,8 @@
                 <fmt:message key="delivery.label.updateDelivery" bundle="${rb}"/>
             </c:otherwise>
         </c:choose>
-    </h2>
+    </h3>
+    </br>
 <script>
     $(function () {
         $('input[name=sentDate]').datepicker();

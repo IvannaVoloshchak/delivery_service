@@ -23,9 +23,9 @@
             <p><a href="?action=listDelivery"> <fmt:message key="index.deliveries" bundle="${rb}"/> </a></p>
         </c:if>
     </h4>
-    <h2>
+    <h3>
         <fmt:message key="index.labelDeliveryCalc" bundle="${rb}"/> </br>
-    </h2>
+    </h3>
 
     <form  style="width:500px" method="POST" action='?action=calculate' name="price">
         <p>
@@ -79,9 +79,9 @@
     </form>
     
     </br>
-    <h2>
+    <h3>
         <strong> <fmt:message key="index.deliveryTariffs" bundle="${rb}"/>:</strong>
-    </h2>
+    </h3>
     <ul class="unstyled">
         <li><fmt:message key="index.letterTariffs" bundle="${rb}"/></li>
         <li><fmt:message key="index.boxTariffs" bundle="${rb}"/></li>

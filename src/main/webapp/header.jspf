@@ -9,6 +9,7 @@
     <title>Header</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <fmt:requestEncoding value="UTF-8"/>
@@ -29,8 +30,10 @@
                         <a href="?action=registration"> <fmt:message key="header.registration" bundle="${rb}"/></a>
                     </c:when>
                     <c:otherwise>
-                        <fmt:message key="header.signOut" bundle="${rb}" var="buttonValue"/>
-                        <myTag:hello firstName="${user.login}"/>
+                        <span class="user-greeting">
+                            <fmt:message key="header.signOut" bundle="${rb}" var="buttonValue"/>
+                            <myTag:hello firstName="${user.login}"/>
+                        </span>
                         <a href="?action=signOut"><input type="submit" class="btn btn-primary" value="${buttonValue}"/></a>
                     </c:otherwise>
                 </c:choose>
