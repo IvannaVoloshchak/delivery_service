@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Description: This describes actions of calculate price on main page
+ * @author Ivanna Voloshchak
+ */
 public class CommandCalculate implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
     private GoodsTypeDao goodsTypeDao;
@@ -42,14 +46,14 @@ public class CommandCalculate implements ICommand {
         Distance getDistanceValue = distanceDao.getDistanceByIdCity(from, to);
         int distance = getDistanceValue.getDistance();
 
-       request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
+        request.setAttribute("types", goodsTypeDao.getAllGoodsTypes());
         request.setAttribute("cities", cityDao.getAllCities());
         request.setAttribute("distances", distanceDao.getAllDistances());
         request.setAttribute("idGoodsType", goodsType);
         request.setAttribute("from", from);
         request.setAttribute("to", to);
 
-        if (checkParseToDouble(weightStr)&&Double.parseDouble(weightStr)>=0) {
+        if (checkParseToDouble(weightStr) && Double.parseDouble(weightStr) >= 0) {
             double weight = Double.parseDouble(weightStr);
             double price = DeliveryCalculator.calculateDeliveryPrice(minPrice, pricePerKg, priceByKm, distance, weight);
             request.setAttribute("price", price);
@@ -57,7 +61,7 @@ public class CommandCalculate implements ICommand {
             consLogger.info("Price for selected delivery values equals = " + price);
             return PageConfigManager.getProperty("path.page.index");
         } else {
-            consLogger.error("Entered weight can't be parsed to Double "+ weightStr);
+            consLogger.error("Entered weight can't be parsed to Double " + weightStr);
             String errorMessage = "Please enter correct weight!";
             request.setAttribute("errorMessage", errorMessage);
             return PageConfigManager.getProperty("path.page.index");

@@ -18,7 +18,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+/**
+        * Description: This describes actions of add new delivery and set price for it.
+        * @author Ivanna Voloshchak
+        */
 public class CommandSaveDelivery implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
     private DeliveryDao dao;

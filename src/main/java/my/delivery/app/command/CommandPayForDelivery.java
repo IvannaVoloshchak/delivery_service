@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+        * Description: This describes actions of pay for delivery
+        * @author Ivanna Voloshchak
+        */
 public class CommandPayForDelivery implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
     private DeliveryDao dao;

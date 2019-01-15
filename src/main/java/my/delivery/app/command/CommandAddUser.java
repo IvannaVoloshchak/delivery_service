@@ -12,6 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+/**
+ * Description: This describes actions of registration new user.
+ * @author Ivanna Voloshchak
+ */
 
 public class CommandAddUser implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
@@ -45,7 +49,6 @@ public class CommandAddUser implements ICommand {
         String id = request.getParameter("id");
         if (id == null || id.isEmpty()) {
             userDao.addUser(user);
-
             consLogger.info("Add new user " + user.getLogin() + " in DB");
         } else {
             user.setId(Integer.parseInt(id));

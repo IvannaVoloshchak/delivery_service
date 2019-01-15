@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+        * Description: This describes actions of delete delivery from Delivery list.
+        * @author Ivanna Voloshchak
+        */
 public class CommandDeleteDelivery implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
     private DeliveryDao dao;

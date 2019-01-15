@@ -2,7 +2,11 @@ package my.delivery.app.filter;
 
 import javax.servlet.*;
 import java.io.IOException;
-
+/**
+ * Description: This filter provides encoding content.
+ *
+ * @author Ivanna Voloshchak.
+ */
 public class MyEncodingFilter implements Filter {
     private String encoding;
 

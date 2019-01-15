@@ -12,7 +12,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * Description: This describes actions of being on main page
+ * <p>
+ * @author Ivanna Voloshchak
+ */
 public class CommandIndex implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
     private GoodsTypeDao goodsTypeDao;

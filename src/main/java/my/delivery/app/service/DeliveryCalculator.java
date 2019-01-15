@@ -2,8 +2,12 @@ package my.delivery.app.service;
 
 import org.apache.log4j.Logger;
 
+
 public class DeliveryCalculator {
     public static Logger consLogger = Logger.getLogger("CONS");
+    /**
+     * Description: This method calculate price for delivery.
+     */
     public static Double calculateDeliveryPrice(double minimumPrice, double pricePerKilogram, double pricePerKilometer, int distance, double weight) {
         if (weight<0){
             consLogger.error("Customer entered weight lower zero"+ weight);

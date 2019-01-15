@@ -1,10 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package my.delivery.app.controller;
-
-
 
 import my.delivery.app.command.ICommand;
 import my.delivery.app.manager.Message;
@@ -27,9 +21,6 @@ public class Controller extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //SessionLogic.print(request,response);
-        //CookieLogic.setCokkie(response);
-        //CookieLogic.printCookie(request,response);
         String page = null;
         try {
             ICommand action = controllerHelper.getCommand(request);

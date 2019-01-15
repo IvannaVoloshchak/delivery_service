@@ -38,7 +38,7 @@
     </p>
     <p>
         <fmt:message key="pay.button.pay" bundle="${rb}" var="buttonValue"/>
-        <input type="submit"  class="btn btn-primary" value="${buttonValue}"/>
+        <input id="add-delivery-btn" type="submit" class="btn btn-primary"   value="${buttonValue}"/>
     </p>
     <c:if test="${not empty errorMessage}">
         <div class="alert alert-danger" role="alert">

@@ -9,7 +9,10 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+/**
+        * Description: This describes actions of come on insert or edit page of delivery.
+        * @author Ivanna Voloshchak
+        */
 public class CommandCreateDelivery implements ICommand {
 
     private DeliveryDao dao;

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 /**
- *
- * @author KMM
+ *Description: This class describes all type of using commands.
+ * @author Ivanna Voloshchak
  */
 public class ControllerHelper {
 

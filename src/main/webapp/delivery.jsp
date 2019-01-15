@@ -107,7 +107,7 @@
     <input type="hidden" name="paymentStatus" value="<c:out value="${delivery.paymentStatus}" />"/>
     <p>
         <fmt:message key="delivery.button.save" bundle="${rb}" var="buttonValue"/>
-        <input type="submit" class="control-label col-sm-2" value="${buttonValue}"/>
+        <input id="add-delivery-btn" type="submit" class="btn btn-primary"  value="${buttonValue}"/>
     </p>
     <c:if test="${not empty errorMessage}">
         <div class="alert alert-danger" role="alert">

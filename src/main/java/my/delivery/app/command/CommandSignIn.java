@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+        * Description: This describes actions of login user
+        * @author Ivanna Voloshchak
+        */
 public class CommandSignIn implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
     private static String INDEX = "/index.jsp";

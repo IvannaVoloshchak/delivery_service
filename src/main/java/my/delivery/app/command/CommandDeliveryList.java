@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-
+/**
+        * Description: This describes actions of show all delivery for user
+        * @author Ivanna Voloshchak
+        */
 public class CommandDeliveryList implements ICommand {
     public static Logger consLogger = Logger.getLogger("CONS");
     private DeliveryDao dao;
