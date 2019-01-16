@@ -19,8 +19,7 @@ After receiving the application, the system generates a price. The user can pay 
 
     Prerequisites
 To run the project you need installed (according to the documentation):
-
-    Installation and running
+   Installation and running
 - Java 8 (jre/jdk) or higher version;
 - Apache Tomcat 7.0.92 or higher version;
 - Apache Maven 3.5.4 or higher version;
@@ -30,11 +29,14 @@ To run the project you need installed (according to the documentation):
 - Mockito 2.18.3 version or higher.
 
     Installation and running
+    
 To install and run the project on localhost:
 
 Clone/fork or download the project delivery_service project from the GitHub
 Create database delivery_service on MySQL which include 7 database(city, delivery, distance,fare,goods_type, user, user_type).
-By default sql queries creates admin user. You can log in into app as admin using pass: admin, login: admin. Install JDK, JRE, set parameters for environment variables.
+By default sql queries creates admin user. 
+You can log in into app as admin using pass: admin, login: admin.
+Install JDK, JRE, set parameters for environment variables.
 Install Apache Tomcat, install Apache Maven
 
     Author

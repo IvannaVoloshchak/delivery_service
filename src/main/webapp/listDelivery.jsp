@@ -60,12 +60,15 @@
                      <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.sentDate}" /></td>
                     <td><fmt:formatDate pattern="yyyy-MMM-dd" value="${delivery.deliveryDate}" /></td>
                     <td><c:out value="${delivery.price}" /></td>
-                    <td><c:out value="${delivery.paymentStatus}" /></td>
                     <td>
-                    <c:if test="${empty delivery.paymentStatus}">
-                            <a href="?action=payment&id=<c:out value="${delivery.id}"/>"><fmt:message key="listDelivery.label.pay" bundle="${rb}"/></a>
-                    </c:if>
-                    </td>
+                        <c:choose>
+                            <c:when test="${empty delivery.paymentStatus}">
+                                <a href="?action=payment&id=<c:out value="${delivery.id}"/>"><fmt:message key="listDelivery.label.pay" bundle="${rb}"/></a>
+                            </c:when>
+                            <c:otherwise>
+                                <c:out value="${delivery.paymentStatus}" />
+                            </c:otherwise>
+                        </c:choose>
                     <td><a href="?action=edit&id=<c:out value="${delivery.id}"/>"><fmt:message key="listDelivery.label.update" bundle="${rb}"/></a></td>
                     <td><a href="?action=delete&id=<c:out value="${delivery.id}"/>"><fmt:message key="listDelivery.label.delete" bundle="${rb}"/></a></td>
                 </tr>

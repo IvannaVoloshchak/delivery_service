@@ -43,19 +43,19 @@
            value="<c:out value="${delivery.userId}" />"/>
     <P>
         <label class="control-label col-sm-2" for="sendersFirstName"> <fmt:message key="delivery.label.sendersFirstName" bundle="${rb}"/>:</label>
-        <input type="text" name="senders_first_name" value="<c:out value="${delivery.sendersFirstName}" />"/>
+        <input type="text" name="senders_first_name" value="<c:out value="${delivery.sendersFirstName}" />" required/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="sendersLastName"> <fmt:message key="delivery.label.sendersLastName" bundle="${rb}"/>:</label>
-        <input type="text" name="senders_last_name" value="<c:out value="${delivery.sendersLastName}" />"/>
+        <input type="text" name="senders_last_name" value="<c:out value="${delivery.sendersLastName}" />" required/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="recipientFirstName"> <fmt:message key="delivery.label.recipientFirstName" bundle="${rb}"/>:</label>
-        <input type="text" name="recipient_first_name" value="<c:out value="${delivery.recipientFirstName}" />"/>
+        <input type="text" name="recipient_first_name" value="<c:out value="${delivery.recipientFirstName}" />" required/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="recipientLastName"> <fmt:message key="delivery.label.recipientLastName" bundle="${rb}"/>:</label>
-        <input type="text" name="recipient_last_name" value="<c:out value="${delivery.recipientLastName}" />"/>
+        <input type="text" name="recipient_last_name" value="<c:out value="${delivery.recipientLastName}" />" required/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="fromCity"> <fmt:message key="delivery.label.fromCity" bundle="${rb}"/>:</label>
@@ -83,7 +83,7 @@
     </P>
     <P>
         <label class="control-label col-sm-2" for="weight"> <fmt:message key="delivery.label.weight" bundle="${rb}"/>:</label>
-        <input type="text" name="weight" value="<c:out value="${delivery.weight}" />"/>
+        <input type="text" name="weight" pattern="^\d*(\.\d{0,2})?$" value="<c:out value="${delivery.weight}" />" required/>
     </P>
     <P>
         <label class="control-label col-sm-2" for="sendersPhone"> <fmt:message key="delivery.label.sendersPhone" bundle="${rb}"/>:</label>

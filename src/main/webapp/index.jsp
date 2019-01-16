@@ -23,7 +23,7 @@
             <p><a href="?action=listDelivery"> <fmt:message key="index.deliveries" bundle="${rb}"/> </a></p>
         </c:if>
     </h4>
-    <h3>
+    <h3 class="main-header">
         <fmt:message key="index.labelDeliveryCalc" bundle="${rb}"/> </br>
     </h3>
 
@@ -79,8 +79,8 @@
     </form>
     
     </br>
-    <h3>
-        <strong> <fmt:message key="index.deliveryTariffs" bundle="${rb}"/>:</strong>
+    <h3 class="main-header">
+        <fmt:message key="index.deliveryTariffs" bundle="${rb}"/>:
     </h3>
     <ul class="unstyled">
         <li><fmt:message key="index.letterTariffs" bundle="${rb}"/></li>

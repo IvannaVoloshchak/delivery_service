@@ -17,28 +17,28 @@
 <form style="width:800px"  method="POST" action='?action=addUser' name="frmUsers">
     <p>
         <label class="control-label col-sm-2"  for="login"><fmt:message key="registration.label.login" bundle="${rb}"/>:</label>
-        <input type="text" name="login" value="<c:out value="${user.login}" />"/><br/>
+        <input type="text" name="login" value="<c:out value="${user.login}" />" required/><br/>
     </p>
     <p>
         <label class="control-label col-sm-2"  for="password"><fmt:message key="registration.label.password" bundle="${rb}"/>:</label>
-        <input type="password" name="password" value="<c:out value="${user.password}" />"/><br/>
+        <input type="password" name="password" value="<c:out value="${user.password}" />" required/><br/>
     </p>
     <p>
         <label  class="control-label col-sm-2" for="first_name"><fmt:message key="registration.label.firstName" bundle="${rb}"/>:</label>
-        <input type="text" name="first_name" value="<c:out value="${user.firstName}" />"/><br/>
+        <input type="text" name="first_name" value="<c:out value="${user.firstName}" />" required/><br/>
     </p>
     <p>
         <label  class="control-label col-sm-2" for="last_name"><fmt:message key="registration.label.lastName" bundle="${rb}"/>:</label>
-        <input type="text" name="last_name" value="<c:out value="${user.lastName}" />"/><br/>
+        <input type="text" name="last_name" value="<c:out value="${user.lastName}" />" required/><br/>
     </p>
     <p>
         <label class="control-label col-sm-2" for="phone_number"> <fmt:message key="registration.label.phoneNum" bundle="${rb}"/>:</label>
-        <input type="tel" id="phone_number" name="phone_number" pattern="(\+?\d[- .]*){7,13}" required value="<c:out value="${user.phoneNumber}" />"/>
+        <input type="tel" id="phone_number" name="phone_number" pattern="(\+?\d[- .]*){7,13}" required value="<c:out value="${user.phoneNumber}" />" required/>
     </p>
 
     <p>
         <label class="control-label col-sm-2" for="email"><fmt:message key="registration.label.email" bundle="${rb}"/>:</label>
-        <input type="email"  id="email" pattern=".+@globex.com" size="45" required name="email" value="<c:out value="${user.email}" />"/><br/>
+        <input type="email"  id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="45" required name="email" value="<c:out value="${user.email}" />" required/><br/>
     </p>
     <p>
         <fmt:message key="registration.button.save" bundle="${rb}" var="buttonValue"/>
@@ -46,7 +46,7 @@
     </p>
     <c:if test="${not empty errorMessage}">
         <div class="alert alert-danger" role="alert">
-            <c:out value="${errorMessage}"/>
+            Please enter correct filed values!
         </div>
     </c:if>
 </form>

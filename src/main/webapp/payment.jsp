@@ -18,23 +18,23 @@
 <form style="width:1000px" method="POST" action="?action=paid&id=<c:out value="${delivery.id}"/>" name="frmPayment"></a>
     <p>
         <label class="control-label col-sm-2" for="cardHolder"><fmt:message key="pay.label.cardHolder" bundle="${rb}"/>:</label>
-        <input type="text" name="cardHolder"/>
+        <input type="text" name="cardHolder" required/>
     </p>
     <p>
         <label class="control-label col-sm-2" for="price"><fmt:message key="pay.label.price" bundle="${rb}"/>:</label>
-        <input type="text" name="price" value="<c:out value="${delivery.price}" />"/>
+        <input type="text" name="price" value="<c:out value="${delivery.price}" />" readonly/>
     </p>
     <p>
         <label class="control-label col-sm-2" for="cardNumber"><fmt:message key="pay.label.cardNumber" bundle="${rb}"/>:</label>
-        <input type="text" name="cardNumber"/>
+        <input type="text" name="cardNumber" pattern="\d{12}" required/>
     </p>
     <p>
         <label class="control-label col-sm-2"  for="validity"><fmt:message key="pay.label.validity" bundle="${rb}"/>: </label>
-        <input type="text" name="validity"/>
+        <input type="date" name="validity" required/>
     </p>
     <p>
         <label class="control-label col-sm-2" for="cvv2"><fmt:message key="pay.label.cvv2" bundle="${rb}"/>:</label>
-        <input type="text" name="CVV2"/>
+        <input type="text" name="CVV2" pattern="\d{3}" required/>
     </p>
     <p>
         <fmt:message key="pay.button.pay" bundle="${rb}" var="buttonValue"/>
